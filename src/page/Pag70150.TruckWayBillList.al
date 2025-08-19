@@ -2,7 +2,6 @@ page 70150 "Truck WayBill List"
 {
     PageType = List;
     SourceTable = "Truck WayBill";
-    SourceTableView = where("In Land" = const(false));
     ApplicationArea = All;
     CardPageId = "Truck WayBill Card";
     UsageCategory = Lists;
@@ -69,25 +68,11 @@ page 70150 "Truck WayBill List"
                 field("Duty Receipt sent to agent"; Rec."Duty Receipt sent to agent")
                 {
                 }
-                field("Invoiced Received Date"; Rec."Invoiced Received Date")
-                {
-                    ApplicationArea = All;
-                }
+
                 field("Remarks"; Rec."Remarks")
                 {
                 }
-                field("PO No."; Rec."PO No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = All;
-                }
-                field("Project No."; Rec."Project No.")
-                {
-                    ApplicationArea = All;
-                }
+
             }
 
 

@@ -82,10 +82,7 @@ page 70113 "BL Card"
                 {
                     ToolTip = 'Specifies the value of the Clearing Agent field.', Comment = '%';
                 }
-                field(Agent; Rec.Agent)
-                {
-                    ToolTip = 'Specifies the value of the Agent field.', Comment = '%';
-                }
+
                 field("Docs Sent to Entity Date"; Rec."Docs Sent to Entity Date")
                 {
                     ToolTip = 'Specifies the value of the Docs Sent to Entity Date field.', Comment = '%';
@@ -129,26 +126,10 @@ page 70113 "BL Card"
                 //     //     CurrPage.Update(false);
                 //     // end;
                 // }
-                field("Invoiced Received Date"; Rec."Invoiced Received Date")
-                {
-                    ApplicationArea = All;
-                }
                 field(Remarks; Rec.Remarks)
                 {
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                     MultiLine = true;
-                }
-                field("PO No."; Rec."PO No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = All;
-                }
-                field("Project No."; Rec."Project No.")
-                {
-                    ApplicationArea = All;
                 }
 
 

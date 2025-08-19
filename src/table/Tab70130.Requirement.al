@@ -42,8 +42,6 @@ table 70130 "Requirement"
         {
             DataClassification = ToBeClassified;
             OptionMembers = Clearance,Sea,Air,Inlnand;//added Inland on 17/01/2025
-            //   FieldClass = FlowField;
-            //   CalcFormula = lookup("Shipping Quotation"."Quotation Type" where("Comparison ID" = field("Comparison ID")));
         }
     }
 

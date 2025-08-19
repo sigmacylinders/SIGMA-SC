@@ -5,28 +5,6 @@ pageextension 70119 "purchasse order list extension" extends "purchase Order Lis
         // Add changes to page layout here
         addafter("Vendor Order No.")
         {
-            field("Shipping Quotation No."; Rec."Shipping Quotation No.")
-            {
-                ApplicationArea = All;
-                trigger OnDrillDown()
-                var
-                    FilterValue: Text;
-                    QuotationId: Text;
-                    IdArray: List of [Text];
-                begin
-                    Clear(FilterValue);
-                    IdArray := Rec."Shipping Quotation No.".Split(',');
-
-                    foreach QuotationId in IdArray do begin
-                        QuotationId := DelChr(QuotationId, '=', ' '); // Trim spaces
-
-                        if FilterValue = '' then
-                            FilterValue := QuotationId
-                        else
-                            FilterValue := FilterValue + '|' + QuotationId;
-                    end;
-                end;
-            }
             field("Vendor Invoice No."; Rec."Vendor Invoice No.")
             {
                 ApplicationArea = All;

@@ -93,25 +93,25 @@ pageextension 70127 "PO Subform e xtension" extends "Purchase Order Subform"
                 ToolTip = 'Specifies the value of the Inland Details Line No field.', Comment = '%';
                 Editable = false;
             }
-            field("GROSS Weight in KG"; Rec."GROSS Weight in KG")
+            field("Gross Weight in KG"; Rec."Gross Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the GROSS Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("NET Weight in KG"; Rec."NET Weight in KG")
+            field("Net Weight in KG"; Rec."Net Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the NET Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("VOLUMETRIC Weight in KG"; Rec."VOLUMETRIC Weight in KG")
+            field("Volumetric Weight in KG"; Rec."Volumetric Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the VOLUMETRIC Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("CHARGABLE Weight in KG"; Rec."CHARGABLE Weight in KG")
+            field("Chargable Weight in KG"; Rec."Chargable Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the CHARGABLE Weight in KG field.', Comment = '%';

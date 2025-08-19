@@ -143,13 +143,6 @@ table 70108 "BL Details"
         {
             DataClassification = ToBeClassified;
         }
-        field(34; "Agent"; Code[50])
-        {
-            Caption = 'Agent';
-            //
-            //Drop down can be handled with lookup
-            TableRelation = "SIGMA Lookup".Code where(Type = const("Agent"));
-        }
         // field(34; "Container ID"; Code[50])
         // {
         //     //  DataClassification = ToBeClassified;
@@ -157,111 +150,8 @@ table 70108 "BL Details"
         //     //    FieldClass = FlowField;
         //     //  CalcFormula = lookup("Container Details"."Container ID" where("BL ID" = field("BL ID"), Selected = const(true)));
         // }
-        field(40; "PO No."; Text[1000])
-        {
-            trigger OnLookup()
-            var
-                PurchaseHeader: Record "Purchase Header";
-                PurchaseLine: Record "Purchase Line";
-                PurchaseOrderList: Page "Purchase Order List";
-            begin
-                Rec."PO No." := '';
-                Clear(PurchaseOrderList);
-                Clear(PurchaseLine);
-                Clear(PurchaseHeader);
-                PurchaseLine.SetRange("BL/AWB ID", Rec."BL ID");
-                if PurchaseLine.FindFirst() then
-                    repeat
-                        PurchaseHeader.Get(PurchaseLine."Document Type", PurchaseLine."Document No.");
-                        PurchaseHeader.Mark(true);
-                    until PurchaseLine.Next() = 0;
 
-                PurchaseHeader.MarkedOnly(true);
-                PurchaseOrderList.SetTableView(PurchaseHeader);
-                PurchaseOrderList.LookupMode(true);
-                IF PurchaseOrderList.RunModal() = Action::LookupOK then begin
-                    PurchaseOrderList.SetSelectionFilter(PurchaseHeader);
-                    if PurchaseHeader.FindSet() then
-                        repeat
-                            Rec."PO No." += PurchaseHeader."No." + ' , ';
-                        until PurchaseHeader.Next() = 0;
-                end;
-                If Rec."PO No." <> '' then
-                    Rec."PO No." := CopyStr(Rec."PO No.", 1, StrLen(Rec."PO No.") - 3);
-            end;
-        }
-        field(41; "Location Code"; Text[1000])
-        {
-            trigger OnLookup()
-            var
-                Location: Record Location;
-                PurchaseLine: Record "Purchase Line";
-                LocationList: Page "Location List";
-            begin
-                Rec."Location Code" := '';
-                Clear(LocationList);
-                Clear(PurchaseLine);
-                Clear(Location);
-                PurchaseLine.SetRange("BL/AWB ID", Rec."BL ID");
-                if PurchaseLine.FindFirst() then
-                    repeat
-                        Location.Get(PurchaseLine."Location Code");
-                        Location.Mark(true);
-                    until PurchaseLine.Next() = 0;
 
-                Location.MarkedOnly(true);
-                LocationList.SetTableView(Location);
-                LocationList.LookupMode(true);
-                IF LocationList.RunModal() = Action::LookupOK then begin
-                    LocationList.SetSelectionFilter(Location);
-                    if Location.FindSet() then
-                        repeat
-                            Rec."Location Code" += Location.Code + ' , ';
-                        until Location.Next() = 0;
-                end;
-                If Rec."Location Code" <> '' then
-                    Rec."Location Code" := CopyStr(Rec."Location Code", 1, StrLen(Rec."Location Code") - 3);
-            end;
-        }
-
-        field(42; "Project No."; Text[1000])
-        {
-            trigger OnLookup()
-            var
-                Job: Record Job;
-                PurchaseLine: Record "Purchase Line";
-                JobList: Page "Job List";
-            begin
-                Rec."Project No." := '';
-                Clear(JobList);
-                Clear(PurchaseLine);
-                Clear(Job);
-                PurchaseLine.SetRange("BL/AWB ID", Rec."BL ID");
-                if PurchaseLine.FindFirst() then
-                    repeat
-                        Job.Get(PurchaseLine."Job No.");
-                        Job.Mark(true);
-                    until PurchaseLine.Next() = 0;
-
-                Job.MarkedOnly(true);
-                JobList.SetTableView(Job);
-                JobList.LookupMode(true);
-                IF JobList.RunModal() = Action::LookupOK then begin
-                    JobList.SetSelectionFilter(Job);
-                    if Job.FindSet() then
-                        repeat
-                            Rec."Project No." += Job."No." + ' , ';
-                        until Job.Next() = 0;
-                end;
-                If Rec."Project No." <> '' then
-                    Rec."Project No." := CopyStr(Rec."Project No.", 1, StrLen(Rec."Project No.") - 3);
-            end;
-        }
-        field(43; "Invoiced Received Date"; Date)
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Invoice Received Date';
-        }
     }
 
     keys

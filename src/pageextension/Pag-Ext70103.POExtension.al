@@ -5,31 +5,6 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
         // Add changes to page layout here
         addafter(Status)
         {
-            field("Shipping Quotation No."; Rec."Shipping Quotation No.")
-            {
-                ApplicationArea = All;
-                trigger OnDrillDown()
-                var
-                    FilterValue: Text;
-                    QuotationId: Text;
-                    IdArray: List of [Text];
-                begin
-                    Clear(FilterValue);
-                    IdArray := Rec."Shipping Quotation No.".Split(',');
-
-                    foreach QuotationId in IdArray do begin
-                        QuotationId := DelChr(QuotationId, '=', ' '); // Trim spaces
-
-                        if FilterValue = '' then
-                            FilterValue := QuotationId
-                        else
-                            FilterValue := FilterValue + '|' + QuotationId;
-                    end;
-
-
-                end;
-
-            }
 
             field("Initial ETR"; Rec."Initial ETR")
             {

@@ -45,25 +45,13 @@ tableextension 70108 "GL setup Extension" extends "General Ledger Setup"
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(70110; "Shipping Quo Sea No. series"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "No. Series";
-        }
-        field(70111; "Shipping Quo Air No. series"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "No. Series";
-        }
+
+
         field(70112; "Restrict Budget Edit for Users"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(70113; "Shipping Quo InLand No. series"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "No. Series";
-        }
+
         field(70114; "Truck WayBill No. Series"; Code[20])
         {
             DataClassification = ToBeClassified;

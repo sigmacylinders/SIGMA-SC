@@ -31,21 +31,6 @@ pageextension 70109 "General Ledger setup extens" extends "General Ledger Setup"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Batch No. series field.', Comment = '%';
             }
-            field("Shipping Quo Air No. series"; Rec."Shipping Quo Air No. series")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Shipping Quo Air No. series field.', Comment = '%';
-            }
-            field("Shipping Quo Sea No. series"; Rec."Shipping Quo Sea No. series")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Shipping Quo Sea No. series field.', Comment = '%';
-            }
-            field("Shipping Quo InLand No. series"; Rec."Shipping Quo InLand No. series")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Shipping Quo InLand No. series field.', Comment = '%';
-            }
             field("Job No. series"; Rec."Job No. series")
             {
                 ApplicationArea = All;

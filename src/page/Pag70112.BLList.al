@@ -102,30 +102,12 @@ page 70112 "BL List"
                 {
                     ToolTip = 'Specifies the value of the Duty Receipt sent to agent field.', Comment = '%';
                 }
-                field("Invoiced Received Date"; Rec."Invoiced Received Date")
-                {
-                    ApplicationArea = All;
-                }
+
                 field(Remarks; Rec.Remarks)
                 {
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                 }
-                field(Agent; Rec.Agent)
-                {
-                    ToolTip = 'Specifies the value of the Agent field.', Comment = '%';
-                }
-                field("PO No."; Rec."PO No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = All;
-                }
-                field("Project No."; Rec."Project No.")
-                {
-                    ApplicationArea = All;
-                }
+
             }
         }
         area(Factboxes)

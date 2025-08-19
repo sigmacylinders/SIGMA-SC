@@ -211,10 +211,7 @@ tableextension 70116 "Purchase Header extensio9n" extends "Purchase Header"
             FieldClass = FlowField;
             CalcFormula = lookup("Purchase Line"."SIGMA Sales Order No." where("Document Type" = field("Document Type"), "Document No." = field("No.")));
         }
-        field(70122; "Shipping Quotation No."; Text[250])
-        {
-            Editable = false;
-        }
+
     }
 
     keys

@@ -9,10 +9,7 @@ tableextension 70117 "purch. inv. header extension" extends "Purch. Inv. Header"
             FieldClass = FlowField;
             CalcFormula = lookup("Purch. Rcpt. Header"."No." where("Order No." = field("Order No.")));
         }
-        field(70122; "Shipping Quotation No."; Text[250])
-        {
-            Editable = false;
-        }
+
         field(70123; "Actual (Total Cost) Freight"; Decimal)
         {
             Caption = 'Actual (Total Cost) Freight';

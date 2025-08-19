@@ -10,30 +10,7 @@ pageextension 70116 "Posted purch inv extens" extends "Posted Purchase Invoices"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the posted Receipts field.', Comment = '%';
             }
-            field("Shipping Quotation No."; Rec."Shipping Quotation No.")
-            {
-                ApplicationArea = All;
-                trigger OnDrillDown()
-                var
-                    FilterValue: Text;
-                    QuotationId: Text;
-                    IdArray: List of [Text];
-                begin
-                    Clear(FilterValue);
-                    IdArray := Rec."Shipping Quotation No.".Split(',');
 
-                    foreach QuotationId in IdArray do begin
-                        QuotationId := DelChr(QuotationId, '=', ' '); // Trim spaces
-
-                        if FilterValue = '' then
-                            FilterValue := QuotationId
-                        else
-                            FilterValue := FilterValue + '|' + QuotationId;
-                    end;
-
-                end;
-
-            }
             field("Order Date"; Rec."Order Date")
             {
                 ApplicationArea = All;

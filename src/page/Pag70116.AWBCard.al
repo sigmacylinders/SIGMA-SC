@@ -46,36 +46,36 @@ page 70116 "AWB Card"
                 {
                     ToolTip = 'Specifies the value of the Free Demurrage Days field.', Comment = '%';
                 }
-                field("GROSS Weight in KG"; Rec."GROSS Weight in KG")
+                field("Gross Weight in KG"; Rec."Gross Weight in KG")
                 {
                     ToolTip = 'Specifies the value of the GROSS Weight in KG field.', Comment = '%';
 
                     trigger OnValidate()
                     begin
-                        IF (Rec."GROSS Weight in KG" <> 0) and (Rec."VOLUMETRIC Weight in KG" <> 0) then begin
-                            IF Rec."GROSS Weight in KG" >= Rec."VOLUMETRIC Weight in KG" then
-                                Rec."CHARGABLE Weight in KG" := Rec."GROSS Weight in KG" else
-                                Rec."CHARGABLE Weight in KG" := Rec."VOLUMETRIC Weight in KG";
+                        IF (Rec."Gross Weight in KG" <> 0) and (Rec."Volumetric Weight in KG" <> 0) then begin
+                            IF Rec."Gross Weight in KG" >= Rec."Volumetric Weight in KG" then
+                                Rec."Chargable Weight in KG" := Rec."Gross Weight in KG" else
+                                Rec."Chargable Weight in KG" := Rec."Volumetric Weight in KG";
                         end;
                     end;
                 }
-                field("VOLUMETRIC Weight in KG"; Rec."VOLUMETRIC Weight in KG")
+                field("Volumetric Weight in KG"; Rec."Volumetric Weight in KG")
                 {
                     ToolTip = 'Specifies the value of the VOLUMETRIC Weight in KG field.', Comment = '%';
                     trigger OnValidate()
                     begin
-                        IF (Rec."GROSS Weight in KG" <> 0) and (Rec."VOLUMETRIC Weight in KG" <> 0) then begin
-                            IF Rec."GROSS Weight in KG" >= Rec."VOLUMETRIC Weight in KG" then
-                                Rec."CHARGABLE Weight in KG" := Rec."GROSS Weight in KG" else
-                                Rec."CHARGABLE Weight in KG" := Rec."VOLUMETRIC Weight in KG";
+                        IF (Rec."Gross Weight in KG" <> 0) and (Rec."Volumetric Weight in KG" <> 0) then begin
+                            IF Rec."Gross Weight in KG" >= Rec."Volumetric Weight in KG" then
+                                Rec."Chargable Weight in KG" := Rec."Gross Weight in KG" else
+                                Rec."Chargable Weight in KG" := Rec."Volumetric Weight in KG";
                         end;
                     end;
                 }
-                field("CHARGABLE Weight in KG"; Rec."CHARGABLE Weight in KG")
+                field("Chargable Weight in KG"; Rec."Chargable Weight in KG")
                 {
                     ToolTip = 'Specifies the value of the CHARGABLE Weight in KG field.', Comment = '%';
                 }
-                field("NET Weight in KG"; Rec."NET Weight in KG")
+                field("Net Weight in KG"; Rec."Net Weight in KG")
                 {
                     //   Editable = false;
                     ToolTip = 'Specifies the value of the Weight in KG field.', Comment = '%';
@@ -140,10 +140,6 @@ page 70116 "AWB Card"
                 {
                     ToolTip = 'Specifies the value of the Duty Receipt sent to agent field.', Comment = '%';
                 }
-                field("Invoiced Received Date"; Rec."Invoiced Received Date")
-                {
-                    ApplicationArea = All;
-                }
                 field(Remarks; Rec.Remarks)
                 {
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
@@ -169,18 +165,6 @@ page 70116 "AWB Card"
                 field(ATA; Rec.ATA)
                 {
                     ToolTip = 'Specifies the value of the ATA field.', Comment = '%';
-                }
-                field("PO No."; Rec."PO No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("Location Code"; Rec."Location Code")
-                {
-                    ApplicationArea = All;
-                }
-                field("Project No."; Rec."Project No.")
-                {
-                    ApplicationArea = All;
                 }
             }
 

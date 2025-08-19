@@ -135,20 +135,20 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
-        field(70134; "GROSS Weight in KG"; Decimal)
+        field(70134; "Gross Weight in KG"; Decimal)
         {
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."GROSS Weight in KG" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."Gross Weight in KG" where("AWB ID" = field("BL/AWB ID")));
         }
-        field(70135; "VOLUMETRIC Weight in KG"; Decimal)
+        field(70135; "Volumetric Weight in KG"; Decimal)
         {
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."VOLUMETRIC Weight in KG" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."Volumetric Weight in KG" where("AWB ID" = field("BL/AWB ID")));
         }
-        field(70136; "NET Weight in KG"; Decimal)
+        field(70136; "Net Weight in KG"; Decimal)
         {
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."NET Weight in KG" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."Net Weight in KG" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70137; "AirPort of Loading"; Code[50])
         {
@@ -220,10 +220,10 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             //    AutoFormatType = 2;
             //   CaptionClass = GetCaptionClass(FieldNo("Direct Unit Cost"));
         }
-        field(70149; "CHARGABLE Weight in KG"; Decimal)//added on 02/04/2025
+        field(70149; "Chargable Weight in KG"; Decimal)//added on 02/04/2025
         {
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."CHARGABLE Weight in KG" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."Chargable Weight in KG" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70150; "InLand ID"; Code[20])
         {

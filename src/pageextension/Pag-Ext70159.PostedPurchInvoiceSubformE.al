@@ -179,25 +179,25 @@ pageextension 70159 "Posted Purch. Invoice SubformE" extends "Posted Purch. Invo
                 ToolTip = 'Specifies the value of the Vendor Item No. field.', Comment = '%';
             }
 
-            field("GROSS Weight in KG"; Rec."GROSS Weight in KG")
+            field("Gross Weight in KG"; Rec."Gross Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the GROSS Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("NET Weight in KG"; Rec."NET Weight in KG")
+            field("Net Weight in KG"; Rec."Net Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the NET Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("VOLUMETRIC Weight in KG"; Rec."VOLUMETRIC Weight in KG")
+            field("Volumetric Weight in KG"; Rec."Volumetric Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the VOLUMETRIC Weight in KG field.', Comment = '%';
                 Editable = false;
             }
-            field("CHARGABLE Weight in KG"; Rec."CHARGABLE Weight in KG")
+            field("Chargable Weight in KG"; Rec."Chargable Weight in KG")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the CHARGABLE Weight in KG field.', Comment = '%';
