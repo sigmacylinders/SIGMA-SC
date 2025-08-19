@@ -20,11 +20,5 @@ tableextension 70131 "Activities Cue extension" extends "Activities Cue"
             // Caption = 'Ongoing Sales Quotes';
             FieldClass = FlowField;
         }
-        field(70103; "Variation Orders"; Integer)
-        {
-            CalcFormula = count("Variation Order" where(Executed = const(false)));
-            // Caption = 'Ongoing Sales Quotes';
-            FieldClass = FlowField;
-        }
     }
 }

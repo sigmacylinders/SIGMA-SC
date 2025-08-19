@@ -26,15 +26,7 @@ pageextension 70141 "O365 Activities extension" extends "O365 Activities"
                     DrillDownPageId = "Intermediate Customers List";
                 }
             }
-            cuegroup(" Variation Orders")
-            {
-                field("Variation Orders"; Rec."Variation Orders")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Variation Orders field.', Comment = '%';
-                    DrillDownPageId = "Variation Orders";
-                }
-            }
+
         }
     }
 

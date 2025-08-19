@@ -64,7 +64,7 @@ tableextension 70132 "Project Planning Lines exte" extends "Job Planning Line"
             var
                 myInt: Integer;
             begin
-                CalcCustomandClearance();
+                /*   CalcCustomandClearance();*/// abdallah19/08/2025
             end;
         }
         field(70110; "COF"; Decimal)
@@ -219,7 +219,7 @@ tableextension 70132 "Project Planning Lines exte" extends "Job Planning Line"
             var
                 myInt: Integer;
             begin
-                CalcCustomandClearance();
+                /*   CalcCustomandClearance();*/// abdallah19/08/2025
             end;
         }
         field(70128; "Custom Cost"; Decimal)
@@ -268,26 +268,26 @@ tableextension 70132 "Project Planning Lines exte" extends "Job Planning Line"
 
     end;
 
-    local procedure CalcCustomandClearance()
-    var
-        perc: Decimal;
-        customvalue: Decimal;
-        clearancevalue: Decimal;
-    begin
-        customvalue := 0;
-        perc := 0;
-        clearancevalue := 3;
-        perc := rec."CC_Percentage" * 100;
-        customvalue := perc - clearancevalue;
+    /* local procedure CalcCustomandClearance()
+     var
+         perc: Decimal;
+         customvalue: Decimal;
+         clearancevalue: Decimal;
+     begin
+         customvalue := 0;
+         perc := 0;
+         clearancevalue := 3;
+         perc := rec."CC_Percentage" * 100;
+         customvalue := perc - clearancevalue;
 
-        if perc <> 0 then begin
-            Rec."Clearance Cost" := (clearancevalue / perc) * Rec."Custom & Clearance Cost";
-            Rec."Custom Cost" := (customvalue / perc) * Rec."Custom & Clearance Cost";
-        end else begin
-            Rec."Clearance Cost" := 0;
-            Rec."Custom Cost" := 0;
-        end;
-    end;
+         if perc <> 0 then begin
+             Rec."Clearance Cost" := (clearancevalue / perc) * Rec."Custom & Clearance Cost";
+             Rec."Custom Cost" := (customvalue / perc) * Rec."Custom & Clearance Cost";
+         end else begin
+             Rec."Clearance Cost" := 0;
+             Rec."Custom Cost" := 0;
+         end;
+     end;*/// abdallah19/08/2025
 
 
 

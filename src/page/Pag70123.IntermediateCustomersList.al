@@ -11,7 +11,7 @@ page 70123 "Intermediate Customers List"
         {
             repeater(Group)
             {
-              
+
                 field("No."; Rec."No.")
                 {
                 }
@@ -103,7 +103,7 @@ page 70123 "Intermediate Customers List"
                 field("County"; Rec."County")
                 {
                 }
-          
+
                 field("Arabic Customer Name"; Rec."Arabic Customer Name")
                 {
                     ToolTip = 'Specifies the value of the Arabic Customer Name field.', Comment = '%';
@@ -186,7 +186,7 @@ page 70123 "Intermediate Customers List"
                 {
                     ToolTip = 'Specifies the value of the VAT Bus. Posting Group field.', Comment = '%';
                 }
-              
+
                 field("API Status"; Rec."API Status")
                 {
                     ToolTip = 'Specifies the value of the API Status field.', Comment = '%';
@@ -322,7 +322,7 @@ page 70123 "Intermediate Customers List"
                 Image = Reject;
                 trigger OnAction()
                 begin
-              
+
                 end;
             }
         }
@@ -369,7 +369,7 @@ page 70123 "Intermediate Customers List"
         CustomerRec.Validate("Post Code", IntCustomer."Post Code");
         CustomerRec.Validate("County", IntCustomer.County);
 
-     
+
         // CustomerRec.Validate("Building NO.", IntCustomer."Building NO.");
         // CustomerRec.Validate("Building Name", IntCustomer."Building Name");
         // CustomerRec.Validate("Building Name Arabic", IntCustomer."Building Name Arabic");
@@ -472,13 +472,7 @@ page 70123 "Intermediate Customers List"
         Rec.Modify();
     end;
 
-    trigger OnOpenPage()
-    var
-    begin
-        Clear(UserSetup);
-        IF UserSetup.Get(UserId) then;
-        InputDynamicsNumber := UserSetup."Input DynamicNum to Intermed.";
-    end;
+
 
     var
         CustomerRec: Record Customer;

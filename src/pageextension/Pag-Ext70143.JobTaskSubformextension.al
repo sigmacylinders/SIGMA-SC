@@ -40,13 +40,6 @@ pageextension 70143 "Job Task Subform extension" extends "Job Task Lines Subform
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Actual (Total Quantity) field.', Comment = '%';
             }
-            field("Allocated Job Expenses"; Rec."Allocated Job Expenses")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Allocated Job Expenses field.', Comment = '%';
-                Editable = false;
-                // Enabled = false;
-            }
         }
         addafter("Schedule (Total Price)")
         {

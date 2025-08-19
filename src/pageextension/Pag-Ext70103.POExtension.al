@@ -10,8 +10,6 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
                 ApplicationArea = All;
                 trigger OnDrillDown()
                 var
-                    ShippingQuotation: Record "Shipping Quotation";
-                    ShippingQuotationsList: Page "Shipping Quotations List";
                     FilterValue: Text;
                     QuotationId: Text;
                     IdArray: List of [Text];
@@ -28,11 +26,7 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
                             FilterValue := FilterValue + '|' + QuotationId;
                     end;
 
-                    if FilterValue <> '' then begin
-                        ShippingQuotation.SetFilter("Comparison ID", FilterValue);
-                        ShippingQuotationsList.SetTableView(ShippingQuotation);
-                        ShippingQuotationsList.Run();
-                    end;
+
                 end;
 
             }
@@ -140,26 +134,6 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
 
     end;
 
-    trigger OnAfterGetRecord()
-    var
-        ShipQuote: Record "Shipping Quotation";
-        ResultList: Text;
-    begin
-        Clear(Rec."Shipping Quotation No.");
-        ResultList := '';
-
-        if ShipQuote.FindSet() then
-            repeat
-                if ShipQuote."Document Reference".Contains(Rec."No.") then begin
-                    if ResultList = '' then
-                        ResultList := ShipQuote."Comparison ID"
-                    else
-                        ResultList := ResultList + ', ' + ShipQuote."Comparison ID";
-                end;
-            until ShipQuote.Next() = 0;
-
-        Rec."Shipping Quotation No." := ResultList;
-    end;
 
 
     var

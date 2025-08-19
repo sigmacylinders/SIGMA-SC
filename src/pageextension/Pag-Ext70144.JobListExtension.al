@@ -16,18 +16,6 @@ pageextension 70144 "Job List Extension" extends "Job List"
                 ToolTip = 'Specifies the value of the SystemCreatedAt field.', Comment = '%';
             }
         }
-        addbefore("Job Details")
-        {
-            part("Variation Order"; "Variation Order Factbox")
-            {
-                ApplicationArea = All;
-                Caption = 'Variation Order';
-                // Provider = SalesLines;
-                SubPageLink = "Project Code" = field("No.");
-                // "Document Type" = field("Document Type");
-            }
-        }
-
 
 
         addafter(Description)

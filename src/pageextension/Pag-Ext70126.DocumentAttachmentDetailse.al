@@ -42,9 +42,7 @@ pageextension 70126 "Document Attachment Details e" extends "Document Attachment
         //  FinanceDetails: Record "Finance Details";
         BLDetails: Record "BL Details";
         AWBDetails: Record "AWB Details";
-        VariationOrder: Record "Variation Order";
         //  TravelRequest: Record "Travel Request";
-        SQ: Record "Shipping Quotation";//added on 19032025
         TruckWayBill: Record "Truck WayBill"; //AN 04/03/2025
     begin
         IF Rec."Table ID" = Database::Job then begin
@@ -167,59 +165,8 @@ pageextension 70126 "Document Attachment Details e" extends "Document Attachment
             end
         end;
 
-        //AN 03/06/25
-        IF (Rec."Table ID" = Database::"Variation Order") then begin
-            Clear(VariationOrder);
-            // VariationOrder.Get(Rec."No.");
-            VariationOrder.SetRange(Number, Rec."No.");
-            VariationOrder.FindFirst();
-            VariationOrder."Attachment ID" := '';
-
-            VariationOrder."Document Attachment Table ID" := 0;
-            VariationOrder."Document Attachment No." := '';
-            VariationOrder."Document Attachment Doc. Type" := Rec."Document Type"::Order;
-            VariationOrder."Document Attachment Line No." := 0;
-            VariationOrder."Document Attachment ID" := 0;
-            VariationOrder.Modify();
-            IF (NOT Rec.HasContent()) AND (Rec."to be removed") then begin
-
-                VariationOrder."Attachment ID" := Rec."Attachment ID";
-
-                VariationOrder."Document Attachment Table ID" := Rec."Table ID";
-                VariationOrder."Document Attachment No." := Rec."No.";
-                VariationOrder."Document Attachment Doc. Type" := Rec."Document Type";
-                VariationOrder."Document Attachment Line No." := Rec."Line No.";
-                VariationOrder."Document Attachment ID" := REc.ID;
-                VariationOrder.Modify();
-            end
-        end;
 
 
-        //updated on 20/03/2025 AI
-        IF Rec."Table ID" = Database::"Shipping Quotation" then begin
-            Clear(SQ);
-            SQ.Get(Rec."No.");
-            SQ."Attachment ID" := '';
-
-            SQ."Document Attachment Table ID" := 0;
-            SQ."Document Attachment No." := '';
-            SQ."Document Attachment Doc. Type" := Rec."Document Type"::Quote;
-            SQ."Document Attachment Line No." := 0;
-            SQ."Document Attachment ID" := 0;
-            SQ.Modify();
-            IF (NOT Rec.HasContent()) AND (Rec."to be removed") then begin
-
-
-                SQ."Attachment ID" := Rec."Attachment ID";
-
-                SQ."Document Attachment Table ID" := Rec."Table ID";
-                SQ."Document Attachment No." := Rec."No.";
-                SQ."Document Attachment Doc. Type" := Rec."Document Type";
-                SQ."Document Attachment Line No." := Rec."Line No.";
-                SQ."Document Attachment ID" := REc.ID;
-                SQ.Modify();
-            end
-        end;
         //AN 04/03/2025
         IF (Rec."Table ID" = Database::"Truck WayBill") then begin
             Clear(TruckWayBill);

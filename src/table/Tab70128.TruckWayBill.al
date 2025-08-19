@@ -96,11 +96,6 @@ table 70128 "Truck WayBill"
             Editable = false;
 
         }
-        field(22; "Shipping Quotation Reference"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Shipping Quotation";
-        }
         field(37; "Attachment ID"; Text[50])
         {
             DataClassification = ToBeClassified;

@@ -378,11 +378,6 @@ table 70110 "AWB Details"
         {
             DataClassification = ToBeClassified;
         }
-        field(39; "Shipping Quotation Reference"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Shipping Quotation";
-        }
         field(40; "PO No."; Text[1000])
         {
             trigger OnLookup()

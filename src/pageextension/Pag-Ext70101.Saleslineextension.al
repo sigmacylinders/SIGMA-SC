@@ -5,18 +5,18 @@ pageextension 70101 "Sales line extension" extends "Sales Lines"
         // Add changes to page layout here
         addafter(Quantity)
         {
-            field("Qty to Split"; Rec."Qty to Split")
-            {
-                ApplicationArea = All;
-                Visible = visibleQTYSplit;
-                Editable = (Rec."SIGMA Purchase Order No." = '') and (Rec."Qty to Split" = 0);
-                trigger OnValidate()
-                var
-                    myInt: Integer;
-                begin
-                    SplitSOLines();
-                end;
-            }
+            // field("Qty to Split"; Rec."Qty to Split")
+            // {
+            //     ApplicationArea = All;
+            //     Visible = visibleQTYSplit;
+            //     Editable = (Rec."SIGMA Purchase Order No." = '') and (Rec."Qty to Split" = 0);
+            //     trigger OnValidate()
+            //     var
+            //         myInt: Integer;
+            //     begin
+            //         SplitSOLines();
+            //     end;
+            // }
             field("Original Quantity"; Rec."Original Quantity")
             {
                 ApplicationArea = All;
@@ -139,108 +139,108 @@ pageextension 70101 "Sales line extension" extends "Sales Lines"
     {
         // Add changes to page actions here
     }
-    local procedure SplitSOLines()
-    var
-        SalesLine: Record "Sales Line";
-        SalesLine2: Record "Sales Line";
-        SalesLine3: Record "Sales Line";
-        SalesLine4: Record "Sales Line";//added by AI on 17/04/2025
-        LineSpacing: Integer;
-        LinesSplitted: Boolean;
+    /*  local procedure SplitSOLines()
+      var
+          SalesLine: Record "Sales Line";
+          SalesLine2: Record "Sales Line";
+          SalesLine3: Record "Sales Line";
+          SalesLine4: Record "Sales Line";//added by AI on 17/04/2025
+          LineSpacing: Integer;
+          LinesSplitted: Boolean;
 
-        PurchaseLine: Record "Purchase Line";
-        PurchaseLine2: Record "Purchase Line";
-    begin
-        Rec.TestField("Quantity Shipped", 0);
-        LinesSplitted := false;
-        Rec.TestField("Qty to Split");
-        IF Rec."Qty to Split" > Rec.Quantity then
-            Error('Quantity shipped must be less than Quantity');
-        Rec.TestField("Job No.");
-        IF Rec."Line is Splitted" = false then begin
-            Rec."Original Quantity" := Rec.Quantity;
-            Rec."Original Line No." := Rec."Line No.";
-            REc."Splitted Line No." := FORMAT(Rec."Line No.") + '0.1';
-        end;
-        //splitted line
-        IF (Rec."Qty to Split" < Rec.Quantity) and (Rec."SIGMA Purchase Order No." = '') and (Rec."Job No." <> '') then begin
-            SalesLine.Init();
-            SalesLine.Copy(Rec);
-            SalesLine."Skip Line Checking " := true;
-            //  EVALUATE(SalesLine."Line No.", IncStr(FORMAT(Rec."Line No.")));// + 1;//commented by AI on 17/04/2025 reason adding only 1 to the split line is showing error 'There is not enough space to insert correction lines.' on undo shipment
+          PurchaseLine: Record "Purchase Line";
+          PurchaseLine2: Record "Purchase Line";
+      begin
+          Rec.TestField("Quantity Shipped", 0);
+          LinesSplitted := false;
+          Rec.TestField("Qty to Split");
+          IF Rec."Qty to Split" > Rec.Quantity then
+              Error('Quantity shipped must be less than Quantity');
+          Rec.TestField("Job No.");
+          IF Rec."Line is Splitted" = false then begin
+              Rec."Original Quantity" := Rec.Quantity;
+              Rec."Original Line No." := Rec."Line No.";
+              REc."Splitted Line No." := FORMAT(Rec."Line No.") + '0.1';
+          end;
+          //splitted line
+          IF (Rec."Qty to Split" < Rec.Quantity) and (Rec."SIGMA Purchase Order No." = '') and (Rec."Job No." <> '') then begin
+              SalesLine.Init();
+              SalesLine.Copy(Rec);
+              SalesLine."Skip Line Checking " := true;
+              //  EVALUATE(SalesLine."Line No.", IncStr(FORMAT(Rec."Line No.")));// + 1;//commented by AI on 17/04/2025 reason adding only 1 to the split line is showing error 'There is not enough space to insert correction lines.' on undo shipment
 
-            //added by AI on 17/04/2025   
-            LineSpacing := 0;
-            Clear(SalesLine4);
-            SalesLine4.SetRange("Document Type", SalesLine4."Document Type"::Order);
-            SalesLine4.SetRange("Document No.", Rec."Document No.");
-            SalesLine4."Document Type" := Rec."Document Type";
-            SalesLine4."Document No." := Rec."Document No.";
-            SalesLine4."Line No." := Rec."Line No.";
-            SalesLine4.Find('=');
-            if SalesLine4.Find('>') then begin
-                LineSpacing := (SalesLine4."Line No." - Rec."Line No.") div 2;
-            end else
-                LineSpacing := 10000;
+              //added by AI on 17/04/2025   
+              LineSpacing := 0;
+              Clear(SalesLine4);
+              SalesLine4.SetRange("Document Type", SalesLine4."Document Type"::Order);
+              SalesLine4.SetRange("Document No.", Rec."Document No.");
+              SalesLine4."Document Type" := Rec."Document Type";
+              SalesLine4."Document No." := Rec."Document No.";
+              SalesLine4."Line No." := Rec."Line No.";
+              SalesLine4.Find('=');
+              if SalesLine4.Find('>') then begin
+                  LineSpacing := (SalesLine4."Line No." - Rec."Line No.") div 2;
+              end else
+                  LineSpacing := 10000;
 
-            SalesLine."Line No." := Rec."Line No." + LineSpacing;
+              SalesLine."Line No." := Rec."Line No." + LineSpacing;
 
-            SalesLine.Validate(Quantity, SalesLine.Quantity - Rec."Qty to Split");
-            SalesLine."Qty to Split" := 0;
+              SalesLine.Validate(Quantity, SalesLine.Quantity - Rec."Qty to Split");
+              SalesLine."Qty to Split" := 0;
 
-            //SalesLine."Remaining Quantity Shipped" := SalesLine."Original Quantity" - SalesLine2."Quantity Shipped";
-            SalesLine."Line is Splitted" := true;
-            SalesLine."Splitted Line No." := IncStr(SalesLine."Splitted Line No.");
-            SalesLine."Skip Line Checking " := false;
-            SalesLine.Insert();
+              //SalesLine."Remaining Quantity Shipped" := SalesLine."Original Quantity" - SalesLine2."Quantity Shipped";
+              SalesLine."Line is Splitted" := true;
+              SalesLine."Splitted Line No." := IncStr(SalesLine."Splitted Line No.");
+              SalesLine."Skip Line Checking " := false;
+              SalesLine.Insert();
 
-            LinesSplitted := true;
-        end;
-
-
-        Clear(SalesLine2);
-        SalesLine2.SetRange("Document Type", SalesLine2."Document Type"::Order);
-        SalesLine2.SetRange("Document No.", Rec."Document No.");
-        SalesLine2.SetRange("Original Line No.", Rec."Original Line No.");
-        SalesLine2.CalcSums("Qty to Split");
-
-        Clear(SalesLine3);
-        SalesLine3.SetRange("Document Type", SalesLine3."Document Type"::Order);
-        SalesLine3.SetRange("Document No.", Rec."Document No.");
-        SalesLine3.SetRange("Original Line No.", Rec."Original Line No.");
-        //    PurchaseLine3.CalcSums("Quantity Shipped");
-        //   Message(Format(PurchaseLine2."Quantity Shipped"));
+              LinesSplitted := true;
+          end;
 
 
+          Clear(SalesLine2);
+          SalesLine2.SetRange("Document Type", SalesLine2."Document Type"::Order);
+          SalesLine2.SetRange("Document No.", Rec."Document No.");
+          SalesLine2.SetRange("Original Line No.", Rec."Original Line No.");
+          SalesLine2.CalcSums("Qty to Split");
 
-        //line being modified
-        Rec."Remaining Quantity Shipped" := Rec."Original Quantity" - SalesLine2."Qty to Split";
-        IF LinesSplitted then begin
-            Rec."Skip Line Checking " := true;
-            Rec.Validate(Quantity, Rec."Qty to Split");
-            rec."Line is Splitted" := true;
-            Rec."Skip Line Checking " := false;
-            REc.Modify();
-        end;
-        //  Rec."Disable fields after Shipping" := true;
-        Rec."Remaining Quantity Shipped" := Rec."Original Quantity" - SalesLine2."Qty to Split" - Rec."Qty to Split";
-        REc.Modify();
-
-
-        SalesLine3.ModifyAll("Remaining Quantity Shipped", Rec."Original Quantity" - SalesLine2."Qty to Split" - Rec."Qty to Split");
-
-        CurrPage.Update();
-    end;
+          Clear(SalesLine3);
+          SalesLine3.SetRange("Document Type", SalesLine3."Document Type"::Order);
+          SalesLine3.SetRange("Document No.", Rec."Document No.");
+          SalesLine3.SetRange("Original Line No.", Rec."Original Line No.");
+          //    PurchaseLine3.CalcSums("Quantity Shipped");
+          //   Message(Format(PurchaseLine2."Quantity Shipped"));
 
 
-    trigger OnOpenPage()
-    var
-    begin
-        Clear(UserSetup);
-        UserSetup.Get(UserId);
-        visibleQTYSplit := UserSetup."Can Split SO";
 
-    end;
+          //line being modified
+          Rec."Remaining Quantity Shipped" := Rec."Original Quantity" - SalesLine2."Qty to Split";
+          IF LinesSplitted then begin
+              Rec."Skip Line Checking " := true;
+              Rec.Validate(Quantity, Rec."Qty to Split");
+              rec."Line is Splitted" := true;
+              Rec."Skip Line Checking " := false;
+              REc.Modify();
+          end;
+          //  Rec."Disable fields after Shipping" := true;
+          Rec."Remaining Quantity Shipped" := Rec."Original Quantity" - SalesLine2."Qty to Split" - Rec."Qty to Split";
+          REc.Modify();
+
+
+          SalesLine3.ModifyAll("Remaining Quantity Shipped", Rec."Original Quantity" - SalesLine2."Qty to Split" - Rec."Qty to Split");
+
+          CurrPage.Update();
+      end;
+
+
+      trigger OnOpenPage()
+      var
+      begin
+          Clear(UserSetup);
+          UserSetup.Get(UserId);
+          visibleQTYSplit := UserSetup."Can Split SO";
+
+      end;*/// abdallah19/08/2025
 
     var
         visibleQTYSplit: Boolean;

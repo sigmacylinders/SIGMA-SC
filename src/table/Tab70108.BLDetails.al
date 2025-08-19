@@ -157,11 +157,6 @@ table 70108 "BL Details"
         //     //    FieldClass = FlowField;
         //     //  CalcFormula = lookup("Container Details"."Container ID" where("BL ID" = field("BL ID"), Selected = const(true)));
         // }
-        field(35; "Shipping Quotation Reference"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Shipping Quotation";
-        }
         field(40; "PO No."; Text[1000])
         {
             trigger OnLookup()

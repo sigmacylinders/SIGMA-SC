@@ -286,12 +286,7 @@ tableextension 70135 "Job Task Extension" extends "Job Task"
             FieldClass = FlowField;
             CalcFormula = sum("Purchase Line".Quantity where("Document Type" = const(Order), "Job No." = field("Job No."), "Job Task No." = field("Job Task No.")));
         }
-        field(70115; "Allocated Job Expenses"; Decimal)//added on 04/03/2025
-        {
-            //    DataClassification = ToBeClassified;
-            FieldClass = FlowField;
-            CalcFormula = sum("Job Expense Allocation".Amount where("Project Code" = field("Job No.")));
-        }
+
         field(70116; "Expected Financial Amount"; Decimal)
         {
             CalcFormula = Sum("Gen. Journal Line"."Amount (LCY)" WHERE("Job No." = FIELD("Job No."), "Job Task No." = FIELD("Job Task No."), "Job Task No." = FIELD(FILTER(Totaling)), "Source Code" = CONST('GENJNL')));

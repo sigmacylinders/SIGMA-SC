@@ -37,11 +37,6 @@ page 70113 "BL Card"
                 {
                     ToolTip = 'Specifies the value of the Line field.', Comment = '%';
                 }
-                field("Shipping Quotation Reference"; Rec."Shipping Quotation Reference")
-                {
-                    ToolTip = 'Specifies the value of the Shipping Quotation Reference field.', Comment = '%';
-                    ShowMandatory = true;
-                }
                 field("Free Demurrage Days"; Rec."Free Demurrage Days")
                 {
                     ToolTip = 'Specifies the value of the Free Demurrage Days field.', Comment = '%';

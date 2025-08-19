@@ -15,8 +15,6 @@ pageextension 70116 "Posted purch inv extens" extends "Posted Purchase Invoices"
                 ApplicationArea = All;
                 trigger OnDrillDown()
                 var
-                    ShippingQuotation: Record "Shipping Quotation";
-                    ShippingQuotationsList: Page "Shipping Quotations List";
                     FilterValue: Text;
                     QuotationId: Text;
                     IdArray: List of [Text];
@@ -33,11 +31,6 @@ pageextension 70116 "Posted purch inv extens" extends "Posted Purchase Invoices"
                             FilterValue := FilterValue + '|' + QuotationId;
                     end;
 
-                    if FilterValue <> '' then begin
-                        ShippingQuotation.SetFilter("Comparison ID", FilterValue);
-                        ShippingQuotationsList.SetTableView(ShippingQuotation);
-                        ShippingQuotationsList.Run();
-                    end;
                 end;
 
             }

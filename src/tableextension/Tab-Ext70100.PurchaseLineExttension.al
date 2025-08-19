@@ -406,231 +406,231 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
-        modify("No.")
-        {
-            trigger OnAfterValidate()
-            var
+        /* modify("No.")
+         {
+             trigger OnAfterValidate()
+             var
 
-                SalesLine: Record "Sales Line";
-                ProjectLine: Record "Job Planning Line";
-                ProjectLineunitCost: Decimal;
-                PurchLineunitCost: Decimal;
-                ProjectLocationCode: code[20];//added on 07/05/2025
-                ProjectDim1: Code[20];
-                ProjectDim2: Code[20];
-                ProjectDim3: Code[20];
-                ProjectDim4: Code[20];
-                ProjectDim5: Code[20];
-                ProjectDim6: Code[20];
-                CostVariationLOG: Record "Cost Variation LOG";
-            begin
-                ProjectLineunitCost := 0;
-                PurchLineunitCost := 0;
-                ProjectLocationCode := '';//added on 07/05/2025
-                ProjectDim1 := '';
-                ;
-                ProjectDim2 := '';
-                ;
-                ProjectDim3 := '';
-                ;
-                ProjectDim4 := '';
-                ;
-                ProjectDim5 := '';
-                ;
-                ProjectDim6 := '';
-                ;
-                Clear(SalesLine);
-                clear(ProjectLine);
-                IF rec."SIGMA Sales Order No." = '' then begin
-                    rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
-                end;
+                 SalesLine: Record "Sales Line";
+                 ProjectLine: Record "Job Planning Line";
+                 ProjectLineunitCost: Decimal;
+                 PurchLineunitCost: Decimal;
+                 ProjectLocationCode: code[20];//added on 07/05/2025
+                 ProjectDim1: Code[20];
+                 ProjectDim2: Code[20];
+                 ProjectDim3: Code[20];
+                 ProjectDim4: Code[20];
+                 ProjectDim5: Code[20];
+                 ProjectDim6: Code[20];
+                 CostVariationLOG: Record "Cost Variation LOG";
+             begin
+                 ProjectLineunitCost := 0;
+                 PurchLineunitCost := 0;
+                 ProjectLocationCode := '';//added on 07/05/2025
+                 ProjectDim1 := '';
+                 ;
+                 ProjectDim2 := '';
+                 ;
+                 ProjectDim3 := '';
+                 ;
+                 ProjectDim4 := '';
+                 ;
+                 ProjectDim5 := '';
+                 ;
+                 ProjectDim6 := '';
+                 ;
+                 Clear(SalesLine);
+                 clear(ProjectLine);
+                 IF rec."SIGMA Sales Order No." = '' then begin
+                     rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
+                 end;
 
-                IF rec."SIGMA Sales Order Line No." = 0 then begin//below get return empty record if the line is not found in the sales line table
-                    rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
-                end;
-                IF SalesLine.get(SalesLine."Document Type"::Order, Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.") then begin
-                    IF Rec."No." <> '' then begin
-                        IF Rec."No." <> SalesLine."No." then begin
-                            IF Confirm(StrSubstNo('Warninig! the Item Number in the sales %1 line %2 is different from the purchase line. Do you want to update the item Number on the Sales Line too?', Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.")) then begin
-                                IF ProjectLine.Get(SalesLine."Job No.", SalesLine."Job Task No.", SalesLine."Job Planning Line No.") then begin
-                                    ProjectLineunitCost := ProjectLine."Unit Cost";//added on 07/05/2025
-                                    ProjectLocationCode := ProjectLine."Location Code";//added on 07/05/2025
-                                    ProjectDim1 := ProjectLine."Shortcut Dimension 1 Code";
-                                    ProjectDim2 := ProjectLine."Shortcut Dimension 2 Code";
-                                    ProjectDim3 := ProjectLine."Shortcut Dimension 3 Code";
-                                    ProjectDim4 := ProjectLine."Shortcut Dimension 4 Code";
-                                    ProjectDim5 := ProjectLine."Shortcut Dimension 5 Code";
-                                    ProjectDim6 := ProjectLine."Shortcut Dimension 6 Code";
+                 IF rec."SIGMA Sales Order Line No." = 0 then begin//below get return empty record if the line is not found in the sales line table
+                     rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
+                 end;
+                 IF SalesLine.get(SalesLine."Document Type"::Order, Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.") then begin
+                     IF Rec."No." <> '' then begin
+                         IF Rec."No." <> SalesLine."No." then begin
+                             IF Confirm(StrSubstNo('Warninig! the Item Number in the sales %1 line %2 is different from the purchase line. Do you want to update the item Number on the Sales Line too?', Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.")) then begin
+                                 IF ProjectLine.Get(SalesLine."Job No.", SalesLine."Job Task No.", SalesLine."Job Planning Line No.") then begin
+                                     ProjectLineunitCost := ProjectLine."Unit Cost";//added on 07/05/2025
+                                     ProjectLocationCode := ProjectLine."Location Code";//added on 07/05/2025
+                                     ProjectDim1 := ProjectLine."Shortcut Dimension 1 Code";
+                                     ProjectDim2 := ProjectLine."Shortcut Dimension 2 Code";
+                                     ProjectDim3 := ProjectLine."Shortcut Dimension 3 Code";
+                                     ProjectDim4 := ProjectLine."Shortcut Dimension 4 Code";
+                                     ProjectDim5 := ProjectLine."Shortcut Dimension 5 Code";
+                                     ProjectDim6 := ProjectLine."Shortcut Dimension 6 Code";
 
-                                    ProjectLine.Validate("No.", Rec."No.");
-                                    ProjectLine.Validate("Unit Price", SalesLine."Unit Price");//added on 07/05/2025
+                                     ProjectLine.Validate("No.", Rec."No.");
+                                     ProjectLine.Validate("Unit Price", SalesLine."Unit Price");//added on 07/05/2025
 
-                                    IF (ProjectLocationCode <> '') and (ProjectLine."Location Code" = '') then//added on 07/05/2025
-                                        ProjectLine.Validate("Location Code", ProjectLocationCode);
+                                     IF (ProjectLocationCode <> '') and (ProjectLine."Location Code" = '') then//added on 07/05/2025
+                                         ProjectLine.Validate("Location Code", ProjectLocationCode);
 
-                                    IF (ProjectDim1 <> '') and (ProjectLine."Shortcut Dimension 1 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 1 Code", ProjectDim1);
+                                     IF (ProjectDim1 <> '') and (ProjectLine."Shortcut Dimension 1 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 1 Code", ProjectDim1);
 
-                                    IF (ProjectDim2 <> '') and (ProjectLine."Shortcut Dimension 2 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 2 Code", ProjectDim2);
+                                     IF (ProjectDim2 <> '') and (ProjectLine."Shortcut Dimension 2 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 2 Code", ProjectDim2);
 
-                                    IF (ProjectDim3 <> '') and (ProjectLine."Shortcut Dimension 3 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 3 Code", ProjectDim3);
+                                     IF (ProjectDim3 <> '') and (ProjectLine."Shortcut Dimension 3 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 3 Code", ProjectDim3);
 
-                                    IF (ProjectDim4 <> '') and (ProjectLine."Shortcut Dimension 4 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 4 Code", ProjectDim4);
+                                     IF (ProjectDim4 <> '') and (ProjectLine."Shortcut Dimension 4 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 4 Code", ProjectDim4);
 
-                                    IF (ProjectDim5 <> '') and (ProjectLine."Shortcut Dimension 5 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 5 Code", ProjectDim5);
+                                     IF (ProjectDim5 <> '') and (ProjectLine."Shortcut Dimension 5 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 5 Code", ProjectDim5);
 
-                                    IF (ProjectDim6 <> '') and (ProjectLine."Shortcut Dimension 6 Code" = '') then
-                                        ProjectLine.Validate("Shortcut Dimension 6 Code", ProjectDim6);
-
-
-                                    IF ProjectLineunitCost <> 0 then//added on 07/05/2025
-                                        ProjectLine.Validate("Unit Cost", ProjectLineunitCost);//added on 07/05/2025
-
-                                    ProjectLine.Modify();
-
-                                end;
-
-                                SalesLine.Validate("No.", Rec."No.");
-                                SalesLine.Modify();
-
-                                CostVariationLOG.Init();
-                                CostVariationLOG."Item Number" := Rec."No.";
-                                CostVariationLOG."old Item number" := xRec."No.";
-                                CostVariationLOG."new Item number" := Rec."No.";
-                                CostVariationLOG."PO Number" := Rec."Document No.";
-                                CostVariationLOG."PO Line Number" := Rec."Line No.";
-                                CostVariationLOG."Project No." := Rec."Job No.";
-                                CostVariationLOG."Project planning Line No." := Rec."Job Planning Line No.";
-                                CostVariationLOG."Created By" := UserId;
-                                CostVariationLOG.Insert(true);
-
-                            end;
-                        end;
-                    end;
-                end;
+                                     IF (ProjectDim6 <> '') and (ProjectLine."Shortcut Dimension 6 Code" = '') then
+                                         ProjectLine.Validate("Shortcut Dimension 6 Code", ProjectDim6);
 
 
-                IF rec."BL/AWB ID" = '' then begin//transfer fields after validating fields that has impact on other fields
-                    rec."BL/AWB ID" := xRec."BL/AWB ID";
-                end;
+                                     IF ProjectLineunitCost <> 0 then//added on 07/05/2025
+                                         ProjectLine.Validate("Unit Cost", ProjectLineunitCost);//added on 07/05/2025
 
-                IF rec."Container ID" = '' then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Container ID" := xRec."Container ID";
-                end;
+                                     ProjectLine.Modify();
 
-                IF rec."SIGMA Sales Order No." = '' then begin//transfer fields after validating fields that has impact on other fields
-                    rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
-                end;
+                                 end;
 
-                IF rec."SIGMA Sales Order Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
-                end;
+                                 SalesLine.Validate("No.", Rec."No.");
+                                 SalesLine.Modify();
 
-                IF rec."Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Quantity Shipped" := xRec."Quantity Shipped";
-                end;
+                                 CostVariationLOG.Init();
+                                 CostVariationLOG."Item Number" := Rec."No.";
+                                 CostVariationLOG."old Item number" := xRec."No.";
+                                 CostVariationLOG."new Item number" := Rec."No.";
+                                 CostVariationLOG."PO Number" := Rec."Document No.";
+                                 CostVariationLOG."PO Line Number" := Rec."Line No.";
+                                 CostVariationLOG."Project No." := Rec."Job No.";
+                                 CostVariationLOG."Project planning Line No." := Rec."Job Planning Line No.";
+                                 CostVariationLOG."Created By" := UserId;
+                                 CostVariationLOG.Insert(true);
 
-                IF rec."Remaining Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Remaining Quantity Shipped" := xRec."Remaining Quantity Shipped";
-                end;
-
-                IF rec."Line is Splitted" = false then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Line is Splitted" := xRec."Line is Splitted";
-                end;
-                IF rec."Splitted Line No." = '' then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Splitted Line No." := xRec."Splitted Line No.";
-                end;
-                IF rec."Original Quantity" = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Original Quantity" := xRec."Original Quantity";
-                end;
-                IF rec."Original Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Original Line No." := xRec."Original Line No.";
-                end;
-                IF rec."Disable fields after Shipping" = false then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Disable fields after Shipping" := xRec."Disable fields after Shipping";
-                end;
-                IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Container Line No." := xRec."Container Line No.";
-                end;
-                IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Initial ETA" := xRec."Initial ETA";
-                end;
-                IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Initial ETD" := xRec."Initial ETD";
-                end;
-                IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Initial ETR" := xRec."Initial ETR";
-                end;
-                IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Initial ETAW" := xRec."Initial ETAW";
-                end;
-                IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Initial ETA" := xRec."Initial ETA";
-                end;
-
-                IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Final ETA" := xRec."Final ETA";
-                end;
-                IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Final ETD" := xRec."Final ETD";
-                end;
-                IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Final ETR" := xRec."Final ETR";
-                end;
-                IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec."Final ETAW" := xRec."Final ETAW";
-                end;
-                IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
-                    rec.ATA := xRec.ATA;
-                end;
-
-                IF Rec."VO Number" = '' then begin
-                    Rec."VO Number" := xRec."VO Number";
-                end;
+                             end;
+                         end;
+                     end;
+                 end;
 
 
+                 IF rec."BL/AWB ID" = '' then begin//transfer fields after validating fields that has impact on other fields
+                     rec."BL/AWB ID" := xRec."BL/AWB ID";
+                 end;
 
+                 IF rec."Container ID" = '' then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Container ID" := xRec."Container ID";
+                 end;
 
-                IF (rec."Job No." = '') AND (xRec."Job No." <> '') then//updated on 27/02/2025 since validating on job no. = '' is removing the dimensions on after validate on level purchase line
-                    Rec.Validate("Job No.", xRec."Job No.");
+                 IF rec."SIGMA Sales Order No." = '' then begin//transfer fields after validating fields that has impact on other fields
+                     rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
+                 end;
 
-                IF (rec."Job Task No." = '') AND (xRec."Job Task No." <> '') then
-                    Rec.Validate("Job Task No.", xRec."Job Task No.");
+                 IF rec."SIGMA Sales Order Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
+                 end;
 
-                IF (rec."Job Planning Line No." = 0) AND (xRec."Job Planning Line No." <> 0) then
-                    Rec.Validate("Job Planning Line No.", xRec."Job Planning Line No.");
+                 IF rec."Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Quantity Shipped" := xRec."Quantity Shipped";
+                 end;
 
+                 IF rec."Remaining Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Remaining Quantity Shipped" := xRec."Remaining Quantity Shipped";
+                 end;
 
-                //added on 25/02/2025
-                IF Rec."Job#" = '' then
-                    Rec."Job#" := Xrec."Job#";
+                 IF rec."Line is Splitted" = false then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Line is Splitted" := xRec."Line is Splitted";
+                 end;
+                 IF rec."Splitted Line No." = '' then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Splitted Line No." := xRec."Splitted Line No.";
+                 end;
+                 IF rec."Original Quantity" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Original Quantity" := xRec."Original Quantity";
+                 end;
+                 IF rec."Original Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Original Line No." := xRec."Original Line No.";
+                 end;
+                 IF rec."Disable fields after Shipping" = false then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Disable fields after Shipping" := xRec."Disable fields after Shipping";
+                 end;
+                 IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Container Line No." := xRec."Container Line No.";
+                 end;
+                 IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Initial ETA" := xRec."Initial ETA";
+                 end;
+                 IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Initial ETD" := xRec."Initial ETD";
+                 end;
+                 IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Initial ETR" := xRec."Initial ETR";
+                 end;
+                 IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Initial ETAW" := xRec."Initial ETAW";
+                 end;
+                 IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Initial ETA" := xRec."Initial ETA";
+                 end;
 
-                IF Rec."Subjob ID" = 0 then
-                    Rec."Subjob ID" := xRec."Subjob ID";
+                 IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Final ETA" := xRec."Final ETA";
+                 end;
+                 IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Final ETD" := xRec."Final ETD";
+                 end;
+                 IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Final ETR" := xRec."Final ETR";
+                 end;
+                 IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."Final ETAW" := xRec."Final ETAW";
+                 end;
+                 IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec.ATA := xRec.ATA;
+                 end;
 
-                IF Rec."Truck WayBill ID" = '' then
-                    Rec."Truck WayBill ID" := xRec."Truck WayBill ID";
-
-                IF Rec."Truck Details ID" = '' then
-                    Rec."Truck Details ID" := xRec."Truck Details ID";
-
-                IF Rec."Truck Details Line No." = 0 then
-                    Rec."Truck Details Line No." := Xrec."Truck Details Line No.";
-
-
-
-            end;
+                 IF Rec."VO Number" = '' then begin
+                     Rec."VO Number" := xRec."VO Number";
+                 end;
 
 
 
 
+                 IF (rec."Job No." = '') AND (xRec."Job No." <> '') then//updated on 27/02/2025 since validating on job no. = '' is removing the dimensions on after validate on level purchase line
+                     Rec.Validate("Job No.", xRec."Job No.");
+
+                 IF (rec."Job Task No." = '') AND (xRec."Job Task No." <> '') then
+                     Rec.Validate("Job Task No.", xRec."Job Task No.");
+
+                 IF (rec."Job Planning Line No." = 0) AND (xRec."Job Planning Line No." <> 0) then
+                     Rec.Validate("Job Planning Line No.", xRec."Job Planning Line No.");
 
 
-        }
+                 //added on 25/02/2025
+                 IF Rec."Job#" = '' then
+                     Rec."Job#" := Xrec."Job#";
+
+                 IF Rec."Subjob ID" = 0 then
+                     Rec."Subjob ID" := xRec."Subjob ID";
+
+                 IF Rec."Truck WayBill ID" = '' then
+                     Rec."Truck WayBill ID" := xRec."Truck WayBill ID";
+
+                 IF Rec."Truck Details ID" = '' then
+                     Rec."Truck Details ID" := xRec."Truck Details ID";
+
+                 IF Rec."Truck Details Line No." = 0 then
+                     Rec."Truck Details Line No." := Xrec."Truck Details Line No.";
+
+
+
+             end;
+
+
+
+
+
+
+         }*/// abdallah19/08/2025
 
         // modify(Quantity)//moved to page subform
         // {
@@ -676,136 +676,121 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         // Add changes to field groups here
     }
 
-    trigger OnModify()
-    var
-    begin
-        IF rec."BL/AWB ID" = '' then begin//transfer fields after validating fields that has impact on other fields
-            rec."BL/AWB ID" := xRec."BL/AWB ID";
-        end;
+    /*   trigger OnModify()
+        var
+        begin
+            IF rec."BL/AWB ID" = '' then begin//transfer fields after validating fields that has impact on other fields
+                rec."BL/AWB ID" := xRec."BL/AWB ID";
+            end;
 
-        IF rec."Container ID" = '' then begin//transfer fields after validating fields that has impact on other fields
-            rec."Container ID" := xRec."Container ID";
-        end;
-        IF rec."SIGMA Sales Order No." = '' then begin//transfer fields after validating fields that has impact on other fields
-            rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
-        end;
-        IF rec."SIGMA Sales Order Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
-        end;
+            IF rec."Container ID" = '' then begin//transfer fields after validating fields that has impact on other fields
+                rec."Container ID" := xRec."Container ID";
+            end;
+            IF rec."SIGMA Sales Order No." = '' then begin//transfer fields after validating fields that has impact on other fields
+                rec."SIGMA Sales Order No." := xRec."SIGMA Sales Order No.";
+            end;
+            IF rec."SIGMA Sales Order Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."SIGMA Sales Order Line No." := xRec."SIGMA Sales Order Line No.";
+            end;
 
-        IF rec."Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."Quantity Shipped" := xRec."Quantity Shipped";
-        end;
+            IF rec."Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."Quantity Shipped" := xRec."Quantity Shipped";
+            end;
 
-        IF rec."Remaining Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."Remaining Quantity Shipped" := xRec."Remaining Quantity Shipped";
-        end;
+            IF rec."Remaining Quantity Shipped" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."Remaining Quantity Shipped" := xRec."Remaining Quantity Shipped";
+            end;
 
-        IF rec."Line is Splitted" = false then begin//transfer fields after validating fields that has impact on other fields
-            rec."Line is Splitted" := xRec."Line is Splitted";
-        end;
-        IF rec."Splitted Line No." = '' then begin//transfer fields after validating fields that has impact on other fields
-            rec."Splitted Line No." := xRec."Splitted Line No.";
-        end;
-        IF rec."Original Quantity" = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."Original Quantity" := xRec."Original Quantity";
-        end;
-        IF rec."Original Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."Original Line No." := xRec."Original Line No.";
-        end;
-        IF rec."Disable fields after Shipping" = false then begin//transfer fields after validating fields that has impact on other fields
-            rec."Disable fields after Shipping" := xRec."Disable fields after Shipping";
-        end;
-        IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
-            rec."Container Line No." := xRec."Container Line No.";
-        end;
-        IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Initial ETA" := xRec."Initial ETA";
-        end;
-        IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Initial ETD" := xRec."Initial ETD";
-        end;
-        IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Initial ETR" := xRec."Initial ETR";
-        end;
-        IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Initial ETAW" := xRec."Initial ETAW";
-        end;
-        IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Initial ETA" := xRec."Initial ETA";
-        end;
+            IF rec."Line is Splitted" = false then begin//transfer fields after validating fields that has impact on other fields
+                rec."Line is Splitted" := xRec."Line is Splitted";
+            end;
+            IF rec."Splitted Line No." = '' then begin//transfer fields after validating fields that has impact on other fields
+                rec."Splitted Line No." := xRec."Splitted Line No.";
+            end;
+            IF rec."Original Quantity" = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."Original Quantity" := xRec."Original Quantity";
+            end;
+            IF rec."Original Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."Original Line No." := xRec."Original Line No.";
+            end;
+            IF rec."Disable fields after Shipping" = false then begin//transfer fields after validating fields that has impact on other fields
+                rec."Disable fields after Shipping" := xRec."Disable fields after Shipping";
+            end;
+            IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
+                rec."Container Line No." := xRec."Container Line No.";
+            end;
+            IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Initial ETA" := xRec."Initial ETA";
+            end;
+            IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Initial ETD" := xRec."Initial ETD";
+            end;
+            IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Initial ETR" := xRec."Initial ETR";
+            end;
+            IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Initial ETAW" := xRec."Initial ETAW";
+            end;
+            IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Initial ETA" := xRec."Initial ETA";
+            end;
 
-        IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Final ETA" := xRec."Final ETA";
-        end;
-        IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Final ETD" := xRec."Final ETD";
-        end;
-        IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Final ETR" := xRec."Final ETR";
-        end;
-        IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec."Final ETAW" := xRec."Final ETAW";
-        end;
-        IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
-            rec.ATA := xRec.ATA;
-        end;
+            IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Final ETA" := xRec."Final ETA";
+            end;
+            IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Final ETD" := xRec."Final ETD";
+            end;
+            IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Final ETR" := xRec."Final ETR";
+            end;
+            IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."Final ETAW" := xRec."Final ETAW";
+            end;
+            IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec.ATA := xRec.ATA;
+            end;
 
-        IF Rec."VO Number" = '' then begin
-            Rec."VO Number" := xRec."VO Number";
-        end;
+            IF Rec."VO Number" = '' then begin
+                Rec."VO Number" := xRec."VO Number";
+            end;
 
-        IF (Rec."Direct Unit Cost" = 0) AND (xRec."Direct Unit Cost" <> 0) then//may be removed case VO replace item//added on 27/03/2025
-            Rec.Validate("Direct Unit Cost", xRec."Direct Unit Cost");
+            IF (Rec."Direct Unit Cost" = 0) AND (xRec."Direct Unit Cost" <> 0) then//may be removed case VO replace item//added on 27/03/2025
+                Rec.Validate("Direct Unit Cost", xRec."Direct Unit Cost");
 
-        IF (rec."Location Code" = '') and (xRec."Location Code" <> '') then//added on 27/03/2025
-            Rec.Validate("Location Code", xRec."Location Code");
+            IF (rec."Location Code" = '') and (xRec."Location Code" <> '') then//added on 27/03/2025
+                Rec.Validate("Location Code", xRec."Location Code");
 
-        IF (rec."Job No." = '') AND (xRec."Job No." <> '') then//updated on 27/02/2025 since validating on job no. = '' is removing the dimensions on after validate on level purchase line
-            Rec.Validate("Job No.", xRec."Job No.");
+            IF (rec."Job No." = '') AND (xRec."Job No." <> '') then//updated on 27/02/2025 since validating on job no. = '' is removing the dimensions on after validate on level purchase line
+                Rec.Validate("Job No.", xRec."Job No.");
 
-        IF (rec."Job Task No." = '') AND (xRec."Job Task No." <> '') then
-            Rec.Validate("Job Task No.", xRec."Job Task No.");
+            IF (rec."Job Task No." = '') AND (xRec."Job Task No." <> '') then
+                Rec.Validate("Job Task No.", xRec."Job Task No.");
 
-        IF (rec."Job Planning Line No." = 0) AND (xRec."Job Planning Line No." <> 0) then
-            Rec.Validate("Job Planning Line No.", xRec."Job Planning Line No.");
-
-
-        //added on 25/02/2025
-        IF Rec."Job#" = '' then
-            Rec."Job#" := Xrec."Job#";
-
-        IF Rec."Subjob ID" = 0 then
-            Rec."Subjob ID" := xRec."Subjob ID";
-
-        IF Rec."Truck WayBill ID" = '' then
-            Rec."Truck WayBill ID" := xRec."Truck WayBill ID";
-
-        IF Rec."Truck Details ID" = '' then
-            Rec."Truck Details ID" := xRec."Truck Details ID";
-
-        IF Rec."Truck Details Line No." = 0 then
-            Rec."Truck Details Line No." := Xrec."Truck Details Line No.";
+            IF (rec."Job Planning Line No." = 0) AND (xRec."Job Planning Line No." <> 0) then
+                Rec.Validate("Job Planning Line No.", xRec."Job Planning Line No.");
 
 
+            //added on 25/02/2025
+            IF Rec."Job#" = '' then
+                Rec."Job#" := Xrec."Job#";
 
-    end;
+            IF Rec."Subjob ID" = 0 then
+                Rec."Subjob ID" := xRec."Subjob ID";
 
-    trigger OnDelete()
-    var
-        SalesLine: Record "Sales Line";
-        UserSetup: Record "User Setup";
-    begin
-        Clear(UserSetup);
-        UserSetup.Get(UserId);
+            IF Rec."Truck WayBill ID" = '' then
+                Rec."Truck WayBill ID" := xRec."Truck WayBill ID";
 
-        IF (NOT UserSetup."Can Edit SO/PO Details") then
-            IF Rec."Document Type" = REc."Document Type"::Order then
-                IF Rec."SIGMA Sales Order Line No." <> 0 then
-                    if SalesLine.Get(SalesLine."Document Type"::Order, "SIGMA Sales Order No.", "SIGMA Sales Order Line No.") then
-                        Error(Text000, "SIGMA Sales Order No.", "SIGMA Sales Order Line No.");
+            IF Rec."Truck Details ID" = '' then
+                Rec."Truck Details ID" := xRec."Truck Details ID";
 
-    end;
+            IF Rec."Truck Details Line No." = 0 then
+                Rec."Truck Details Line No." := Xrec."Truck Details Line No.";
+
+
+
+        end;*/// abdallah19/08/2025
+
 
     trigger OnInsert()
     var

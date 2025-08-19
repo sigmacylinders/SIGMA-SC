@@ -11,7 +11,7 @@ page 70124 "Intermediate Vendors List"
         {
             repeater(Group)
             {
-               
+
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
@@ -116,7 +116,7 @@ page 70124 "Intermediate Vendors List"
                 {
                     ApplicationArea = All;
                 }
-              
+
                 field("Area"; Rec."Area")
                 {
                     ToolTip = 'Specifies the value of the Area field.', Comment = '%';
@@ -242,7 +242,7 @@ page 70124 "Intermediate Vendors List"
                 Image = Reject;
                 trigger OnAction()
                 begin
-                  
+
                 end;
             }
         }
@@ -424,13 +424,6 @@ page 70124 "Intermediate Vendors List"
         Rec.Modify();
     end;
 
-    trigger OnOpenPage()
-    var
-    begin
-        Clear(UserSetup);
-        IF UserSetup.Get(UserId) then;
-        InputDynamicsNumber := UserSetup."Input DynamicNum to Intermed.";
-    end;
 
     var
         VendorRec: Record Vendor;

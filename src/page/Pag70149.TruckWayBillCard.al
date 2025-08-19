@@ -20,11 +20,6 @@ page 70149 "Truck WayBill Card"
                 field("Line"; Rec."Line")
                 {
                 }
-                field("Shipping Quotation Reference"; Rec."Shipping Quotation Reference")
-                {
-                    ToolTip = 'Specifies the value of the Shipping Quotation Reference field.', Comment = '%';
-                    ShowMandatory = true;
-                }
                 field("Free Demurrage Days"; Rec."Free Demurrage Days")
                 {
                 }

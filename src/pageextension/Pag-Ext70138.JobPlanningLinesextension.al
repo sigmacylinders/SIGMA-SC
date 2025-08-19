@@ -30,7 +30,7 @@ pageextension 70138 "Job Planning Lines extension" extends "Job Planning Lines"
         }
         addafter("Invoiced Amount (LCY)")
         {
-        
+
             field("Freight Cost"; Rec."Freight Cost")
             {
                 ApplicationArea = All;
@@ -162,137 +162,137 @@ pageextension 70138 "Job Planning Lines extension" extends "Job Planning Lines"
 
 
         }
-        modify("Unit Price")
-        {
-            Editable = true;//commented on 29/11/2024 need to check
-        }
-        modify(Quantity)
-        {
-            trigger OnAfterValidate()
-            var
-            begin
-                Rec.Validate(Quantity);//this is added on 18/02/2025 to validate the quantity from apollo since the remaining quanitty is showing zero quantity and we are facing quantitties duplicates issues since rem = 0 on post of the purchase order 
-            end;
-        }
-        // Add changes to page layout here
-        addfirst(factboxes)
-        {
-            part("Variation Order"; "Variation Order Factbox")
-            {
-                ApplicationArea = All;
-                Caption = 'Variation Order';
-                // Provider = SalesLines;
-                SubPageLink = "Project Code" = field("Job No."), "Item Number" = field("No.");
-                // "Document Type" = field("Document Type")
-            }
-        }
+        /*   modify("Unit Price")
+           {
+               Editable = true;//commented on 29/11/2024 need to check
+           }
+           modify(Quantity)
+           {
+               trigger OnAfterValidate()
+               var
+               begin
+                   Rec.Validate(Quantity);//this is added on 18/02/2025 to validate the quantity from apollo since the remaining quanitty is showing zero quantity and we are facing quantitties duplicates issues since rem = 0 on post of the purchase order 
+               end;
+           }
+           // Add changes to page layout here
+           addfirst(factboxes)
+           {
+               part("Variation Order"; "Variation Order Factbox")
+               {
+                   ApplicationArea = All;
+                   Caption = 'Variation Order';
+                   // Provider = SalesLines;
+                   SubPageLink = "Project Code" = field("Job No."), "Item Number" = field("No.");
+                   // "Document Type" = field("Document Type")
+               }
+           }*/// abdallah19/08/2025
 
 
 
-        modify("No.")
-        {
-            Editable = true;
-        }
-        modify("Unit Cost")
-        { Editable = true; }
+        /*  modify("No.")
+          {
+              Editable = true;
+          }
+          modify("Unit Cost")
+          { Editable = true; }*/// abdallah19/08/2025
     }
 
-    actions
-    {
-        addafter("Create &Sales Invoice")
-        {
-            action("Create Purchase Requests")
-            {
-                ApplicationArea = All;
-                Image = Purchase;
-                trigger OnAction()
-                begin
-                    CreateOrOpenPurchaseRequestsJob();
-                end;
-            }
-            action("Create &Sales Order")
-            {
-                ApplicationArea = Jobs;
-                Caption = 'Create &Sales Order';
-                Ellipsis = true;
-                Image = JobSalesInvoice;
-                ToolTip = 'Use a batch job to help you create sales Order for the involved project tasks.';
+    /* actions
+     {
+         addafter("Create &Sales Invoice")
+         {
+             action("Create Purchase Requests")
+             {
+                 ApplicationArea = All;
+                 Image = Purchase;
+                 trigger OnAction()
+                 begin
+                     CreateOrOpenPurchaseRequestsJob();
+                 end;
+             }
+             action("Create &Sales Order")
+             {
+                 ApplicationArea = Jobs;
+                 Caption = 'Create &Sales Order';
+                 Ellipsis = true;
+                 Image = JobSalesInvoice;
+                 ToolTip = 'Use a batch job to help you create sales Order for the involved project tasks.';
 
-                trigger OnAction()
-                var
-                    IsHandled: Boolean;
-                begin
-                    //   IsHandled := false;
-                    //  OnCreateSalesInvoiceOnBeforeAction(Rec, IsHandled);
-                    // if not IsHandled then
-                    CreateSalesInvoice(false);
-                end;
-            }
-        }
-        addafter("Create Sales &Credit Memo")//Added on 17/02/2025
-        {
-            action("Sales &Order/Credit Memos")
-            {
-                ApplicationArea = Jobs;
-                Caption = 'Sales &Order/Credit Memos';
-                Ellipsis = true;
-                Image = GetSourceDoc;
-                ToolTip = 'View sales Order or sales credit memos that are related to the selected project.';
+                 trigger OnAction()
+                 var
+                     IsHandled: Boolean;
+                 begin
+                     //   IsHandled := false;
+                     //  OnCreateSalesInvoiceOnBeforeAction(Rec, IsHandled);
+                     // if not IsHandled then
+                     CreateSalesInvoice(false);
+                 end;
+             }
+         }
+         addafter("Create Sales &Credit Memo")//Added on 17/02/2025
+         {
+             action("Sales &Order/Credit Memos")
+             {
+                 ApplicationArea = Jobs;
+                 Caption = 'Sales &Order/Credit Memos';
+                 Ellipsis = true;
+                 Image = GetSourceDoc;
+                 ToolTip = 'View sales Order or sales credit memos that are related to the selected project.';
 
-                trigger OnAction()
-                begin
-                    JobCreateInvoice.GetJobPlanningLineInvoices(Rec);
-                end;
-            }
-        }
+                 trigger OnAction()
+                 begin
+                     JobCreateInvoice.GetJobPlanningLineInvoices(Rec);
+                 end;
+             }
+         }
 
 
-        modify("Create &Sales Invoice")//Added on 17/02/2025
-        {
-            Caption = 'Create &Sales Order';
-            ToolTip = 'Use a batch job to help you create sales Order for the involved project tasks.';
-            // Visible = false;
-            Visible = false;
-        }
-        modify("Sales &Invoices/Credit Memos")//Added on 17/02/2025
-        {
-            Caption = 'Sales &Order/Credit Memos';
-            ToolTip = 'View sales Order or sales credit memos that are related to the selected project.';
-            //  CaptionML = 'Sales Order/Credit Memos';
-            // Visible = false;
-            Visible = false;
+         modify("Create &Sales Invoice")//Added on 17/02/2025
+         {
+             Caption = 'Create &Sales Order';
+             ToolTip = 'Use a batch job to help you create sales Order for the involved project tasks.';
+             // Visible = false;
+             Visible = false;
+         }
+         modify("Sales &Invoices/Credit Memos")//Added on 17/02/2025
+         {
+             Caption = 'Sales &Order/Credit Memos';
+             ToolTip = 'View sales Order or sales credit memos that are related to the selected project.';
+             //  CaptionML = 'Sales Order/Credit Memos';
+             // Visible = false;
+             Visible = false;
 
-        }
-        modify("Create &Sales Invoice_Promoted")//Added on 17/02/2025
-        {
-            Visible = false;
+         }
+         modify("Create &Sales Invoice_Promoted")//Added on 17/02/2025
+         {
+             Visible = false;
 
-        }
-        modify("Sales &Invoices/Credit Memos_Promoted")//Added on 17/02/2025
-        {
-            Visible = false;
-        }
-        // addafter("Create &Sales Invoice_Promoted")
-        // {
-        //     actionref("Create &Sales Order_Promoted"; "Create &Sales Invoice")
-        //     {
-        //     }
-        // }
-        // addafter("Sales &Invoices/Credit Memos_Promoted")
-        // {
-        //     actionref("Sales &Order/Credit Memos_Promoted"; "Sales &Invoices/Credit Memos")
-        //     {
-        //     }
-        // }
+         }
+         modify("Sales &Invoices/Credit Memos_Promoted")//Added on 17/02/2025
+         {
+             Visible = false;
+         }
+         // addafter("Create &Sales Invoice_Promoted")
+         // {
+         //     actionref("Create &Sales Order_Promoted"; "Create &Sales Invoice")
+         //     {
+         //     }
+         // }
+         // addafter("Sales &Invoices/Credit Memos_Promoted")
+         // {
+         //     actionref("Sales &Order/Credit Memos_Promoted"; "Sales &Invoices/Credit Memos")
+         //     {
+         //     }
+         // }
 
-        addafter(CreateJobJournalLines_Promoted)
-        {
-            actionref("Create &Sales Order_Promoted"; "Create &Sales Invoice")
-            {
-            }
-        }
+         addafter(CreateJobJournalLines_Promoted)
+         {
+             actionref("Create &Sales Order_Promoted"; "Create &Sales Invoice")
+             {
+             }
+         }
 
-    }
+     }*/// abdallah19/08/2025
 
     trigger OnAfterGetRecord()//added on 05022025
     var
@@ -307,115 +307,115 @@ pageextension 70138 "Job Planning Lines extension" extends "Job Planning Lines"
 
 
 
-    local procedure CreateSalesInvoice(CrMemo: Boolean)//Added on 17/02/2025
-    var
-        JobPlanningLine: Record "Job Planning Line";
-        JobCreateInvoice: Codeunit "SIGMA Job Create-Order";
-    begin
-        Rec.TestField("Line No.");
-        JobPlanningLine.Copy(Rec);
-        CurrPage.SetSelectionFilter(JobPlanningLine);
-        JobCreateInvoice.CreateSalesInvoice(JobPlanningLine, CrMemo)
-    end;
-
-    local procedure CreateOrOpenPurchaseRequestsJob()
-    var
-        PurchaseRequest: Record "Purchase Request Header";
-        PurchaseRequestLine: Record "Purchase Request Line";
-        Vendor: Record Vendor;
-        LineNo: Integer;
-        Item: Record Item;
-    begin
-        Clear(PurchaseRequest);
-        // PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
-        PurchaseRequest.SetRange("Project No.", Rec."Job No.");
-        IF NOT PurchaseRequest.FindFirst() then begin
-
-            LineNo := 0;
-            if Rec.FindSet() then
-                repeat
-                    Clear(PurchaseRequest);
-                    PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
-                    PurchaseRequest.SetRange("Vendor No.", Rec."Vendor No.");
-                    PurchaseRequest.SetRange("Project No.", Rec."Job No.");
-                    IF NOT PurchaseRequest.FindFirst()
-                    then begin
-                        Clear(Vendor);
-                        Vendor.Get(Rec."Vendor No.");
-                        Clear(PurchaseRequest);
-                        PurchaseRequest.Init();
-                        PurchaseRequest.Date := REc."Document Date";
-                        PurchaseRequest."Location Code" := Rec."Location Code";
-                        PurchaseRequest.Status := PurchaseRequest.Status::Open;
-                        PurchaseRequest."Global Dimension 1 Code" := rec."Shortcut Dimension 1 Code";
-                        PurchaseRequest."Project No." := Rec."Job No.";
-                        PurchaseRequest."Currency Code" := Vendor."Currency Code";
-                        Rec.CalcFields("Vendor No.");
-                        PurchaseRequest."Vendor No." := Rec."Vendor No.";
-                        PurchaseRequest."VAT Bus. Posting Group" := Vendor."VAT Bus. Posting Group";
-                        // PurchaseRequest."Sales Order No." := Rec."Demand Order No.";
-                        PurchaseRequest.Insert(true);
-
-                    end;
-                    LineNo := LineNo + 10000;
-                    Clear(PurchaseRequestLine);
-                    PurchaseRequestLine.Init();
-                    PurchaseRequestLine."Document No." := PurchaseRequest."No.";
-                    PurchaseRequestLine."Line No." := LineNo;
-                    PurchaseRequestLine.Insert();
-                    //  PurchaseRequestLine.CalcFields("Main Stock");
-                    PurchaseRequestLine.Type := PurchaseRequestLine.Type::Item;
-                    PurchaseRequestLine.Validate("Item No.", Rec."No.");
-                    Clear(Item);
-                    item.Get(Rec."No.");
-                    PurchaseRequestLine.Description := item.Description;
-                    PurchaseRequestLine."Item Description" := item.Description;
-                    PurchaseRequestLine."Project No." := Rec."Job No.";
-                    PurchaseRequestLine.Validate(Quantity, Rec.Quantity);
-                    // IF Rec."Currency Code" = '' then
-                    //     PurchaseRequestLine.Validate("Unit Cost", Rec."Unit Cost (LCY)")
-                    // else
-                    PurchaseRequestLine.Validate("Unit Cost", Rec."Unit Cost in Vendor Currency");
-
-
-                    PurchaseRequestLine.Validate(Amount, PurchaseRequestLine.Quantity * PurchaseRequestLine."Unit Cost");
-
-
-                    PurchaseRequestLine."Document Type" := PurchaseRequestLine."Document Type"::"Purchase Order";
-                    PurchaseRequestLine.Validate("Document Reference", Rec."Vendor No.");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 2 Code", Rec."Shortcut Dimension 2 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 3 Code", Rec."Shortcut Dimension 3 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 4 Code", REc."Shortcut Dimension 4 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 5 Code", Rec."Shortcut Dimension 5 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 6 Code", Rec."Shortcut Dimension 6 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 7 Code", REc."Shortcut Dimension 7 Code");
-                    PurchaseRequestLine.Validate("Shortcut Dimension 8 Code", Rec."Shortcut Dimension 8 Code");
-                    //AN 6/13/2025
-                    PurchaseRequestLine.Validate("Unit of Measure Code", Rec."Unit of Measure Code");
-                    // PurchaseRequestLine."SIGMA Sales Order No." := Rec."SIGMA Sales Order No.";
-                    // PurchaseRequestLine."SIGMA Sales Order Line No." := Rec."SIGMA Sales Order Line No.";
-                    PurchaseRequestLine."PO Status" := PurchaseRequestLine."PO Status"::"Not Ordered";
-                    // PurchaseRequestLine."PO No." := Rec."PO No.";
-                    // PurchaseRequestLine."PO Line No" := Rec."PO Line No";
-
-                    // IF rec.Include then
-                    //     PurchaseRequestLine.Check := true;
-
-                    PurchaseRequestLine.Modify();
-
-                    if PurchaseRequestLine."PO No." <> '' then begin
-                        PurchaseRequestLine."PO Status" := PurchaseRequestLine."PO Status"::Created;
-                        PurchaseRequestLine.Modify();
-                    end;
-                until Rec.Next() = 0;
+    /*    local procedure CreateSalesInvoice(CrMemo: Boolean)//Added on 17/02/2025
+        var
+            JobPlanningLine: Record "Job Planning Line";
+            JobCreateInvoice: Codeunit "SIGMA Job Create-Order";
+        begin
+            Rec.TestField("Line No.");
+            JobPlanningLine.Copy(Rec);
+            CurrPage.SetSelectionFilter(JobPlanningLine);
+            JobCreateInvoice.CreateSalesInvoice(JobPlanningLine, CrMemo)
         end;
-        Clear(PurchaseRequest);
-        PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
-        Page.Run(page::"Purchase Request List", PurchaseRequest);
 
-    end;
+        local procedure CreateOrOpenPurchaseRequestsJob()
+        var
+            PurchaseRequest: Record "Purchase Request Header";
+            PurchaseRequestLine: Record "Purchase Request Line";
+            Vendor: Record Vendor;
+            LineNo: Integer;
+            Item: Record Item;
+        begin
+            Clear(PurchaseRequest);
+            // PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
+            PurchaseRequest.SetRange("Project No.", Rec."Job No.");
+            IF NOT PurchaseRequest.FindFirst() then begin
 
+                LineNo := 0;
+                if Rec.FindSet() then
+                    repeat
+                        Clear(PurchaseRequest);
+                        PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
+                        PurchaseRequest.SetRange("Vendor No.", Rec."Vendor No.");
+                        PurchaseRequest.SetRange("Project No.", Rec."Job No.");
+                        IF NOT PurchaseRequest.FindFirst()
+                        then begin
+                            Clear(Vendor);
+                            Vendor.Get(Rec."Vendor No.");
+                            Clear(PurchaseRequest);
+                            PurchaseRequest.Init();
+                            PurchaseRequest.Date := REc."Document Date";
+                            PurchaseRequest."Location Code" := Rec."Location Code";
+                            PurchaseRequest.Status := PurchaseRequest.Status::Open;
+                            PurchaseRequest."Global Dimension 1 Code" := rec."Shortcut Dimension 1 Code";
+                            PurchaseRequest."Project No." := Rec."Job No.";
+                            PurchaseRequest."Currency Code" := Vendor."Currency Code";
+                            Rec.CalcFields("Vendor No.");
+                            PurchaseRequest."Vendor No." := Rec."Vendor No.";
+                            PurchaseRequest."VAT Bus. Posting Group" := Vendor."VAT Bus. Posting Group";
+                            // PurchaseRequest."Sales Order No." := Rec."Demand Order No.";
+                            PurchaseRequest.Insert(true);
+
+                        end;
+                        LineNo := LineNo + 10000;
+                        Clear(PurchaseRequestLine);
+                        PurchaseRequestLine.Init();
+                        PurchaseRequestLine."Document No." := PurchaseRequest."No.";
+                        PurchaseRequestLine."Line No." := LineNo;
+                        PurchaseRequestLine.Insert();
+                        //  PurchaseRequestLine.CalcFields("Main Stock");
+                        PurchaseRequestLine.Type := PurchaseRequestLine.Type::Item;
+                        PurchaseRequestLine.Validate("Item No.", Rec."No.");
+                        Clear(Item);
+                        item.Get(Rec."No.");
+                        PurchaseRequestLine.Description := item.Description;
+                        PurchaseRequestLine."Item Description" := item.Description;
+                        PurchaseRequestLine."Project No." := Rec."Job No.";
+                        PurchaseRequestLine.Validate(Quantity, Rec.Quantity);
+                        // IF Rec."Currency Code" = '' then
+                        //     PurchaseRequestLine.Validate("Unit Cost", Rec."Unit Cost (LCY)")
+                        // else
+                        PurchaseRequestLine.Validate("Unit Cost", Rec."Unit Cost in Vendor Currency");
+
+
+                        PurchaseRequestLine.Validate(Amount, PurchaseRequestLine.Quantity * PurchaseRequestLine."Unit Cost");
+
+
+                        PurchaseRequestLine."Document Type" := PurchaseRequestLine."Document Type"::"Purchase Order";
+                        PurchaseRequestLine.Validate("Document Reference", Rec."Vendor No.");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 2 Code", Rec."Shortcut Dimension 2 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 3 Code", Rec."Shortcut Dimension 3 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 4 Code", REc."Shortcut Dimension 4 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 5 Code", Rec."Shortcut Dimension 5 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 6 Code", Rec."Shortcut Dimension 6 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 7 Code", REc."Shortcut Dimension 7 Code");
+                        PurchaseRequestLine.Validate("Shortcut Dimension 8 Code", Rec."Shortcut Dimension 8 Code");
+                        //AN 6/13/2025
+                        PurchaseRequestLine.Validate("Unit of Measure Code", Rec."Unit of Measure Code");
+                        // PurchaseRequestLine."SIGMA Sales Order No." := Rec."SIGMA Sales Order No.";
+                        // PurchaseRequestLine."SIGMA Sales Order Line No." := Rec."SIGMA Sales Order Line No.";
+                        PurchaseRequestLine."PO Status" := PurchaseRequestLine."PO Status"::"Not Ordered";
+                        // PurchaseRequestLine."PO No." := Rec."PO No.";
+                        // PurchaseRequestLine."PO Line No" := Rec."PO Line No";
+
+                        // IF rec.Include then
+                        //     PurchaseRequestLine.Check := true;
+
+                        PurchaseRequestLine.Modify();
+
+                        if PurchaseRequestLine."PO No." <> '' then begin
+                            PurchaseRequestLine."PO Status" := PurchaseRequestLine."PO Status"::Created;
+                            PurchaseRequestLine.Modify();
+                        end;
+                    until Rec.Next() = 0;
+            end;
+            Clear(PurchaseRequest);
+            PurchaseRequest.SetRange("Global Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
+            Page.Run(page::"Purchase Request List", PurchaseRequest);
+
+        end;
+    */
 
     var
         JobCreateInvoice: Codeunit "Job Create-Invoice";

@@ -42,11 +42,6 @@ page 70116 "AWB Card"
                 {
                     ToolTip = 'Specifies the value of the Airline field.', Comment = '%';
                 }
-                field("Shipping Quotation Reference"; Rec."Shipping Quotation Reference")
-                {
-                    ToolTip = 'Specifies the value of the Shipping Quotation Reference field.', Comment = '%';
-                    ShowMandatory = true;
-                }
                 field("Free Demurrage Days"; Rec."Free Demurrage Days")
                 {
                     ToolTip = 'Specifies the value of the Free Demurrage Days field.', Comment = '%';

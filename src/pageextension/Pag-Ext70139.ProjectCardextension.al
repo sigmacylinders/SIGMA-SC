@@ -9,14 +9,6 @@ pageextension 70139 "Project Card extension" extends "Job Card"
         // Add changes to page layout here
         addbefore("Job Details")
         {
-            part("Variation Order"; "Variation Order Factbox")
-            {
-                ApplicationArea = All;
-                Caption = 'Variation Order';
-                // Provider = SalesLines;
-                SubPageLink = "Project Code" = field("No.");
-                // "Document Type" = field("Document Type");
-            }
         }
         addafter("Location Code")
         {

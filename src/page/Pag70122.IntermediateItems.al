@@ -614,13 +614,7 @@ page 70122 "Intermediate Items"
         Rec.Modify();
     end;
 
-    trigger OnOpenPage()
-    var
-    begin
-        Clear(UserSetup);
-        IF UserSetup.Get(UserId) then;
-        InputDynamicsNumber := UserSetup."Input DynamicNum to Intermed.";
-    end;
+
 
     var
         ItemsRec: Record Item;

@@ -39,33 +39,33 @@ pageextension 70142 "job ledger entries extension" extends "Job Ledger Entries"
         }
     }
 
-    actions
-    {
-        // Add changes to page actions here
-        addafter("Transfer To Planning Lines")
-        {
-            action("update Charges")
-            {
-                ApplicationArea = All;
-                trigger OnAction()
-                var
-                    SIGMASubscribers: Codeunit "SIGMA Subs & Functions";
-                begin
-                    SIGMASubscribers.UpdateChargesonJobLedgerEntry(Rec);
-                end;
-            }
-            action("update Price")
-            {
-                ApplicationArea = All;
-                trigger OnAction()
-                var
-                    SIGMASubscribers: Codeunit "SIGMA Subs & Functions";
-                begin
-                    SIGMASubscribers.updatepriceandAmount(Rec);
-                end;
-            }
-        }
-    }
+    /*   actions
+       {
+           // Add changes to page actions here
+           addafter("Transfer To Planning Lines")
+           {
+               action("update Charges")
+               {
+                   ApplicationArea = All;
+                   trigger OnAction()
+                   var
+                       SIGMASubscribers: Codeunit "SIGMA Subs & Functions";
+                   begin
+                       SIGMASubscribers.UpdateChargesonJobLedgerEntry(Rec);
+                   end;
+               }
+               action("update Price")
+               {
+                   ApplicationArea = All;
+                   trigger OnAction()
+                   var
+                       SIGMASubscribers: Codeunit "SIGMA Subs & Functions";
+                   begin
+                       SIGMASubscribers.updatepriceandAmount(Rec);
+                   end;
+               }
+           }
+       }*/
 
     var
         myInt: Integer;

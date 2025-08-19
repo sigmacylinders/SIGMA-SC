@@ -60,7 +60,7 @@ page 70139 "Purchase Request SubForm"
                 {
 
                 }
-              
+
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                 }
@@ -298,22 +298,7 @@ page 70139 "Purchase Request SubForm"
         }
     }
 
-    trigger OnAfterGetCurrRecord()
-    begin
-        ItemLine := (Rec.Type = Rec.Type::Item);
 
-
-        //EDM.ALI+
-        EditableQtyCost := TRUE;
-        Rec.CALCFIELDS(Status);
-        IF Rec.Status = Rec.Status::Released THEN BEGIN
-            EditableQtyCost := FALSE;
-            IF UserSetup.GET(USERID) THEN
-                EditableQtyCost := UserSetup."Can Edit Qty\Cost Released PR";
-        END;
-        //EDM.ALI-
-
-    end;
 
     trigger OnAfterGetRecord()
     begin

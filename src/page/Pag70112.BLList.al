@@ -78,10 +78,6 @@ page 70112 "BL List"
                 {
                     ToolTip = 'Specifies the value of the Docs Received in Entity Date field.', Comment = '%';
                 }
-                field("Shipping Quotation Reference"; Rec."Shipping Quotation Reference")
-                {
-                    ApplicationArea = All;
-                }
                 field("Docs AWB No"; Rec."Docs AWB No")
                 {
                     ToolTip = 'Specifies the value of the Docs AWB No field.', Comment = '%';
