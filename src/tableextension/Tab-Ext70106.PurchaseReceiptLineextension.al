@@ -1,4 +1,4 @@
-tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
+tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
 {
     fields
     {
@@ -31,6 +31,7 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
         field(70106; "Final ETR"; Date)
         {
             Caption = 'Final ETR';
+
         }
         field(70107; "Final ETD"; Date)
         {
@@ -51,23 +52,6 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
         field(70111; "Container Line No."; Integer)
         {
             DataClassification = ToBeClassified;
-        }
-        field(70112; "Truck WayBill ID"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70113; "Truck Details ID"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70114; "Truck Details Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70115; "Shipping By"; Option)//added on 27/01/2025
-        {
-            DataClassification = ToBeClassified;
-            OptionMembers = " ",Sea,Air,InLand;
         }
     }
 

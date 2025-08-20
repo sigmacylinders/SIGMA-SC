@@ -1,8 +1,9 @@
-tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
+tableextension 70102 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Line"
 {
     fields
     {
         // Add changes to table fields here
+
 
         field(70100; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
@@ -52,6 +53,7 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
         {
             DataClassification = ToBeClassified;
         }
+
         field(70112; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -64,11 +66,13 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
         {
             DataClassification = ToBeClassified;
         }
+
         field(70115; "Shipping By"; Option)//added on 27/01/2025
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
+
     }
 
     keys

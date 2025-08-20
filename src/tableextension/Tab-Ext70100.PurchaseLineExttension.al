@@ -6,7 +6,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
 
 
-        field(70105; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70100; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
 
@@ -31,7 +31,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70106; "Initial ETD"; Date)
+        field(70101; "Initial ETD"; Date)
         {
             Caption = 'Initial ETD';
             trigger OnValidate()
@@ -55,7 +55,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70107; "Initial ETA"; Date)
+        field(70102; "Initial ETA"; Date)
         {
             Caption = 'Initial ETA';
             trigger OnValidate()
@@ -79,7 +79,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70108; "Initial ETAW"; Date)
+        field(70103; "Initial ETAW"; Date)
         {
             Caption = 'Initial ETAW';
             trigger OnValidate()
@@ -103,15 +103,15 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70109; "BL/AWB ID"; Code[20])
+        field(70104; "BL/AWB ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70110; "Container ID"; Code[50])
+        field(70105; "Container ID"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70120; "Final ETR"; Date)
+        field(70106; "Final ETR"; Date)
         {
             Caption = 'Final ETR';
 
@@ -134,7 +134,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 end;
             end;
         }
-        field(70121; "Final ETD"; Date)
+        field(70107; "Final ETD"; Date)
         {
             Caption = 'Final ETD';
             trigger OnValidate()
@@ -156,7 +156,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 end;
             end;
         }
-        field(70122; "Final ETA"; Date)
+        field(70108; "Final ETA"; Date)
         {
             Caption = 'Final ETA';
             trigger OnValidate()
@@ -178,7 +178,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 end;
             end;
         }
-        field(70123; "ATA"; Date)
+        field(70109; "ATA"; Date)
         {
             Caption = 'ATA';
             trigger OnValidate()
@@ -200,7 +200,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 end;
             end;
         }
-        field(70124; "Final ETAW"; Date)
+        field(70110; "Final ETAW"; Date)
         {
             Caption = 'Final ETAW';
             trigger OnValidate()
@@ -229,30 +229,30 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 end;
             end;
         }
-        field(70125; "Container Line No."; Integer)
+        field(70111; "Container Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70128; "Truck WayBill ID"; Code[20])
+        field(70112; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70129; "Truck Details ID"; Code[50])
+        field(70113; "Truck Details ID"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70130; "Truck Details Line No."; Integer)
+        field(70114; "Truck Details Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70133; "Shipping By"; Option)//added on 27/01/2025
+        field(70115; "Shipping By"; Option)//added on 27/01/2025
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
 
-        // field(70141; "Buy-from Vendor Name"; Code[100])
+        // field(70116; "Buy-from Vendor Name"; Code[100])
         // {
         //     Caption = 'Buy-from Vendor Name';
         //     //  Editable = false;
