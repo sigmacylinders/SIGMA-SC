@@ -114,8 +114,6 @@ table 70127 "Purchase Request Line"
                 VALIDATE("Total Cost", Quantity * "Unit Cost");
                 VALIDATE("Expected Total Cost", Quantity * "Expected Unit Cost");
 
-                Rec.CalcFields("Main Stock");//16/01/2025
-                Rec."Suggested Qty" := Rec."Main Stock" - Rec.Quantity;
             end;
         }
         field(5; "Unit of Measure"; Text[50])
@@ -776,14 +774,6 @@ table 70127 "Purchase Request Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Created,Ordered,"Not Ordered";
         }
-        field(50043; "Main Stock"; Decimal)
-        {
-            //  DataClassification = ToBeClassified;
-            FieldClass = FlowField;
-            CalcFormula = sum("Item Ledger Entry".Quantity where("Item No." = field("Item No."), "Warehouse Category" = const(Main)));//only the stock from the main warehosues
-
-
-        }
         field(50044; "PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -817,7 +807,7 @@ table 70127 "Purchase Request Line"
             TableRelation = Job;
         }
 
-      
+
     }
 
     keys

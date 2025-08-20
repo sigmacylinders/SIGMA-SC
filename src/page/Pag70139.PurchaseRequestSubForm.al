@@ -81,10 +81,7 @@ page 70139 "Purchase Request SubForm"
                 {
                     ToolTip = 'Specifies the value of the Total Available Stock field.', Comment = '%';
                 }
-                field("Main Stock"; Rec."Main Stock")
-                {
-                    ToolTip = 'Specifies the value of the Main Stock field.', Comment = '%';
-                }
+
                 field("Suggested Qty"; Rec."Suggested Qty")
                 {
                     ToolTip = 'Specifies the value of the Suggested Qty field.', Comment = '%';
@@ -93,28 +90,6 @@ page 70139 "Purchase Request SubForm"
                 field("Final PR"; Rec."Final PR")
                 {
                     ToolTip = 'Specifies the value of the Final PR field.', Comment = '%';
-                }
-                field("Official PO QTY"; Rec."Official PO QTY")
-                {
-                    ToolTip = 'Specifies the value of the Official PO QTY field.', Comment = '%';
-                    trigger OnValidate()
-
-                    var
-                        reqlines: Record "Requisition Line";
-                    begin
-                        //AN 04/29/25
-                        Clear(reqlines);
-                        reqlines.SetRange("SIGMA Sales Order No.", Rec."SIGMA Sales Order No.");
-                        reqlines.SetRange("SIGMA Sales Order Line No.", Rec."SIGMA Sales Order Line No.");
-                        IF reqlines.FindFirst() then begin//AI 04/30/25
-                            if Rec."Official PO QTY" <> reqlines.Quantity then begin
-                                Rec."Qty of PR" := Rec."Official PO QTY";
-                                Rec."Qty of Req" := reqlines.Quantity;
-                            end;
-                            Rec.Modify(true);
-                        end;
-                    end;
-
                 }
                 field("PO Status"; Rec."PO Status")
                 {
@@ -128,27 +103,7 @@ page 70139 "Purchase Request SubForm"
                 field("Expected Total Cost"; Rec."Expected Total Cost")
                 {
                 }
-                field("Unit Cost"; Rec."Unit Cost")
-                {
-                    Editable = EditableQtyCost;
-                    trigger OnValidate()
 
-                    var
-                        reqlines: Record "Requisition Line";
-                    begin
-                        //AN 04/29/25
-                        Clear(reqlines);
-                        reqlines.SetRange("SIGMA Sales Order No.", Rec."SIGMA Sales Order No.");
-                        reqlines.SetRange("SIGMA Sales Order Line No.", Rec."SIGMA Sales Order Line No.");
-                        IF reqlines.FindFirst() then //AI 04/30/25
-                            if Rec."Unit Cost" <> reqlines."Direct Unit Cost" then begin
-                                Rec."Cost of PR" := Rec."Unit Cost";
-                                Rec."Cost oof Req" := reqlines."Direct Unit Cost";
-                            end;
-                        Rec.Modify(true);
-
-                    end;
-                }
                 field("Total Cost"; Rec."Total Cost")
                 {
 

@@ -26,26 +26,6 @@ tableextension 70124 "Project Extension" extends Job
         field(70105; "Document Attachment Line No."; Integer)
         {
         }
-        field(70106; "Delivery Location Code"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = Location;
-        }
-        field(70107; "Sales Rep"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Dimension Value".Code where("Dimension Code" = const('SALESPERSON'));
-        }
-        // field(70108; "Project Manager"; Code[10])
-        // {
-        //     DataClassification = ToBeClassified;
-        //     TableRelation = "Dimension Value".Code where("Dimension Code" = const('EMPLOYEE'));
-        // }
-        field(70109; "Developer"; Code[10])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "Dimension Value".Code where("Dimension Code" = const('EMPLOYEE'));
-        }
 
 
     }

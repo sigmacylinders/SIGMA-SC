@@ -3,23 +3,6 @@ tableextension 70126 "unplanned demand extension" extends "Unplanned Demand"
     fields
     {
         // Add changes to table fields here
-
-        field(70101; "SIGMA Sales Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70102; "SIGMA Sales Order Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70103; "Quantity"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70104; "Sent to PO"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70105; "Job No."; Code[20])
         {
             Caption = 'Project No.';

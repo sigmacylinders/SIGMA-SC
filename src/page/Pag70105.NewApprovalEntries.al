@@ -98,14 +98,6 @@ page 70105 "New Approval Entries"
                 field("Related to Change"; Rec."Related to Change")
                 {
                 }
-                field("PO Number"; Rec."PO Number")
-                {
-                    ToolTip = 'Specifies the value of the PO Number field.', Comment = '%';
-                }
-                field("Project Code"; Rec."Project Code")
-                {
-                    ToolTip = 'Specifies the value of the Project Code field.', Comment = '%';
-                }
                 field("Supplier Name"; Rec."Supplier Name")
                 {
                     ToolTip = 'Specifies the value of the Supplier Name field.', Comment = '%';

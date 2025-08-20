@@ -4,17 +4,12 @@ pageextension 70123 ItemListExt extends "Item List"
     {
         addafter(Description)
         {
-      
+
             field(SystemCreatedAt; Rec.SystemCreatedAt)
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the SystemCreatedAt field.', Comment = '%';
             }
-            // field(SystemCreatedBy; Rec.SystemCreatedBy)
-            // {
-            //     ApplicationArea = All;
-            //     ToolTip = 'Specifies the value of the SystemCreatedBy field.', Comment = '%';
-            // }
             field(UserName; UserName)
             { ApplicationArea = All; }
         }

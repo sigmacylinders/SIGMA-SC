@@ -299,22 +299,6 @@ page 70123 "Intermediate Customers List"
     {
         area(navigation)
         {
-            action(New)
-            {
-                ApplicationArea = All;
-                Caption = 'Create New Customer';
-                Image = NewCustomer;
-                trigger OnAction()
-                begin
-                    // Custom action for creating a new customer
-                    //   PAGE.Run(PAGE::"Customer Card");
-                    SendIntermediateCustomertoCustomer(Rec);
-
-
-                    Rec.Processed := true;
-                    Rec.Modify();
-                end;
-            }
             action("Reject the Customer")
             {
                 ApplicationArea = All;
@@ -329,150 +313,150 @@ page 70123 "Intermediate Customers List"
     }
 
 
-    local procedure SendIntermediateCustomertoCustomer(IntCustomer: Record "Intermediate Customers")
-    var
+    /*    local procedure SendIntermediateCustomertoCustomer(IntCustomer: Record "Intermediate Customers")
+        var
 
-    begin
-        REc.TestField("Dynamics Number", '');
-        Rec.TestField("API Status", '');
-        Rec.TestField(Name);
+        begin
+            REc.TestField("Dynamics Number", '');
+            Rec.TestField("API Status", '');
+            Rec.TestField(Name);
 
-        Clear(CustomerRec);
-        CustomerRec.Init();
-        //CustomerRec.Validate("Apollo Number", IntCustomer."No.");//IntCustomer."No." must be removed replaced with new field
-
-
-        CustomerRec.Validate("Name", IntCustomer.Name);
-        CustomerRec.Validate("Search Name", IntCustomer."Search Name");
-        CustomerRec.Validate("Name 2", IntCustomer."Name 2");
-        CustomerRec.Validate("Address", IntCustomer.Address);
-        CustomerRec.Validate("Address 2", IntCustomer."Address 2");
-        CustomerRec.Validate("City", IntCustomer.City);
-
-        CustomerRec.Validate("Phone No.", IntCustomer."Phone No.");
-        CustomerRec.Validate("Telex No.", IntCustomer."Telex No.");
-        CustomerRec.Insert(true);
-        CustomerRec.Validate("Contact", IntCustomer.Contact);
-        CustomerRec.Validate("Global Dimension 1 Code", IntCustomer."Global Dimension 1 Code");
-        CustomerRec.Validate("Global Dimension 2 Code", IntCustomer."Global Dimension 2 Code");
-        CustomerRec.Validate("Gen. Bus. Posting Group", 'LOCAL');
-        CustomerRec.Validate("VAT Bus. Posting Group", 'LOCAL');
-        CustomerRec.Validate("Customer Posting Group", 'ORDINARY');
-        CustomerRec.Validate("Currency Code", IntCustomer."Currency Code");
-        CustomerRec.Validate("Payment Terms Code", IntCustomer."Payment Terms Code");
-        CustomerRec.Validate("Salesperson Code", IntCustomer."Salesperson Code");
-        CustomerRec.Validate("Shipment Method Code", IntCustomer."Shipment Method Code");
-        CustomerRec.Validate("Country/Region Code", IntCustomer."Country/Region Code");
-        CustomerRec.Validate("Payment Method Code", IntCustomer."Payment Method Code");
-        CustomerRec.Validate("Location Code", IntCustomer."Location Code");
-
-        CustomerRec.Validate("Post Code", IntCustomer."Post Code");
-        CustomerRec.Validate("County", IntCustomer.County);
+            Clear(CustomerRec);
+            CustomerRec.Init();
+            //CustomerRec.Validate("Apollo Number", IntCustomer."No.");//IntCustomer."No." must be removed replaced with new field
 
 
-        // CustomerRec.Validate("Building NO.", IntCustomer."Building NO.");
-        // CustomerRec.Validate("Building Name", IntCustomer."Building Name");
-        // CustomerRec.Validate("Building Name Arabic", IntCustomer."Building Name Arabic");
-        // CustomerRec.Validate("CR", IntCustomer.CR);
+            CustomerRec.Validate("Name", IntCustomer.Name);
+            CustomerRec.Validate("Search Name", IntCustomer."Search Name");
+            CustomerRec.Validate("Name 2", IntCustomer."Name 2");
+            CustomerRec.Validate("Address", IntCustomer.Address);
+            CustomerRec.Validate("Address 2", IntCustomer."Address 2");
+            CustomerRec.Validate("City", IntCustomer.City);
 
-        // CustomerRec.Validate("Contact Name Arabic", IntCustomer."Contact Name Arabic");
-        // CustomerRec.Validate("District", IntCustomer.District);
-        // CustomerRec.Validate("District Arabic", IntCustomer."District Arabic");
-        CustomerRec.Validate("E-mail", IntCustomer.Email);
-        CustomerRec.Validate("Mobile Phone No.", IntCustomer."Mobile Phone No.");
-        // CustomerRec.Validate(, IntCustomer."PO BOX");
-        // CustomerRec.Validate("Processed", IntCustomer.Processed);
-        CustomerRec.Validate("Responsibility Center", IntCustomer."Responsibility Center");
-        // CustomerRec.Validate("Road", IntCustomer.Road);
-        // CustomerRec.Validate("Road Name Arabic", IntCustomer."Road Name Arabic");
-        // CustomerRec.Validate("Street", IntCustomer.Street);
-        // CustomerRec.Validate("Street Arabic", IntCustomer."Street Arabic");
-        CustomerRec.Modify();
-        Rec."Dynamics Number" := CustomerRec."No.";
-        rec.Modify();
+            CustomerRec.Validate("Phone No.", IntCustomer."Phone No.");
+            CustomerRec.Validate("Telex No.", IntCustomer."Telex No.");
+            CustomerRec.Insert(true);
+            CustomerRec.Validate("Contact", IntCustomer.Contact);
+            CustomerRec.Validate("Global Dimension 1 Code", IntCustomer."Global Dimension 1 Code");
+            CustomerRec.Validate("Global Dimension 2 Code", IntCustomer."Global Dimension 2 Code");
+            CustomerRec.Validate("Gen. Bus. Posting Group", 'LOCAL');
+            CustomerRec.Validate("VAT Bus. Posting Group", 'LOCAL');
+            CustomerRec.Validate("Customer Posting Group", 'ORDINARY');
+            CustomerRec.Validate("Currency Code", IntCustomer."Currency Code");
+            CustomerRec.Validate("Payment Terms Code", IntCustomer."Payment Terms Code");
+            CustomerRec.Validate("Salesperson Code", IntCustomer."Salesperson Code");
+            CustomerRec.Validate("Shipment Method Code", IntCustomer."Shipment Method Code");
+            CustomerRec.Validate("Country/Region Code", IntCustomer."Country/Region Code");
+            CustomerRec.Validate("Payment Method Code", IntCustomer."Payment Method Code");
+            CustomerRec.Validate("Location Code", IntCustomer."Location Code");
 
-    end;
+            CustomerRec.Validate("Post Code", IntCustomer."Post Code");
+            CustomerRec.Validate("County", IntCustomer.County);
+
+
+            // CustomerRec.Validate("Building NO.", IntCustomer."Building NO.");
+            // CustomerRec.Validate("Building Name", IntCustomer."Building Name");
+            // CustomerRec.Validate("Building Name Arabic", IntCustomer."Building Name Arabic");
+            // CustomerRec.Validate("CR", IntCustomer.CR);
+
+            // CustomerRec.Validate("Contact Name Arabic", IntCustomer."Contact Name Arabic");
+            // CustomerRec.Validate("District", IntCustomer.District);
+            // CustomerRec.Validate("District Arabic", IntCustomer."District Arabic");
+            CustomerRec.Validate("E-mail", IntCustomer.Email);
+            CustomerRec.Validate("Mobile Phone No.", IntCustomer."Mobile Phone No.");
+            // CustomerRec.Validate(, IntCustomer."PO BOX");
+            // CustomerRec.Validate("Processed", IntCustomer.Processed);
+            CustomerRec.Validate("Responsibility Center", IntCustomer."Responsibility Center");
+            // CustomerRec.Validate("Road", IntCustomer.Road);
+            // CustomerRec.Validate("Road Name Arabic", IntCustomer."Road Name Arabic");
+            // CustomerRec.Validate("Street", IntCustomer.Street);
+            // CustomerRec.Validate("Street Arabic", IntCustomer."Street Arabic");
+            CustomerRec.Modify();
+            Rec."Dynamics Number" := CustomerRec."No.";
+            rec.Modify();
+
+        end;
 
 
 
-    procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
-    var
-        Client: HttpClient;
-        Response: HttpResponseMessage;
-        Request: HttpRequestMessage;
-        OutputString: Text;
-    begin
-        Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateCustomerDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
-        Request.Method := 'GET';
-        IF Client.Send(Request, Response) then begin
-            IF Response.IsSuccessStatusCode then begin
-                Response.Content.ReadAs(OutputString);
-                Message('%1', OutputString);
+        procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
+        var
+            Client: HttpClient;
+            Response: HttpResponseMessage;
+            Request: HttpRequestMessage;
+            OutputString: Text;
+        begin
+            Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateCustomerDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
+            Request.Method := 'GET';
+            IF Client.Send(Request, Response) then begin
+                IF Response.IsSuccessStatusCode then begin
+                    Response.Content.ReadAs(OutputString);
+                    Message('%1', OutputString);
+                end else
+                    Error('Error: %1', Response.ReasonPhrase);
             end else
                 Error('Error: %1', Response.ReasonPhrase);
-        end else
-            Error('Error: %1', Response.ReasonPhrase);
 
-        Rec."API Status" := OutputString + StrSubstNo('Error: %1', Response.ReasonPhrase);
-        Rec.Modify();
-    end;
+            Rec."API Status" := OutputString + StrSubstNo('Error: %1', Response.ReasonPhrase);
+            Rec.Modify();
+        end;
 
-    procedure PostRejectCustomer(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
-    var
-        Client: HttpClient;
-        //  Response: HttpResponseMessage;
-        //   Request: HttpRequestMessage;
-        OutputString: Text;
-        Content: HttpContent;
-        postData: Text;
-        RequestHeaders: HttpHeaders;
-        ResponseHeader: HttpResponseMessage;
-        HttpHeadersContent: HttpHeaders;
-        ResponseMessage: HttpResponseMessage;
-        RequestMessage: HttpRequestMessage;
+        procedure PostRejectCustomer(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
+        var
+            Client: HttpClient;
+            //  Response: HttpResponseMessage;
+            //   Request: HttpRequestMessage;
+            OutputString: Text;
+            Content: HttpContent;
+            postData: Text;
+            RequestHeaders: HttpHeaders;
+            ResponseHeader: HttpResponseMessage;
+            HttpHeadersContent: HttpHeaders;
+            ResponseMessage: HttpResponseMessage;
+            RequestMessage: HttpRequestMessage;
 
-    begin
-        //     postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
-        // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
-        If DynamicsNumber = '' then
-            DynamicsNumber := '0';
+        begin
+            //     postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
+            // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
+            If DynamicsNumber = '' then
+                DynamicsNumber := '0';
 
-        postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
-        RequestMessage.GetHeaders(RequestHeaders);
-        RequestHeaders.Clear();
-        RequestHeaders.Add('Authorization', 'No Auth');
-        RequestHeaders.Add('Accept', 'application/json');
-        Content.WriteFrom(postData);
+            postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
+            RequestMessage.GetHeaders(RequestHeaders);
+            RequestHeaders.Clear();
+            RequestHeaders.Add('Authorization', 'No Auth');
+            RequestHeaders.Add('Accept', 'application/json');
+            Content.WriteFrom(postData);
 
-        //GET HEADERS
-        Content.GetHeaders(HttpHeadersContent);
-        HttpHeadersContent.Clear();
-        HttpHeadersContent.Remove('Content-Type');
-        HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
+            //GET HEADERS
+            Content.GetHeaders(HttpHeadersContent);
+            HttpHeadersContent.Clear();
+            HttpHeadersContent.Remove('Content-Type');
+            HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
 
 
-        //POST METHOD
-        RequestMessage.Content := Content;
-        RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateCustomer');
-        RequestMessage.Method := 'POST';
+            //POST METHOD
+            RequestMessage.Content := Content;
+            RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateCustomer');
+            RequestMessage.Method := 'POST';
 
-        IF Client.Send(RequestMessage, ResponseMessage) then begin
-            IF ResponseMessage.IsSuccessStatusCode then begin
-                ResponseMessage.Content.ReadAs(OutputString);
-                Message('%1', OutputString + ' :  Customer is Rejected and information is sent back to apollo');
+            IF Client.Send(RequestMessage, ResponseMessage) then begin
+                IF ResponseMessage.IsSuccessStatusCode then begin
+                    ResponseMessage.Content.ReadAs(OutputString);
+                    Message('%1', OutputString + ' :  Customer is Rejected and information is sent back to apollo');
+                end else
+                    Error('Error: %1', ResponseMessage.ReasonPhrase);
             end else
                 Error('Error: %1', ResponseMessage.ReasonPhrase);
-        end else
-            Error('Error: %1', ResponseMessage.ReasonPhrase);
 
-        Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
-        IF Rec."Dynamics Number" <> '' then
-            Rec.Processed := true;
+            Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
+            IF Rec."Dynamics Number" <> '' then
+                Rec.Processed := true;
 
-        Rec.Modify();
-    end;
+            Rec.Modify();
+        end;
 
-
+    */
 
     var
         CustomerRec: Record Customer;

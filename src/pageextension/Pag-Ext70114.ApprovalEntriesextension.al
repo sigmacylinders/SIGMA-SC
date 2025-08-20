@@ -47,16 +47,6 @@ pageextension 70114 "Approval Entries extension" extends "Approval Entries"
 
                 end;
             }
-            field("PO Number"; Rec."PO Number")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the PO Number field.', Comment = '%';
-            }
-            field("Project Code"; Rec."Project Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Project Code field.', Comment = '%';
-            }
             field(Amount; Rec.Amount)
             {
                 ApplicationArea = All;

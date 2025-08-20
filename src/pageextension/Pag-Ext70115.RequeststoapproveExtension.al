@@ -20,16 +20,6 @@ pageextension 70115 "Requests to approve Extension" extends "Requests to Approve
                 ApplicationArea = All;
                 ToolTip = 'Specifies the document number copied from the relevant sales or purchase document, such as a purchase order or a sales quote.';
             }
-            field("PO Number"; Rec."PO Number")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the PO Number field.', Comment = '%';
-            }
-            field("Project Code"; Rec."Project Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Project Code field.', Comment = '%';
-            }
 
         }
     }

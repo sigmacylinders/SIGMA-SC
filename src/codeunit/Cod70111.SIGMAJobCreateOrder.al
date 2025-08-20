@@ -504,11 +504,7 @@ codeunit 70111 "SIGMA Job Create-Order"
                 UpdateSalesHeader(SalesHeader, Job)
             else
                 UpdateSalesHeader(SalesHeader, JobPlanningLine);
-        //added by AI 30/04/2025
-        SalesHeader.Validate("Shortcut Dimension 1 Code", JobPlanningLine."Shortcut Dimension 1 Code");//01012025
-        SalesHeader.ValidateShortcutDimCode(4, JobPlanningLine."Shortcut Dimension 4 Code");
-        SalesHeader.ValidateShortcutDimCode(5, JobPlanningLine."Shortcut Dimension 5 Code");
-        SalesHeader.ValidateShortcutDimCode(6, JobPlanningLine."Shortcut Dimension 6 Code");
+
         Clear(Project);
         Project.Get(JobPlanningLine."Job No.");
 
@@ -668,20 +664,6 @@ codeunit 70111 "SIGMA Job Create-Order"
         SalesLine."Description 2" := JobPlanningLine."Description 2";
         SalesLine."Line No." := GetNextLineNo(SalesLine);
         OnBeforeInsertSalesLine(SalesLine, SalesHeader, Job, JobPlanningLine, JobInvCurrency);
-
-        //added by AI 30/04/2025
-        SalesLine."Job Planning Line No." := JobPlanningLine."Line No.";//transfer Project planning to Sales Lines --> purchase line
-
-       
-        SalesLine.Validate("Shortcut Dimension 1 Code", JobPlanningLine."Shortcut Dimension 1 Code");
-        SalesLine.Validate("Shortcut Dimension 2 Code", JobPlanningLine."Shortcut Dimension 2 Code");
-        SalesLine.ValidateShortcutDimCode(3, JobPlanningLine."Shortcut Dimension 3 Code");
-        SalesLine.ValidateShortcutDimCode(4, JobPlanningLine."Shortcut Dimension 4 Code");
-        SalesLine.ValidateShortcutDimCode(5, JobPlanningLine."Shortcut Dimension 5 Code");
-        SalesLine.ValidateShortcutDimCode(6, JobPlanningLine."Shortcut Dimension 6 Code");
-
-
-       
 
 
         SalesLine.Insert(true);

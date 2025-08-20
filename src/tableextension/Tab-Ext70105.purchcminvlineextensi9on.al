@@ -5,19 +5,6 @@ tableextension 70105 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         // Add changes to table fields here
 
 
-        field(70101; "Currency Code"; Code[10])
-        {
-            // DataClassification = ToBeClassified;
-            FieldClass = FlowField;
-            CalcFormula = lookup("Purch. Cr. Memo Hdr."."Currency Code" where("No." = field("Document No.")));
-        }
-        field(70102; "Currency Factor"; Decimal)
-        {
-            // DataClassification = ToBeClassified;
-            FieldClass = FlowField;
-            CalcFormula = lookup("Purch. Cr. Memo Hdr."."Currency Factor" where("No." = field("Document No.")));
-        }
-
         field(70105; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
@@ -39,42 +26,6 @@ tableextension 70105 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
             DataClassification = ToBeClassified;
         }
         field(70110; "Container ID"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70111; "SIGMA Sales Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70112; "SIGMA Sales Order Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70113; "Quantity Shipped"; Decimal)//from the vendor's country
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70114; "Remaining Quantity Shipped"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70115; "Line is Splitted"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70116; "Splitted Line No."; Text[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70117; "Original Quantity"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70118; "Original Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70119; "Disable fields after Shipping"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
@@ -102,14 +53,7 @@ tableextension 70105 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         {
             DataClassification = ToBeClassified;
         }
-        field(70126; "VO Number"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70127; "Batch Number"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
+
         field(70128; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -122,35 +66,11 @@ tableextension 70105 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         {
             DataClassification = ToBeClassified;
         }
-        field(70131; "Subjob ID"; Integer)//added on 27/01/2025
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Subjob ID';
-        }
-        field(70132; "Job#"; Code[20])//added on 27/01/2025
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Job ID';
-        }
+
         field(70133; "Shipping By"; Option)//added on 27/01/2025
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
-        }
-        field(70144; "Line Amount LCY"; Decimal)
-        {
-            //   AutoFormatExpression = Rec."Currency Code";
-            //  AutoFormatType = 1;
-            //  CaptionClass = GetCaptionClass(FieldNo("Line Amount"));
-            Caption = 'Line Amount';
-        }
-
-
-        field(70145; "Direct Unit Cost LCY"; Decimal)
-        {
-            //  AutoFormatExpression = Rec."Currency Code";
-            //    AutoFormatType = 2;
-            //   CaptionClass = GetCaptionClass(FieldNo("Direct Unit Cost"));
         }
 
     }

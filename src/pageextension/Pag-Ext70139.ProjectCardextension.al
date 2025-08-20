@@ -10,15 +10,6 @@ pageextension 70139 "Project Card extension" extends "Job Card"
         addbefore("Job Details")
         {
         }
-        addafter("Location Code")
-        {
-            field("Delivery Location Code"; Rec."Delivery Location Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Delivery Location Code field.', Comment = '%';
-            }
-        }
-
 
         modify("Sell-to Customer No.")
         {

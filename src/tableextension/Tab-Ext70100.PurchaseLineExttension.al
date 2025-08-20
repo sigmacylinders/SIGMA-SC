@@ -111,44 +111,6 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70111; "SIGMA Sales Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70112; "SIGMA Sales Order Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70113; "Quantity Shipped"; Decimal)//from the vendor's country
-        {
-            DataClassification = ToBeClassified;
-            BlankZero = true;
-        }
-        field(70114; "Remaining Quantity Shipped"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-            BlankZero = true;
-        }
-        field(70115; "Line is Splitted"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70116; "Splitted Line No."; Text[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70117; "Original Quantity"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70118; "Original Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70119; "Disable fields after Shipping"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70120; "Final ETR"; Date)
         {
             Caption = 'Final ETR';
@@ -247,10 +209,10 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 SalesLine: Record "Sales Line";
             begin
                 //AN 06/11/2024: Check if the Final ETAW is greater than the Shipment Date on Sales Order
-                if SalesLine.Get(SalesLine."Document Type"::Order, Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.") then
-                    if SalesLine."Shipment Date" <> 0D then
-                        if Rec."Final ETAW" > SalesLine."Shipment Date" then
-                            Message('Final ETAW cannot be greater than Shipment Date on Sales Order %1 Line %2', Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.");
+                // if SalesLine.Get(SalesLine."Document Type"::Order, Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.") then
+                //     if SalesLine."Shipment Date" <> 0D then
+                //         if Rec."Final ETAW" > SalesLine."Shipment Date" then
+                //             Message('Final ETAW cannot be greater than Shipment Date on Sales Order %1 Line %2', Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.");
 
                 IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
                     ShippingDateLOG.Init();
@@ -271,14 +233,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70126; "VO Number"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70127; "Batch Number"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
+
         field(70128; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -291,68 +246,10 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70131; "Subjob ID"; Integer)//added on 27/01/2025
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Subjob ID';
-        }
-        field(70132; "Job#"; Code[20])//added on 27/01/2025
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Job ID';
-        }
         field(70133; "Shipping By"; Option)//added on 27/01/2025
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
-        }
-
-        field(70134; "Gross Weight in KG"; Decimal)
-        {
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Gross Weight in KG" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70135; "Volumetric Weight in KG"; Decimal)
-        {
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Volumetric Weight in KG" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70136; "Net Weight in KG"; Decimal)
-        {
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Net Weight in KG" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70137; "AirPort of Loading"; Code[50])
-        {
-            Caption = 'AirPort of Loading';
-            // Set up a lookup to your port master table here    
-            TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."AirPort of Loading" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70138; "AirPort of Discharge"; Code[50])
-        {
-            Caption = 'AirPort of Discharge';
-            // Set up a lookup to your port master table here    
-            TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."AirPort of Discharge" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70139; "Port of Loading"; Code[50])
-        {
-            Caption = 'Port of Loading';
-            // Set up a lookup to your port master table here
-            TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
-        }
-        field(70140; "Port of Discharge"; Code[50])
-        {
-            Caption = 'Port of Discharge';
-            // Set up a lookup to your port master table here
-            TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details"."Port of Discharge" where("BL ID" = field("BL/AWB ID")));
         }
 
         // field(70141; "Buy-from Vendor Name"; Code[100])
@@ -363,49 +260,9 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         //     FieldClass = FlowField;
         //     CalcFormula = lookup(Vendor.Name where("No." = field("Buy-from Vendor No.")));
         // }
-        field(70142; "Liner"; Code[50])
-        {
-            // DataClassification = ToBeClassified;
-            //           TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details".Liner where("BL ID" = field("BL/AWB ID")));
-        }
-        field(70143; "Airline"; Code[50])
-        {
-            // DataClassification = ToBeClassified;
-            //           TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details".Airline where("AWB ID" = field("BL/AWB ID")));
-        }
-
-        field(70144; "Line Amount LCY"; Decimal)   //added on 19/02/82025
-        {
-            //   AutoFormatExpression = Rec."Currency Code";
-            //  AutoFormatType = 1;
-            //  CaptionClass = GetCaptionClass(FieldNo("Line Amount"));
-            Caption = 'Line Amount LCY';
-        }
 
 
-        field(70145; "Direct Unit Cost LCY"; Decimal)   //added on 19/02/82025
-        {
-            //  AutoFormatExpression = Rec."Currency Code";
-            //    AutoFormatType = 2;
-            //   CaptionClass = GetCaptionClass(FieldNo("Direct Unit Cost"));
-        }
-        field(70149; "Chargable Weight in KG"; Decimal)//added on 02/04/2025
-        {
-            FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Chargable Weight in KG" where("AWB ID" = field("BL/AWB ID")));
-        }
-        field(70150; "InLand ID"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70151; "Inland Details Line No"; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
+
         /* modify("No.")
          {
              trigger OnAfterValidate()

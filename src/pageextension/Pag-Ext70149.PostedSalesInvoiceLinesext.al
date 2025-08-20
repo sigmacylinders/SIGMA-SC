@@ -16,16 +16,7 @@ pageextension 70149 "Posted Sales Invoice Lines ext" extends "Posted Sales Invoi
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Order Line No. field.', Comment = '%';
             }
-            field("SIGMA Purchase Order Line No."; Rec."SIGMA Purchase Order Line No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the SIGMA Purchase Order Line No. field.', Comment = '%';
-            }
-            field("SIGMA Purchase Order No."; Rec."SIGMA Purchase Order No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the SIGMA Purchase Order No. field.', Comment = '%';
-            }
+
         }
     }
 

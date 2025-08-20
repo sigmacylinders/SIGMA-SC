@@ -4,35 +4,6 @@ tableextension 70125 "Requisition Line extension" extends "Requisition Line"
     {
         // Add changes to table fields here      
 
-        field(70101; "SIGMA Sales Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70102; "SIGMA Sales Order Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70103; "Include"; Boolean)//if  = yes will be send to the PO Line 
-        {
-            DataClassification = ToBeClassified;
-
-            trigger OnValidate()
-            var
-            begin
-                IF Rec.Include = true then begin
-                    IF NOT Rec."Sent to PO" then
-                        Rec.Validate(Quantity, Rec."Demand Quantity") else
-                        Rec.Validate(Quantity, 0);
-                end else
-                    Rec.Validate(Quantity, 0);
-
-                Rec.Modify();
-            end;
-        }
-        field(70104; "Sent to PO"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70105; "Job No."; Code[20])
         {
             Caption = 'Project No.';
@@ -101,27 +72,7 @@ tableextension 70125 "Requisition Line extension" extends "Requisition Line"
             TableRelation = "Dimension Value".Code where("Global Dimension No." = const(8),
                                                           Blocked = const(false));
         }
-        field(70116; "PO from PR"; Boolean)
-        {
-            DataClassification = ToBeClassified;
 
-            trigger OnValidate()
-            var
-                ProjectPlanningLines: Record "Job Planning Line";
-                PurchaseRequest: Record "Purchase Request Header";
-                PurchaseRequestLine: Record "Purchase Request Line";
-            begin
-                Clear(ProjectPlanningLines);//01012025
-                IF ProjectPlanningLines.Get(Rec."Job No.", Rec."Job Task No.", Rec."Job Planning Line No.") then begin
-                    IF Rec."Currency Code" = '' then
-                        Rec.Validate("Direct Unit Cost", ProjectPlanningLines."Unit Cost (LCY)")//01/01/2025
-                    else
-                        Rec.Validate("Direct Unit Cost", ProjectPlanningLines."Unit Cost in Vendor Currency");
-                end;
-                Rec.Modify();
-
-            end;
-        }
         field(70117; "PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -143,7 +94,7 @@ tableextension 70125 "Requisition Line extension" extends "Requisition Line"
                 PurchaseHeader: Record "Purchase Header";
             begin
                 if "Append to PO No." = '' then exit;
-                if ("PO No." <> '') and (("PO from PR" = true) or (Include = true)) then
+                if ("PO No." <> '') then
                     Error('Already linked to a PO!');
                 PurchaseHeader.SetRange("No.", Rec."Append to PO No.");
                 PurchaseHeader.SetRange("Buy-from Vendor No.", Rec."Vendor No.");

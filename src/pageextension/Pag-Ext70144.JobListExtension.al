@@ -26,11 +26,6 @@ pageextension 70144 "Job List Extension" extends "Job List"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the location code of the project.';
             }
-            field("Delivery Location Code"; Rec."Delivery Location Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Delivery Location Code field.', Comment = '%';
-            }
             field("Starting Date"; Rec."Starting Date")
             {
                 ApplicationArea = All;

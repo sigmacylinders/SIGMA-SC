@@ -177,7 +177,7 @@ table 70115 "Intermediate Items"
             DataClassification = ToBeClassified;
         }
 
-    
+
 
 
         field(47; "Lamps Count"; Integer)

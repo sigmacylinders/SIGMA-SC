@@ -28,47 +28,6 @@ tableextension 70114 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70111; "SIGMA Sales Order No."; Code[20])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70112; "SIGMA Sales Order Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70113; "Quantity Shipped"; Decimal)//from the vendor's country
-        {
-            DataClassification = ToBeClassified;
-            BlankZero = true;
-
-
-        }
-        field(70114; "Remaining Quantity Shipped"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-            BlankZero = true;
-
-        }
-        field(70115; "Line is Splitted"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70116; "Splitted Line No."; Text[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70117; "Original Quantity"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70118; "Original Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70119; "Disable fields after Shipping"; Boolean)
-        {
-            DataClassification = ToBeClassified;
-        }
         field(70120; "Final ETR"; Date)
         {
             Caption = 'Final ETR';
@@ -91,14 +50,6 @@ tableextension 70114 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
             Caption = 'Final ETAW';
         }
         field(70125; "Container Line No."; Integer)
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70126; "VO Number"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70127; "Batch Number"; Code[50])
         {
             DataClassification = ToBeClassified;
         }

@@ -27,12 +27,6 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';
             }
 
-
-            field("SIGMA Sales Order No."; Rec."SIGMA Sales Order No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the SIGMA Sales Order No. field.', Comment = '%';
-            }
         }
         addafter("Attached Documents")
         {
@@ -75,25 +69,6 @@ pageextension 70103 "PO Extension" extends "Purchase Order"
     actions
     {
         // Add changes to page actions here
-        addafter(Receipts)
-        {
-            action("Open SO")
-            {
-                Image = Purchase;
-                ApplicationArea = All;
-                trigger OnAction()
-                var
-                    //SalesLine: Record "Sales Line";
-                    SalesHeader: Record "Sales Header";
-                begin
-                    rec.CalcFields("SIGMA Sales Order No.");
-                    Clear(SalesHeader);
-                    SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
-                    SalesHeader.SetRange("No.", Rec."SIGMA Sales Order No.");
-                    Page.Run(page::"Sales Order List", SalesHeader);
-                end;
-            }
-        }
     }
 
 

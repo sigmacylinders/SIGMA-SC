@@ -33,7 +33,6 @@ pageextension 70129 "Purch. Order From Sales Ordere" extends "Purch. Order From 
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the cost of one unit of the selected item or resource.';
-                Editable = (CanSubmitPurchaseRequest) and (Rec.Include);//added on 22/04/2025
 
                 trigger OnValidate()
                 var
@@ -53,45 +52,7 @@ pageextension 70129 "Purch. Order From Sales Ordere" extends "Purch. Order From 
                     end;
                 end;
             }
-            field(Include; Rec.Include)
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Include field.', Comment = '%';
-                Caption = 'Submitted';
-                Editable = CanSubmitPurchaseRequest;//added on 25/02/2025
 
-                trigger OnValidate()
-                var
-                    ProjectPlanningLines: Record "Job Planning Line";
-                    PurchaseRequestLine: Record "Purchase Request Line";
-                begin
-                    IF Rec.Include = true then begin
-                        IF NOT Rec."Sent to PO" then
-                            Rec.Validate(Quantity, Rec."Demand Quantity") else
-                            Rec.Validate(Quantity, 0);
-                    end else
-                        Rec.Validate(Quantity, 0);
-
-
-                    Clear(ProjectPlanningLines);//01012025
-                    IF ProjectPlanningLines.Get(Rec."Job No.", Rec."Job Task No.", Rec."Job Planning Line No.") then begin
-                        IF Rec."Currency Code" = '' then
-                            Rec.Validate("Direct Unit Cost", ProjectPlanningLines."Unit Cost (LCY)")      //01/01/2025  
-                        else
-                            Rec.Validate("Direct Unit Cost", ProjectPlanningLines."Unit Cost in Vendor Currency");//updated by Abdallah on 18/03/2025
-                    end;
-
-                    Rec.Modify();
-
-                end;
-            }
-            field("PO from PR"; Rec."PO from PR")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the PO from PR field.', Comment = '%';
-                Editable = false;
-
-            }
             field("PO No."; Rec."PO No.")
             {
                 ApplicationArea = All;
@@ -263,10 +224,7 @@ pageextension 70129 "Purch. Order From Sales Ordere" extends "Purch. Order From 
                         PurchaseRequestLine.Validate("Unit of Measure Code", ProjectPlanningLines."Unit of Measure Code");
                         //AN 06/04/2025
                         PurchaseRequestLine.Validate("Project No.", ProjectPlanningLines."Job No.");
-                        IF Rec."Currency Code" = '' then
-                            PurchaseRequestLine.Validate("Unit Cost", ProjectPlanningLines."Unit Cost (LCY)") //17/02/2025
-                        else
-                            PurchaseRequestLine.Validate("Unit Cost", ProjectPlanningLines."Unit Cost in Vendor Currency");//updated by Abdallah on 18/03/2025
+
                     end;
 
                     PurchaseRequestLine.Validate(Amount, PurchaseRequestLine.Quantity * PurchaseRequestLine."Unit Cost");
@@ -282,16 +240,14 @@ pageextension 70129 "Purch. Order From Sales Ordere" extends "Purch. Order From 
                     PurchaseRequestLine.Validate("Shortcut Dimension 6 Code", Rec."Shortcut Dimension 6 Code");
                     PurchaseRequestLine.Validate("Shortcut Dimension 7 Code", REc."Shortcut Dimension 7 Code");
                     PurchaseRequestLine.Validate("Shortcut Dimension 8 Code", Rec."Shortcut Dimension 8 Code");
-                    PurchaseRequestLine."SIGMA Sales Order No." := Rec."SIGMA Sales Order No.";
-                    PurchaseRequestLine."SIGMA Sales Order Line No." := Rec."SIGMA Sales Order Line No.";
+
                     PurchaseRequestLine."PO Status" := PurchaseRequestLine."PO Status"::"Not Ordered";
                     PurchaseRequestLine."PO No." := Rec."PO No.";
                     PurchaseRequestLine."PO Line No" := Rec."PO Line No";
 
 
 
-                    IF rec.Include then
-                        PurchaseRequestLine.Check := true;
+
 
                     PurchaseRequestLine.Modify();
 

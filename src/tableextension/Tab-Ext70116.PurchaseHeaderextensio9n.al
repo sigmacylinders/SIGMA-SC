@@ -205,12 +205,6 @@ tableextension 70116 "Purchase Header extensio9n" extends "Purchase Header"
         field(70120; "Document Attachment Line No."; Integer)
         {
         }
-        field(70121; "SIGMA Sales Order No."; Code[20])
-        {
-            //    DataClassification = ToBeClassified;
-            FieldClass = FlowField;
-            CalcFormula = lookup("Purchase Line"."SIGMA Sales Order No." where("Document Type" = field("Document Type"), "Document No." = field("No.")));
-        }
 
     }
 

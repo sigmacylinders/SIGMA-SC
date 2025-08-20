@@ -47,16 +47,6 @@ pageextension 70132 "SO Extension" extends "Sales Order"
             ShowMandatory = true;
         }
 
-
-        addlast(General)
-        {
-            field("Pro-Forma Description"; Rec."Pro-Forma Description")
-            {
-                ApplicationArea = All;
-                MultiLine = true;
-            }
-   
-        }
         // Add changes to page layout here
         addafter("Attached Documents")
         {
@@ -105,24 +95,6 @@ pageextension 70132 "SO Extension" extends "Sales Order"
             }
         }
         // Add changes to page actions here
-        addafter("S&hipments")
-        {
-            action("Open POs")
-            {
-                Image = Purchase;
-                ApplicationArea = All;
-                trigger OnAction()
-                var
-                    SalesLine: Record "Sales Line";
-                    PurchaseHeader: Record "Purchase Header";
-                begin
-                    Clear(PurchaseHeader);
-                    PurchaseHeader.SetRange("SIGMA Sales Order No.", Rec."No.");
-                    Page.Run(page::"Purchase Order List", PurchaseHeader);
-                end;
-            }
-
-        }
 
         modify(CreatePurchaseOrder)
         {

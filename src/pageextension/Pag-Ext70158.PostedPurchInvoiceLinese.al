@@ -23,11 +23,7 @@ pageextension 70158 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the BL/AWB ID field.', Comment = '%';
             }
-            field("Batch Number"; Rec."Batch Number")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Batch Number field.', Comment = '%';
-            }
+
             field("Blanket Order Line No."; Rec."Blanket Order Line No.")
             {
                 ApplicationArea = All;
@@ -47,21 +43,6 @@ pageextension 70158 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Container Line No. field.', Comment = '%';
-            }
-            field("Currency Code"; Rec."Currency Code")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Currency Code field.', Comment = '%';
-            }
-            field("Currency Factor"; Rec."Currency Factor")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Currency Factor field.', Comment = '%';
-            }
-            field("Direct Unit Cost LCY"; Rec."Direct Unit Cost LCY")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Direct Unit Cost LCY field.', Comment = '%';
             }
             field("Final ETA"; Rec."Final ETA")
             {
@@ -103,30 +84,10 @@ pageextension 70158 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';
             }
-            field("Job#"; Rec."Job#")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Job ID field.', Comment = '%';
-            }
-            field("Line Amount LCY"; Rec."Line Amount LCY")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Line Amount field.', Comment = '%';
-            }
             field("Line Amount"; Rec."Line Amount")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the net amount, excluding any invoice discount amount, that must be paid for products on the line.';
-            }
-            field("SIGMA Sales Order Line No."; Rec."SIGMA Sales Order Line No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the SIGMA Sales Order Line No. field.', Comment = '%';
-            }
-            field("SIGMA Sales Order No."; Rec."SIGMA Sales Order No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the SIGMA Sales Order No. field.', Comment = '%';
             }
             field("Location Code"; Rec."Location Code")
             {
@@ -144,16 +105,6 @@ pageextension 70158 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
                 ToolTip = 'Specifies the value of the Shipping By field.', Comment = '%';
             }
 
-            field("Splitted Line No."; Rec."Splitted Line No.")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Splitted Line No. field.', Comment = '%';
-            }
-            field("Subjob ID"; Rec."Subjob ID")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the Subjob ID field.', Comment = '%';
-            }
             field("Truck Details ID"; Rec."Truck Details ID")
             {
                 ApplicationArea = All;
@@ -168,11 +119,6 @@ pageextension 70158 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Truck WayBill ID field.', Comment = '%';
-            }
-            field("VO Number"; Rec."VO Number")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the VO Number field.', Comment = '%';
             }
             field("Vendor Item No."; Rec."Vendor Item No.")
             {

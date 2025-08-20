@@ -536,86 +536,85 @@ page 70122 "Intermediate Items"
             if DefaultDimension.Get(OtherCompanyItemRec.RecordId().TableNo(), OtherCompanyItemRec."No.", GLSetupShortcutDimCode[2]) then
                 DefaultDimension.Delete();
     end;
-
-    procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
-    var
-        Client: HttpClient;
-        Response: HttpResponseMessage;
-        Request: HttpRequestMessage;
-        OutputString: Text;
-    begin
-        Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateItemDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
-        Request.Method := 'GET';
-        IF Client.Send(Request, Response) then begin
-            IF Response.IsSuccessStatusCode then begin
-                Response.Content.ReadAs(OutputString);
-                Message('%1', OutputString);
+    /* procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
+        var
+            Client: HttpClient;
+            Response: HttpResponseMessage;
+            Request: HttpRequestMessage;
+            OutputString: Text;
+        begin
+            Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateItemDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
+            Request.Method := 'GET';
+            IF Client.Send(Request, Response) then begin
+                IF Response.IsSuccessStatusCode then begin
+                    Response.Content.ReadAs(OutputString);
+                    Message('%1', OutputString);
+                end else
+                    Error('Error: %1', Response.ReasonPhrase);
             end else
                 Error('Error: %1', Response.ReasonPhrase);
-        end else
-            Error('Error: %1', Response.ReasonPhrase);
 
-        Rec."API Status" := OutputString + StrSubstNo('Response: %1', Response.ReasonPhrase);
-    end;
+            Rec."API Status" := OutputString + StrSubstNo('Response: %1', Response.ReasonPhrase);
+        end;
 
-    procedure PostRejectItem(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
-    var
-        Client: HttpClient;
-        //  Response: HttpResponseMessage;
-        //   Request: HttpRequestMessage;
-        OutputString: Text;
-        Content: HttpContent;
-        postData: Text;
-        RequestHeaders: HttpHeaders;
-        ResponseHeader: HttpResponseMessage;
-        HttpHeadersContent: HttpHeaders;
-        ResponseMessage: HttpResponseMessage;
-        RequestMessage: HttpRequestMessage;
+        procedure PostRejectItem(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
+        var
+            Client: HttpClient;
+            //  Response: HttpResponseMessage;
+            //   Request: HttpRequestMessage;
+            OutputString: Text;
+            Content: HttpContent;
+            postData: Text;
+            RequestHeaders: HttpHeaders;
+            ResponseHeader: HttpResponseMessage;
+            HttpHeadersContent: HttpHeaders;
+            ResponseMessage: HttpResponseMessage;
+            RequestMessage: HttpRequestMessage;
 
-    begin
-        // postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
-        // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
-        If DynamicsNumber = '' then
-            DynamicsNumber := '0';
+        begin
+            // postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
+            // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
+            If DynamicsNumber = '' then
+                DynamicsNumber := '0';
 
-        postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
-        RequestMessage.GetHeaders(RequestHeaders);
-        RequestHeaders.Clear();
-        RequestHeaders.Add('Authorization', 'No Auth');
-        RequestHeaders.Add('Accept', 'application/json');
-        Content.WriteFrom(postData);
+            postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
+            RequestMessage.GetHeaders(RequestHeaders);
+            RequestHeaders.Clear();
+            RequestHeaders.Add('Authorization', 'No Auth');
+            RequestHeaders.Add('Accept', 'application/json');
+            Content.WriteFrom(postData);
 
-        //GET HEADERS
-        Content.GetHeaders(HttpHeadersContent);
-        HttpHeadersContent.Clear();
-        HttpHeadersContent.Remove('Content-Type');
-        HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
+            //GET HEADERS
+            Content.GetHeaders(HttpHeadersContent);
+            HttpHeadersContent.Clear();
+            HttpHeadersContent.Remove('Content-Type');
+            HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
 
 
-        //POST METHOD
-        RequestMessage.Content := Content;
-        RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateItem');
-        RequestMessage.Method := 'POST';
+            //POST METHOD
+            RequestMessage.Content := Content;
+            RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateItem');
+            RequestMessage.Method := 'POST';
 
-        IF Client.Send(RequestMessage, ResponseMessage) then begin
-            IF ResponseMessage.IsSuccessStatusCode then begin
-                ResponseMessage.Content.ReadAs(OutputString);
-                Message('%1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
+            IF Client.Send(RequestMessage, ResponseMessage) then begin
+                IF ResponseMessage.IsSuccessStatusCode then begin
+                    ResponseMessage.Content.ReadAs(OutputString);
+                    Message('%1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
+                end else
+                    Error('Error: %1', ResponseMessage.ReasonPhrase);
             end else
                 Error('Error: %1', ResponseMessage.ReasonPhrase);
-        end else
-            Error('Error: %1', ResponseMessage.ReasonPhrase);
 
-        Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
+            Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
 
-        IF Rec."Dynamics Number" <> '' then
-            Rec.Processed := true;
+            IF Rec."Dynamics Number" <> '' then
+                Rec.Processed := true;
 
-        Rec.Modify();
-    end;
+            Rec.Modify();
+        end;
 
 
-
+    */
     var
         ItemsRec: Record Item;
         UserSetup: Record "User Setup";

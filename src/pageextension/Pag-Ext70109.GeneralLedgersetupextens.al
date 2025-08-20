@@ -56,16 +56,6 @@ pageextension 70109 "General Ledger setup extens" extends "General Ledger Setup"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Truckwaybell No. Series field.', Comment = '%';
             }
-            field("RFP Approver"; Rec."RFP Approver")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the RFP Approver field.', Comment = '%';
-            }
-            field("InLandTruckWayBill No. Series"; Rec."InLandTruckWayBill No. Series")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the InLandTruckWayBill No. Series field.', Comment = '%';
-            }
 
         }
     }

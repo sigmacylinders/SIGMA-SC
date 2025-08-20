@@ -217,24 +217,6 @@ page 70124 "Intermediate Vendors List"
     {
         area(navigation)
         {
-            action(New)
-            {
-                ApplicationArea = All;
-                Caption = 'Create New Vendor';
-                Image = New;
-                trigger OnAction()
-                begin
-                    // Custom action for creating a new customer
-                    //   PAGE.Run(PAGE::"Customer Card");
-                    SendIntermediateVendortoVendor(Rec);
-
-                    SyncVendortoOtherCompanies(VendorRec);//added on 05/03/2025
-
-
-                    Rec.Processed := true;
-                    REc.Modify();
-                end;
-            }
             action("Reject the Vendor")
             {
                 ApplicationArea = All;
@@ -312,118 +294,118 @@ page 70124 "Intermediate Vendors List"
         Rec.Modify();
     end;
 
-    procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
-    var
-        Client: HttpClient;
-        Response: HttpResponseMessage;
-        Request: HttpRequestMessage;
-        OutputString: Text;
-    begin
-        Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateVendorDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
-        Request.Method := 'GET';
-        IF Client.Send(Request, Response) then begin
-            IF Response.IsSuccessStatusCode then begin
-                Response.Content.ReadAs(OutputString);
-                Message('%1', OutputString);
-            end else
-                Error('Error: %1', Response.ReasonPhrase);
-        end else
-            Error('Error: %1', Response.ReasonPhrase);
+    /*  procedure GetRecords(ApolloNumber: text; DynamicsNumber: text)
+      var
+          Client: HttpClient;
+          Response: HttpResponseMessage;
+          Request: HttpRequestMessage;
+          OutputString: Text;
+      begin
+          Request.SetRequestUri(StrSubstNo('https://apollolightingapp.com/api/v1/Project/UpdateVendorDyanmiscNumber/%1/%2', ApolloNumber, DynamicsNumber));
+          Request.Method := 'GET';
+          IF Client.Send(Request, Response) then begin
+              IF Response.IsSuccessStatusCode then begin
+                  Response.Content.ReadAs(OutputString);
+                  Message('%1', OutputString);
+              end else
+                  Error('Error: %1', Response.ReasonPhrase);
+          end else
+              Error('Error: %1', Response.ReasonPhrase);
 
-        Rec."API Status" := OutputString + StrSubstNo('Error: %1', Response.ReasonPhrase);
-        Rec.Modify();
-    end;
+          Rec."API Status" := OutputString + StrSubstNo('Error: %1', Response.ReasonPhrase);
+          Rec.Modify();
+      end;
 
-    Local procedure SyncVendortoOtherCompanies(VendorRec: Record Vendor)
-    var
-        OtherCompanyVendorRec: Record Vendor;
-    begin
+      Local procedure SyncVendortoOtherCompanies(VendorRec: Record Vendor)
+      var
+          OtherCompanyVendorRec: Record Vendor;
+      begin
 
-        OtherCompanyVendorRec.Init();
-        OtherCompanyVendorRec.Copy(VendorRec);
-        OtherCompanyVendorRec.Insert();
-        //  OtherCompanyVendorRec.Validate("Contact", Rec."Contact");
-        OtherCompanyVendorRec.Validate("Global Dimension 1 Code", Rec."Global Dimension 1 Code");
-        OtherCompanyVendorRec.Validate("Global Dimension 2 Code", Rec."Global Dimension 2 Code");
-        //AN 04/09/25 
-        if VendorRec."Gen. Bus. Posting Group" = '' then
-            OtherCompanyVendorRec.Validate("Gen. Bus. Posting Group", 'LOCAL')
-        else
-            OtherCompanyVendorRec.Validate("Gen. Bus. Posting Group", VendorRec."Gen. Bus. Posting Group");
+          OtherCompanyVendorRec.Init();
+          OtherCompanyVendorRec.Copy(VendorRec);
+          OtherCompanyVendorRec.Insert();
+          //  OtherCompanyVendorRec.Validate("Contact", Rec."Contact");
+          OtherCompanyVendorRec.Validate("Global Dimension 1 Code", Rec."Global Dimension 1 Code");
+          OtherCompanyVendorRec.Validate("Global Dimension 2 Code", Rec."Global Dimension 2 Code");
+          //AN 04/09/25 
+          if VendorRec."Gen. Bus. Posting Group" = '' then
+              OtherCompanyVendorRec.Validate("Gen. Bus. Posting Group", 'LOCAL')
+          else
+              OtherCompanyVendorRec.Validate("Gen. Bus. Posting Group", VendorRec."Gen. Bus. Posting Group");
 
-        if VendorRec."VAT Bus. Posting Group" = '' then
-            OtherCompanyVendorRec.Validate("VAT Bus. Posting Group", 'LOCAL')
-        else
-            OtherCompanyVendorRec.Validate("VAT Bus. Posting Group", VendorRec."VAT Bus. Posting Group");
+          if VendorRec."VAT Bus. Posting Group" = '' then
+              OtherCompanyVendorRec.Validate("VAT Bus. Posting Group", 'LOCAL')
+          else
+              OtherCompanyVendorRec.Validate("VAT Bus. Posting Group", VendorRec."VAT Bus. Posting Group");
 
-        if VendorRec."Vendor Posting Group" = '' then
-            OtherCompanyVendorRec.Validate("Vendor Posting Group", 'ASSETS')
-        else
-            OtherCompanyVendorRec.Validate("Vendor Posting Group", VendorRec."Vendor Posting Group");
-        OtherCompanyVendorRec.Validate("Responsibility Center", Rec."Responsibility Center");
-        OtherCompanyVendorRec.Validate("Currency Code", Rec."Currency Code");
-        OtherCompanyVendorRec.Validate("Payment Terms Code", Rec."Payment Terms Code");
-        OtherCompanyVendorRec.Validate("Country/Region Code", Rec."Country/Region Code");
-        OtherCompanyVendorRec.Validate("Payment Method Code", Rec."Payment Method Code");
-        OtherCompanyVendorRec.Modify();
-
-
-    end;
-
-    procedure PostRejectVendor(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
-    var
-        Client: HttpClient;
-        //  Response: HttpResponseMessage;
-        //   Request: HttpRequestMessage;
-        OutputString: Text;
-        Content: HttpContent;
-        postData: Text;
-        RequestHeaders: HttpHeaders;
-        ResponseHeader: HttpResponseMessage;
-        HttpHeadersContent: HttpHeaders;
-        ResponseMessage: HttpResponseMessage;
-        RequestMessage: HttpRequestMessage;
-
-    begin
-        //     postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
-        // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
-        If DynamicsNumber = '' then
-            DynamicsNumber := '0';
-
-        postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
-        RequestMessage.GetHeaders(RequestHeaders);
-        RequestHeaders.Clear();
-        RequestHeaders.Add('Authorization', 'No Auth');
-        RequestHeaders.Add('Accept', 'application/json');
-        Content.WriteFrom(postData);
-
-        //GET HEADERS
-        Content.GetHeaders(HttpHeadersContent);
-        HttpHeadersContent.Clear();
-        HttpHeadersContent.Remove('Content-Type');
-        HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
+          if VendorRec."Vendor Posting Group" = '' then
+              OtherCompanyVendorRec.Validate("Vendor Posting Group", 'ASSETS')
+          else
+              OtherCompanyVendorRec.Validate("Vendor Posting Group", VendorRec."Vendor Posting Group");
+          OtherCompanyVendorRec.Validate("Responsibility Center", Rec."Responsibility Center");
+          OtherCompanyVendorRec.Validate("Currency Code", Rec."Currency Code");
+          OtherCompanyVendorRec.Validate("Payment Terms Code", Rec."Payment Terms Code");
+          OtherCompanyVendorRec.Validate("Country/Region Code", Rec."Country/Region Code");
+          OtherCompanyVendorRec.Validate("Payment Method Code", Rec."Payment Method Code");
+          OtherCompanyVendorRec.Modify();
 
 
-        //POST METHOD
-        RequestMessage.Content := Content;
-        RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateVendor');
-        RequestMessage.Method := 'POST';
+      end;
 
-        IF Client.Send(RequestMessage, ResponseMessage) then begin
-            IF ResponseMessage.IsSuccessStatusCode then begin
-                ResponseMessage.Content.ReadAs(OutputString);
-                Message('%1', OutputString + ' :  Vendor is Rejected and information is sent back to apollo');
-            end else
-                Error('Error: %1', ResponseMessage.ReasonPhrase);
-        end else
-            Error('Error: %1', ResponseMessage.ReasonPhrase);
+      procedure PostRejectVendor(ApolloNumber: text; DynamicsNumber: text; CommentstoApollo: Text)//added on 10/03/2025
+      var
+          Client: HttpClient;
+          //  Response: HttpResponseMessage;
+          //   Request: HttpRequestMessage;
+          OutputString: Text;
+          Content: HttpContent;
+          postData: Text;
+          RequestHeaders: HttpHeaders;
+          ResponseHeader: HttpResponseMessage;
+          HttpHeadersContent: HttpHeaders;
+          ResponseMessage: HttpResponseMessage;
+          RequestMessage: HttpRequestMessage;
 
-        Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
-        IF Rec."Dynamics Number" <> '' then
-            Rec.Processed := true;
-        Rec.Modify();
-    end;
+      begin
+          //     postData := '{"useEnvironmentUpdateWindow": false,"targetVersion": "' + '4.0' + '","allowPreviewVersion": true,"installOrUpdateNeededDependencies":  true}';
+          // postData := '{"ApolloNo": 1234,"Comments": "Reason for rejection","DynamicsNo": "5678"}';
+          If DynamicsNumber = '' then
+              DynamicsNumber := '0';
 
+          postData := '{"ApolloNo": ' + ApolloNumber + ',"Comments":  "' + CommentstoApollo + '","DynamicsNo":  "' + DynamicsNumber + '"}';
+          RequestMessage.GetHeaders(RequestHeaders);
+          RequestHeaders.Clear();
+          RequestHeaders.Add('Authorization', 'No Auth');
+          RequestHeaders.Add('Accept', 'application/json');
+          Content.WriteFrom(postData);
+
+          //GET HEADERS
+          Content.GetHeaders(HttpHeadersContent);
+          HttpHeadersContent.Clear();
+          HttpHeadersContent.Remove('Content-Type');
+          HttpHeadersContent.Add('Content-Type', 'application/json; charset=UTF-8');
+
+
+          //POST METHOD
+          RequestMessage.Content := Content;
+          RequestMessage.SetRequestUri('https://apollolightingapp.com/api/v1/project/RejectDyanmiscIntermediateVendor');
+          RequestMessage.Method := 'POST';
+
+          IF Client.Send(RequestMessage, ResponseMessage) then begin
+              IF ResponseMessage.IsSuccessStatusCode then begin
+                  ResponseMessage.Content.ReadAs(OutputString);
+                  Message('%1', OutputString + ' :  Vendor is Rejected and information is sent back to apollo');
+              end else
+                  Error('Error: %1', ResponseMessage.ReasonPhrase);
+          end else
+              Error('Error: %1', ResponseMessage.ReasonPhrase);
+
+          Rec."API Status" := OutputString + StrSubstNo('Response: %1', OutputString + ' :  Item is Rejected and information is sent back to apollo');
+          IF Rec."Dynamics Number" <> '' then
+              Rec.Processed := true;
+          Rec.Modify();
+      end;
+  */
 
     var
         VendorRec: Record Vendor;

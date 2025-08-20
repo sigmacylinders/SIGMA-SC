@@ -57,18 +57,7 @@ tableextension 70108 "GL setup Extension" extends "General Ledger Setup"
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
-        field(70115; "RFP Approver"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = User."User Name";
-            ValidateTableRelation = false;
-        }
-        field(70116; "InLandTruckWayBill No. Series"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "No. Series";
-            Caption = 'InLand Truck WayBill No. Series';
-        }
+
 
     }
 
