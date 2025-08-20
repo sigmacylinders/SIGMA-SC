@@ -43,9 +43,5 @@ page 70127 "Requirement Sea Subform"
         // Add your code here
     end;
 
-    trigger OnNewRecord(BelowxRec: Boolean)
-    var
-    begin
-        Rec."Quotation Type" := Rec."Quotation Type"::Sea;
-    end;
+
 }

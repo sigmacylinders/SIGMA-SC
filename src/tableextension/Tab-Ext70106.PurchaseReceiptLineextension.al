@@ -53,6 +53,11 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(70116; "Port of Loading"; Code[50])
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
+        }
     }
 
     keys

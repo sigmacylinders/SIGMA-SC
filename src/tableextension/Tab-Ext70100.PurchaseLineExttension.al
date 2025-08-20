@@ -251,6 +251,11 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
+        field(70116; "Port of Loading"; Code[50])
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
+        }
 
         // field(70116; "Buy-from Vendor Name"; Code[100])
         // {

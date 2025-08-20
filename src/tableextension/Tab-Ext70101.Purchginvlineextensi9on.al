@@ -69,6 +69,11 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
+        field(70116; "Port of Loading"; Code[50])
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
+        }
     }
 
     keys
