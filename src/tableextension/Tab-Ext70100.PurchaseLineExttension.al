@@ -328,7 +328,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             // Set up a lookup to your port master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Port of Loading" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."AirPort of Loading" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70138; "AirPort of Discharge"; Code[50])
         {
@@ -336,7 +336,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             // Set up a lookup to your port master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Port of Discharge" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."AirPort of Discharge" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70139; "Port of Loading"; Code[50])
         {

@@ -32,16 +32,16 @@ table 70110 "AWB Details"
             // Set up a lookup to your origin master table here   
             TableRelation = "SIGMA Lookup".Code where(Type = const(Origin));
         }
-        field(6; "Port of Loading"; Code[50])
+        field(6; "Airport of Loading"; Code[50])
         {
-            Caption = 'Port of Loading';
-            // Set up a lookup to your port master table here    
+            Caption = 'Airport of Loading';
+            // Set up a lookup to your Airport master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"), ORIGINS = field(Origin));
         }
-        field(7; "Port of Discharge"; Code[50])
+        field(7; "Airport of Discharge"; Code[50])
         {
-            Caption = 'Port of Discharge';
-            // Set up a lookup to your port master table here    
+            Caption = 'Airport of Discharge';
+            // Set up a lookup to your Airport master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
         }
         field(8; "AWB"; Date)
@@ -371,6 +371,41 @@ table 70110 "AWB Details"
         field(38; "Chargable Weight in KG"; Decimal)
         {
             DataClassification = ToBeClassified;
+        }
+        field(39; "Transshipment"; Option)
+        {
+            OptionMembers = "Yes","No"; // Add more options if needed
+        }
+        field(40; "Transshipment Airport"; Code[50]
+        )
+        {
+
+            Caption = 'Transshipment Airport';
+            DataClassification = ToBeClassified;
+            TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
+
+            trigger OnLookup()
+            var
+                TransshipmentAirport: Record "SIGMA Lookup";
+                TransshipmentAirports: Page "SIGMA Lookup";
+            begin
+                Rec."Transshipment Airport" := '';
+
+
+                Clear(TransshipmentAirport);
+                TransshipmentAirport.SetRange(Type, TransshipmentAirport.Type::"Air Port");
+                TransshipmentAirports.SetTableView(TransshipmentAirport);
+                TransshipmentAirports.LookupMode(true);
+                IF TransshipmentAirports.RunModal() = Action::LookupOK then begin
+                    TransshipmentAirports.SetSelectionFilter(TransshipmentAirport);
+                    if TransshipmentAirport.FindSet() then
+                        repeat
+                            Rec."Transshipment Airport" += TransshipmentAirport.Code + ' , ';
+                        until TransshipmentAirport.Next() = 0;
+                end;
+                If Rec."Transshipment Airport" <> '' then
+                    Rec."Transshipment Airport" := CopyStr(Rec."Transshipment Airport", 1, StrLen(Rec."Transshipment Airport") - 3);
+            end;
         }
 
     }

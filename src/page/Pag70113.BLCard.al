@@ -53,6 +53,10 @@ page 70113 "BL Card"
                 {
                     ToolTip = 'Specifies the value of the Voyage Number field.', Comment = '%';
                 }
+                field(Incoterm; Rec.Incoterm)
+                {
+                    ToolTip = 'Specifies the value of the Incoterm field.', Comment = '%';
+                }
                 field("Cargo Description"; Rec."Cargo Description")
                 {
                     ToolTip = 'Specifies the value of the Cargo Description field.', Comment = '%';
@@ -68,6 +72,11 @@ page 70113 "BL Card"
                 field(Transshipment; Rec.Transshipment)
                 {
                     ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
+                }
+                field("Transshipment Port"; Rec."Transshipment Port")
+                {
+                    Enabled = Rec.Transshipment = Rec.Transshipment::Yes;
+                    ToolTip = 'Specifies the value of the Transshipment Port field.', Comment = '%';
                 }
                 field("Port of Discharge"; Rec."Port of Discharge")
                 {

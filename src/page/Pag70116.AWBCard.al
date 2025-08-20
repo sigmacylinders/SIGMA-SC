@@ -92,14 +92,24 @@ page 70116 "AWB Card"
                 {
                     ToolTip = 'Specifies the value of the Origin field.', Comment = '%';
                 }
-                field("Port of Loading"; Rec."Port of Loading")
+                field("Airport of Loading"; Rec."Airport of Loading")
                 {
-                    ToolTip = 'Specifies the value of the Port of Loading field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Airport of Loading field.', Comment = '%';
                 }
-                field("Port of Discharge"; Rec."Port of Discharge")
+
+                field(Transshipment; Rec.Transshipment)
                 {
-                    ToolTip = 'Specifies the value of the Port of Discharge field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
                 }
+                field("Transshipment Airport"; Rec."Transshipment Airport")
+                {
+                    ToolTip = 'Specifies the value of the Transshipment Airport field.', Comment = '%';
+                }
+                field("Airport of Discharge"; Rec."Airport of Discharge")
+                {
+                    ToolTip = 'Specifies the value of the Airport of Discharge field.', Comment = '%';
+                }
+
                 field(AWB; Rec.AWB)
                 {
                     ToolTip = 'Specifies the value of the AWB field.', Comment = '%';

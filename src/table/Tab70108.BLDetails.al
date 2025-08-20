@@ -150,6 +150,42 @@ table 70108 "BL Details"
         //     //    FieldClass = FlowField;
         //     //  CalcFormula = lookup("Container Details"."Container ID" where("BL ID" = field("BL ID"), Selected = const(true)));
         // }
+        field(34; "Transshipment Port"; Code[50]
+        )
+        {
+            Caption = 'Transshipment Port';
+            DataClassification = ToBeClassified;
+            TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
+
+            trigger OnLookup()
+            var
+                TransshipmentPort: Record "SIGMA Lookup";
+                TransshipmentPorts: Page "SIGMA Lookup";
+            begin
+                Rec."Transshipment Port" := '';
+
+
+                Clear(TransshipmentPort);
+                TransshipmentPort.SetRange(Type, TransshipmentPort.Type::Port);
+                TransshipmentPorts.SetTableView(TransshipmentPort);
+                TransshipmentPorts.LookupMode(true);
+                IF TransshipmentPorts.RunModal() = Action::LookupOK then begin
+                    TransshipmentPorts.SetSelectionFilter(TransshipmentPort);
+                    if TransshipmentPort.FindSet() then
+                        repeat
+                            Rec."Transshipment Port" += TransshipmentPort.Code + ' , ';
+                        until TransshipmentPort.Next() = 0;
+                end;
+                If Rec."Transshipment Port" <> '' then
+                    Rec."Transshipment Port" := CopyStr(Rec."Transshipment Port", 1, StrLen(Rec."Transshipment Port") - 3);
+            end;
+        }
+        field(50111; "Incoterm"; Enum "Incoterm")
+        {
+            Caption = 'Incoterm';
+            DataClassification = ToBeClassified;
+        }
+
 
 
     }

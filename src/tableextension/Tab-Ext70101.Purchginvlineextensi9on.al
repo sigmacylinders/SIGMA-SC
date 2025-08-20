@@ -156,7 +156,7 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             // Set up a lookup to your port master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Port of Loading" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."AirPort of Loading" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70138; "AirPort of Discharge"; Code[50])
         {
@@ -164,7 +164,7 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             // Set up a lookup to your port master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
             FieldClass = FlowField;
-            CalcFormula = lookup("AWB Details"."Port of Discharge" where("AWB ID" = field("BL/AWB ID")));
+            CalcFormula = lookup("AWB Details"."AirPort of Discharge" where("AWB ID" = field("BL/AWB ID")));
         }
         field(70139; "Port of Loading"; Code[50])
         {
