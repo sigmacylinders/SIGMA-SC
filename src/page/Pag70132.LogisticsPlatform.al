@@ -87,22 +87,22 @@ page 70132 "Logistics Platform"
                 }
             }
 
-            /* usercontrol(LogisticsButtons; "LogisticsButtonsControl")
-             {
-                 ApplicationArea = All;
+            usercontrol(LogisticsButtons; "LogisticsButtonsControl")
+            {
+                ApplicationArea = All;
 
-                 trigger RequestQuotationClicked()
-                 begin
-                     Message('Quotation requested.');
-                     // Add logic to process selected POs
-                 end;
+                trigger RequestQuotationClicked()
+                begin
+                    Message('Quotation requested.');
+                    // Add logic to process selected POs
+                end;
 
-                 trigger PlaceBookingClicked()
-                 begin
-                     Message('Booking placed.');
-                     // Add logic to book selected POs
-                 end;
-             }*/
+                trigger PlaceBookingClicked()
+                begin
+                    Message('Booking placed.');
+                    // Add logic to book selected POs
+                end;
+            }
         }
 
 
