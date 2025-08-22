@@ -14,6 +14,7 @@ pageextension 70102 "Customer List extension" extends "Customer List"
     }
 
 
+
     var
         myInt: Integer;
 }

@@ -9,7 +9,7 @@
     "EULA": "",
     "help": "",
     "url": "",
-    "logo": "",
+    "logo": "SupplyChain/Images/sigma_cylinders_logo.jpeg",
     "dependencies": [
     ],
     "screenshots": [],
@@ -18,7 +18,7 @@
     "idRanges": [
         {
             "from": 70100,
-            "to": 70180
+            "to": 70199
         }
     ],
     "resourceExposurePolicy": {
