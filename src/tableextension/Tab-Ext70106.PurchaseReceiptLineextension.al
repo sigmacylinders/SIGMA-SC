@@ -58,6 +58,32 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
             FieldClass = FlowField;
             CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
         }
+        field(70117; "Quantity to Split"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            BlankZero = true;
+        }
+        field(70118; "Remaining Quantity to Split"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            BlankZero = true;
+        }
+        field(70119; "Line is Splitted"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70120; "Splitted Line No."; Text[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70121; "Original Quantity"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70122; "Original Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

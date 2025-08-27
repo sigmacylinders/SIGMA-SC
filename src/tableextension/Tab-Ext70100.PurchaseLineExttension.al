@@ -256,16 +256,32 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             FieldClass = FlowField;
             CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
         }
-
-        // field(70116; "Buy-from Vendor Name"; Code[100])
-        // {
-        //     Caption = 'Buy-from Vendor Name';
-        //     //  Editable = false;
-        //     //  TableRelation = Vendor;
-        //     FieldClass = FlowField;
-        //     CalcFormula = lookup(Vendor.Name where("No." = field("Buy-from Vendor No.")));
-        // }
-
+        field(70117; "Quantity to Split"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            BlankZero = true;
+        }
+        field(70118; "Remaining Quantity to Split"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            BlankZero = true;
+        }
+        field(70119; "Line is Splitted"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70120; "Splitted Line No."; Text[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70121; "Original Quantity"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70122; "Original Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
 
 
         /* modify("No.")
@@ -660,6 +676,111 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
     end;
 
 
+    //add on 27/08/2025
+    procedure SplitPurchaseLine()
+    var
+        PurchaseLine: Record "Purchase Line";
+        PurchaseLine2: Record "Purchase Line";
+        PurchaseLine3: Record "Purchase Line";
+        SalesLine4: Record "Sales Line";//added by AI on 17/04/2025
+        LineSpacing: Integer;
+        PurchaseLine4: Record "Purchase Line";
+
+        LinesSplitted: Boolean;
+
+        SalesLine: Record "Sales Line";
+        SalesLine2: Record "Sales Line";
+    begin
+        Rec.TestField("Quantity Received", 0);
+        Rec.TestField("BL/AWB ID", '');//added on 25/02/2025
+        Rec.TestField("Truck WayBill ID", '');//added on 25/02/2025
+        LinesSplitted := false;
+        Rec.TestField("Quantity to Split");
+        IF Rec."Quantity to Split" > Rec.Quantity then
+            Error('Quantity shipped must be less than Quantity');
+
+        IF Rec."Line is Splitted" = false then begin
+            Rec."Original Quantity" := Rec.Quantity;
+            Rec."Original Line No." := Rec."Line No.";
+            REc."Splitted Line No." := FORMAT(Rec."Line No.") + '0.1';
+        end;
+        //splitted line
+        IF (Rec."Quantity to Split" <> Rec.Quantity) then begin
+            PurchaseLine.Init();
+            PurchaseLine.Copy(Rec);
+            //   EVALUATE(PurchaseLine."Line No.", IncStr(FORMAT(Rec."Line No.")));// + 1;//commented by AI on 17/04/2025 reason adding only 1 to the split line is showing error 'There is not enough space to insert correction lines.' on undo shipment
+
+            //added by AI on 17/04/2025
+            LineSpacing := 0;
+            Clear(PurchaseLine4);
+            PurchaseLine4.SetRange("Document Type", PurchaseLine4."Document Type"::Order);
+            PurchaseLine4.SetRange("Document No.", Rec."Document No.");
+            PurchaseLine4."Document Type" := Rec."Document Type";
+            PurchaseLine4."Document No." := Rec."Document No.";
+            PurchaseLine4."Line No." := Rec."Line No.";
+            PurchaseLine4.Find('=');
+            if PurchaseLine4.Find('>') then begin
+                LineSpacing := (PurchaseLine4."Line No." - Rec."Line No.") div 2;
+            end else
+                LineSpacing := 10000;
+
+            PurchaseLine."Line No." := Rec."Line No." + LineSpacing;
+
+
+            PurchaseLine.Validate(Quantity, PurchaseLine.Quantity - Rec."Quantity to Split");
+            PurchaseLine.Validate("Direct Unit Cost");
+            PurchaseLine."Quantity to Split" := 0;
+            //AN 03/14/25 +
+            PurchaseLine."Initial ETA" := 0D;
+            PurchaseLine."Initial ETAW" := 0D;
+            PurchaseLine."Initial ETD" := 0D;
+            PurchaseLine."Initial ETR" := 0D;
+            //AN 03/14/25 -
+            //  PurchaseLine."Remaining Quantity Shipped" := PurchaseLine."Original Quantity" - PurchaseLine2."Quantity Shipped";
+            PurchaseLine."Line is Splitted" := true;
+            PurchaseLine."Splitted Line No." := IncStr(PurchaseLine."Splitted Line No.");
+            PurchaseLine.Insert();
+
+            LinesSplitted := true;
+        end;
+
+
+        Clear(PurchaseLine2);
+        PurchaseLine2.SetRange("Document Type", PurchaseLine2."Document Type"::Order);
+        PurchaseLine2.SetRange("Document No.", Rec."Document No.");
+        PurchaseLine2.SetRange("Original Line No.", Rec."Original Line No.");
+        PurchaseLine2.CalcSums("Quantity to Split");
+
+        Clear(PurchaseLine3);
+        PurchaseLine3.SetRange("Document Type", PurchaseLine3."Document Type"::Order);
+        PurchaseLine3.SetRange("Document No.", Rec."Document No.");
+        PurchaseLine3.SetRange("Original Line No.", Rec."Original Line No.");
+        //    PurchaseLine3.CalcSums("Quantity Shipped");
+        //   Message(Format(PurchaseLine2."Quantity Shipped"));
+
+
+
+        //line being modified
+        //   Rec."Remaining Quantity Shipped" := Rec."Original Quantity" - PurchaseLine2."Quantity Shipped";
+        IF LinesSplitted then begin
+            Rec.Validate(Quantity, Rec."Quantity to Split");
+            Rec.Validate("Direct Unit Cost");
+            Rec."Line is Splitted" := true;
+            REc.Modify();
+        end;
+
+        Rec."Remaining Quantity to Split" := Rec."Original Quantity" - PurchaseLine2."Quantity to Split" - Rec."Quantity to Split";
+        REc.Modify();
+
+
+        PurchaseLine3.ModifyAll("Remaining Quantity to Split", Rec."Original Quantity" - PurchaseLine2."Quantity to Split" - Rec."Quantity to Split");
+
+        //Rec is current line that will be splitted
+        //Purchase line is the splitted line
+        //SalesLine is the mirror of Rec the current line, that will be splitted
+        //SalesLine2 is the splitted line
+
+    end;
 
 
     var
