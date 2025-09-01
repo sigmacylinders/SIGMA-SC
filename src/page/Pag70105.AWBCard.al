@@ -155,20 +155,20 @@ page 70105 "AWB Card"
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                     MultiLine = true;
                 }
-                field("Final ETR"; Rec."Final ETR")
+                field("FTR"; Rec."FTR")
                 {
                     ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
                 }
-                field("Final ETD"; Rec."Final ETD")
+                field("FTD"; Rec."FTD")
                 {
                     ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
                 }
 
-                field("Final ETA"; Rec."Final ETA")
+                field("FTA"; Rec."FTA")
                 {
                     ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
                 }
-                field("Final ETAW"; Rec."Final ETAW")
+                field("FTAW"; Rec."FTAW")
                 {
                     ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
                 }

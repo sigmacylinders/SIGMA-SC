@@ -4,7 +4,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
     {
         // Add changes to table fields here
 
-        field(70100; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
 
@@ -16,25 +16,25 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("Document Type", Rec."Document Type");
                 PurchaseLine.SetRange("Document No.", Rec."No.");
-                //  PurchaseLine.ModifyAll("Initial ETR", REc."Initial ETR");
+                //  PurchaseLine.ModifyAll("ETR", REc."ETR");
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                        IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                             clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := PurchaseLine."BL/AWB ID";
                             ShippingDateLOG."Container Number" := PurchaseLine."Container ID";
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                            ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                            ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                            ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                            ShippingDateLOG."ETR" := Rec."ETR";
+                            ShippingDateLOG."ETD" := Rec."ETD";
+                            ShippingDateLOG."ETA" := Rec."ETA";
+                            ShippingDateLOG."ETAW" := Rec."ETAW";
                             ShippingDateLOG.Insert(true);
 
 
                         end;
-                        PurchaseLine."Initial ETR" := REc."Initial ETR";
+                        PurchaseLine."ETR" := REc."ETR";
                         PurchaseLine.Modify();
                     until PurchaseLine.Next() = 0;
 
@@ -43,7 +43,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
             end;
         }
         field(70101;
-        "Initial ETD";
+        "ETD";
         Date)
         {
             Caption = 'Initial ETD';
@@ -55,25 +55,25 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("Document Type", Rec."Document Type");
                 PurchaseLine.SetRange("Document No.", Rec."No.");
-                //  PurchaseLine.ModifyAll("Initial ETR", REc."Initial ETR");
+                //  PurchaseLine.ModifyAll("ETR", REc."ETR");
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                        IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                             clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := PurchaseLine."BL/AWB ID";
                             ShippingDateLOG."Container Number" := PurchaseLine."Container ID";
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                            ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                            ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                            ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                            ShippingDateLOG."ETR" := Rec."ETR";
+                            ShippingDateLOG."ETD" := Rec."ETD";
+                            ShippingDateLOG."ETA" := Rec."ETA";
+                            ShippingDateLOG."ETAW" := Rec."ETAW";
                             ShippingDateLOG.Insert(true);
 
 
                         end;
-                        PurchaseLine."Initial ETD" := REc."Initial ETD";
+                        PurchaseLine."ETD" := REc."ETD";
                         PurchaseLine.Modify();
                     until PurchaseLine.Next() = 0;
 
@@ -87,10 +87,10 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                   Clear(PurchaseLine);
                   PurchaseLine.SetRange("Document Type", Rec."Document Type");
                   PurchaseLine.SetRange("Document No.", Rec."No.");
-                  PurchaseLine.ModifyAll("Initial ETD", REc."Initial ETD");
+                  PurchaseLine.ModifyAll("ETD", REc."ETD");
               end;*/
         }
-        field(70102; "Initial ETA"; Date)
+        field(70102; "ETA"; Date)
         {
             Caption = 'Initial ETA';
             trigger OnValidate()
@@ -101,25 +101,25 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("Document Type", Rec."Document Type");
                 PurchaseLine.SetRange("Document No.", Rec."No.");
-                //  PurchaseLine.ModifyAll("Initial ETR", REc."Initial ETR");
+                //  PurchaseLine.ModifyAll("ETR", REc."ETR");
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                        IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                             clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := PurchaseLine."BL/AWB ID";
                             ShippingDateLOG."Container Number" := PurchaseLine."Container ID";
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                            ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                            ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                            ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                            ShippingDateLOG."ETR" := Rec."ETR";
+                            ShippingDateLOG."ETD" := Rec."ETD";
+                            ShippingDateLOG."ETA" := Rec."ETA";
+                            ShippingDateLOG."ETAW" := Rec."ETAW";
                             ShippingDateLOG.Insert(true);
 
 
                         end;
-                        PurchaseLine."Initial ETA" := REc."Initial ETA";
+                        PurchaseLine."ETA" := REc."ETA";
                         PurchaseLine.Modify();
                     until PurchaseLine.Next() = 0;
 
@@ -133,10 +133,10 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                    Clear(PurchaseLine);
                    PurchaseLine.SetRange("Document Type", Rec."Document Type");
                    PurchaseLine.SetRange("Document No.", Rec."No.");
-                   PurchaseLine.ModifyAll("Initial ETA", REc."Initial ETA");
+                   PurchaseLine.ModifyAll("ETA", REc."ETA");
                end;*/
         }
-        field(70103; "Initial ETAW"; Date)
+        field(70103; "ETAW"; Date)
         {
             Caption = 'Initial ETAW';
             trigger OnValidate()
@@ -147,25 +147,25 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("Document Type", Rec."Document Type");
                 PurchaseLine.SetRange("Document No.", Rec."No.");
-                //  PurchaseLine.ModifyAll("Initial ETR", REc."Initial ETR");
+                //  PurchaseLine.ModifyAll("ETR", REc."ETR");
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                        IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                             clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := PurchaseLine."BL/AWB ID";
                             ShippingDateLOG."Container Number" := PurchaseLine."Container ID";
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                            ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                            ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                            ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                            ShippingDateLOG."ETR" := Rec."ETR";
+                            ShippingDateLOG."ETD" := Rec."ETD";
+                            ShippingDateLOG."ETA" := Rec."ETA";
+                            ShippingDateLOG."ETAW" := Rec."ETAW";
                             ShippingDateLOG.Insert(true);
 
 
                         end;
-                        PurchaseLine."Initial ETAW" := REc."Initial ETAW";
+                        PurchaseLine."ETAW" := REc."ETAW";
                         PurchaseLine.Modify();
                     until PurchaseLine.Next() = 0;
 
@@ -179,7 +179,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
                    Clear(PurchaseLine);
                    PurchaseLine.SetRange("Document Type", Rec."Document Type");
                    PurchaseLine.SetRange("Document No.", Rec."No.");
-                   PurchaseLine.ModifyAll("Initial ETAW", REc."Initial ETAW");
+                   PurchaseLine.ModifyAll("ETAW", REc."ETAW");
                end;*/
         }
         field(70104; "Attachment ID"; Text[50])

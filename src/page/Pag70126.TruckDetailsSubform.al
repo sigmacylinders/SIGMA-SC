@@ -32,16 +32,16 @@ page 70126 "Truck Details Subform"
                 field("Remarks"; Rec."Remarks")
                 {
                 }
-                field("Final ETR"; Rec."Final ETR")
+                field("FTR"; Rec."FTR")
                 {
                 }
-                field("Final ETD"; Rec."Final ETD")
+                field("FTD"; Rec."FTD")
                 {
                 }
-                field("Final ETA"; Rec."Final ETA")
+                field("FTA"; Rec."FTA")
                 {
                 }
-                field("Final ETAW"; Rec."Final ETAW")
+                field("FTAW"; Rec."FTAW")
                 {
                 }
                 field("ATA"; Rec."ATA")

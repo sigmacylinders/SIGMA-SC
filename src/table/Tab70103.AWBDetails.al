@@ -90,7 +90,7 @@ table 70103 "AWB Details"
         {
             Caption = 'Remarks';
         }
-        field(70118; "Final ETR"; Date)
+        field(70118; "FTR"; Date)
         {
             Caption = 'Final ETR';
 
@@ -99,32 +99,32 @@ table 70103 "AWB Details"
                 PurchaseLine: Record "Purchase Line";
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                // IF Rec."Final ETR" <> 0D then begin
+                // IF Rec."FTR" <> 0D then begin
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("BL/AWB ID", Rec."AWB ID");
                 PurchaseLine.SetRange("Container ID", '');
-                //   PurchaseLine.ModifyAll("Final ETR", REc."Final ETR");
+                //   PurchaseLine.ModifyAll("FTR", REc."FTR");
 
 
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                        IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                             Clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := Rec."AWB ID";
                             ShippingDateLOG."Container Number" := '';
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                            ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                            ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                            ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                            ShippingDateLOG."FTR" := Rec."FTR";
+                            ShippingDateLOG."FTD" := Rec."FTD";
+                            ShippingDateLOG."FTA" := Rec."FTA";
+                            ShippingDateLOG."FTAW" := Rec."FTAW";
                             ShippingDateLOG.ATA := Rec.ATA;
                             ShippingDateLOG.Insert(true);
                         end;
 
 
-                        PurchaseLine."Final ETR" := rec."Final ETR";
+                        PurchaseLine."FTR" := rec."FTR";
                         PurchaseLine.Modify();
 
 
@@ -134,7 +134,7 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70119; "Final ETD"; Date)
+        field(70119; "FTD"; Date)
         {
             Caption = 'Final ETD';
             trigger OnValidate()
@@ -142,32 +142,32 @@ table 70103 "AWB Details"
                 PurchaseLine: Record "Purchase Line";
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                // IF Rec."Final ETR" <> 0D then begin
+                // IF Rec."FTR" <> 0D then begin
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("BL/AWB ID", Rec."AWB ID");
                 PurchaseLine.SetRange("Container ID", '');
-                //   PurchaseLine.ModifyAll("Final ETR", REc."Final ETR");
+                //   PurchaseLine.ModifyAll("FTR", REc."FTR");
 
 
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                        IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                             Clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := Rec."AWB ID";
                             ShippingDateLOG."Container Number" := '';
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                            ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                            ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                            ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                            ShippingDateLOG."FTR" := Rec."FTR";
+                            ShippingDateLOG."FTD" := Rec."FTD";
+                            ShippingDateLOG."FTA" := Rec."FTA";
+                            ShippingDateLOG."FTAW" := Rec."FTAW";
                             ShippingDateLOG.ATA := Rec.ATA;
                             ShippingDateLOG.Insert(true);
                         end;
 
 
-                        PurchaseLine."Final ETD" := rec."Final ETD";
+                        PurchaseLine."FTD" := rec."FTD";
                         PurchaseLine.Modify();
 
 
@@ -177,7 +177,7 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70120; "Final ETA"; Date)
+        field(70120; "FTA"; Date)
         {
             Caption = 'Final ETA';
 
@@ -186,32 +186,32 @@ table 70103 "AWB Details"
                 PurchaseLine: Record "Purchase Line";
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                //  IF Rec."Final ETR" <> 0D then begin
+                //  IF Rec."FTR" <> 0D then begin
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("BL/AWB ID", Rec."AWB ID");
                 PurchaseLine.SetRange("Container ID", '');
-                //   PurchaseLine.ModifyAll("Final ETR", REc."Final ETR");
+                //   PurchaseLine.ModifyAll("FTR", REc."FTR");
 
 
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                        IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                             Clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := Rec."AWB ID";
                             ShippingDateLOG."Container Number" := '';
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                            ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                            ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                            ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                            ShippingDateLOG."FTR" := Rec."FTR";
+                            ShippingDateLOG."FTD" := Rec."FTD";
+                            ShippingDateLOG."FTA" := Rec."FTA";
+                            ShippingDateLOG."FTAW" := Rec."FTAW";
                             ShippingDateLOG.ATA := Rec.ATA;
                             ShippingDateLOG.Insert(true);
                         end;
 
 
-                        PurchaseLine."Final ETA" := rec."Final ETA";
+                        PurchaseLine."FTA" := rec."FTA";
                         PurchaseLine.Modify();
 
 
@@ -229,26 +229,26 @@ table 70103 "AWB Details"
                 PurchaseLine: Record "Purchase Line";
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                //  IF Rec."Final ETR" <> 0D then begin
+                //  IF Rec."FTR" <> 0D then begin
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("BL/AWB ID", Rec."AWB ID");
                 PurchaseLine.SetRange("Container ID", '');
-                //   PurchaseLine.ModifyAll("Final ETR", REc."Final ETR");
+                //   PurchaseLine.ModifyAll("FTR", REc."FTR");
 
 
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                        IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                             Clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := Rec."AWB ID";
                             ShippingDateLOG."Container Number" := '';
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                            ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                            ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                            ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                            ShippingDateLOG."FTR" := Rec."FTR";
+                            ShippingDateLOG."FTD" := Rec."FTD";
+                            ShippingDateLOG."FTA" := Rec."FTA";
+                            ShippingDateLOG."FTAW" := Rec."FTAW";
                             ShippingDateLOG.ATA := Rec.ATA;
                             ShippingDateLOG.Insert(true);
                         end;
@@ -264,7 +264,7 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70122; "Final ETAW"; Date)
+        field(70122; "FTAW"; Date)
         {
             Caption = 'Final ETAW';
 
@@ -273,32 +273,32 @@ table 70103 "AWB Details"
                 PurchaseLine: Record "Purchase Line";
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                // IF Rec."Final ETR" <> 0D then begin
+                // IF Rec."FTR" <> 0D then begin
                 Clear(PurchaseLine);
                 PurchaseLine.SetRange("BL/AWB ID", Rec."AWB ID");
                 PurchaseLine.SetRange("Container ID", '');
-                //   PurchaseLine.ModifyAll("Final ETR", REc."Final ETR");
+                //   PurchaseLine.ModifyAll("FTR", REc."FTR");
 
 
                 if PurchaseLine.FindSet() then
                     repeat
-                        IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                        IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                             Clear(ShippingDateLOG);
                             ShippingDateLOG.Init();
                             ShippingDateLOG."BL/AWB ID" := Rec."AWB ID";
                             ShippingDateLOG."Container Number" := '';
                             ShippingDateLOG."PO Number" := PurchaseLine."Document No.";
                             ShippingDateLOG."PO Line Number" := PurchaseLine."Line No.";
-                            ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                            ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                            ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                            ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                            ShippingDateLOG."FTR" := Rec."FTR";
+                            ShippingDateLOG."FTD" := Rec."FTD";
+                            ShippingDateLOG."FTA" := Rec."FTA";
+                            ShippingDateLOG."FTAW" := Rec."FTAW";
                             ShippingDateLOG.ATA := Rec.ATA;
                             ShippingDateLOG.Insert(true);
                         end;
 
 
-                        PurchaseLine."Final ETAW" := rec."Final ETAW";
+                        PurchaseLine."FTAW" := rec."FTAW";
                         PurchaseLine.Modify();
 
 

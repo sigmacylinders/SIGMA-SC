@@ -98,19 +98,19 @@ table 70100 "PO Import Buffer"
         {
         }
 
-        field(70121; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70121; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
         }
-        field(70122; "Initial ETD"; Date)
+        field(70122; "ETD"; Date)
         {
             Caption = 'Initial ETD';
         }
-        field(70123; "Initial ETA"; Date)
+        field(70123; "ETA"; Date)
         {
             Caption = 'Initial ETA';
         }
-        field(70124; "Initial ETAW"; Date)
+        field(70124; "ETAW"; Date)
         {
             Caption = 'Initial ETAW';
         }

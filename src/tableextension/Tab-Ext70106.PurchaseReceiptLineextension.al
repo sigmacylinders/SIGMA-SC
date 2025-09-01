@@ -4,19 +4,19 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
     {
         // Add changes to table fields here
 
-        field(70100; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
         }
-        field(70101; "Initial ETD"; Date)
+        field(70101; "ETD"; Date)
         {
             Caption = 'Initial ETD';
         }
-        field(70102; "Initial ETA"; Date)
+        field(70102; "ETA"; Date)
         {
             Caption = 'Initial ETA';
         }
-        field(70103; "Initial ETAW"; Date)
+        field(70103; "ETAW"; Date)
         {
             Caption = 'Initial ETAW';
         }
@@ -28,16 +28,16 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70106; "Final ETR"; Date)
+        field(70106; "FTR"; Date)
         {
             Caption = 'Final ETR';
 
         }
-        field(70107; "Final ETD"; Date)
+        field(70107; "FTD"; Date)
         {
             Caption = 'Final ETD';
         }
-        field(70108; "Final ETA"; Date)
+        field(70108; "FTA"; Date)
         {
             Caption = 'Final ETA';
         }
@@ -45,7 +45,7 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         {
             Caption = 'ATA';
         }
-        field(70110; "Final ETAW"; Date)
+        field(70110; "FTAW"; Date)
         {
             Caption = 'Final ETAW';
         }

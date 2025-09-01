@@ -71,12 +71,12 @@ page 70103 "Container Subform"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                 }
-                field("Final ETR"; Rec."Final ETR")
+                field("FTR"; Rec."FTR")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
                 }
-                field("Final ETD"; Rec."Final ETD")
+                field("FTD"; Rec."FTD")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
@@ -84,22 +84,22 @@ page 70103 "Container Subform"
                     trigger OnValidate()
                     var
                     begin
-                        IF (Rec."Final ETA" <> 0D) AND (Rec."Final ETD" <> 0D) then
-                            Rec."Transit Time" := FORMAT(Rec."Final ETA" - Rec."Final ETD");
+                        IF (Rec."FTA" <> 0D) AND (Rec."FTD" <> 0D) then
+                            Rec."Transit Time" := FORMAT(Rec."FTA" - Rec."FTD");
                     end;
                 }
-                field("Final ETA"; Rec."Final ETA")
+                field("FTA"; Rec."FTA")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
                     trigger OnValidate()
                     var
                     begin
-                        IF (Rec."Final ETA" <> 0D) AND (Rec."Final ETD" <> 0D) then
-                            Rec."Transit Time" := FORMAT(Rec."Final ETA" - Rec."Final ETD");
+                        IF (Rec."FTA" <> 0D) AND (Rec."FTD" <> 0D) then
+                            Rec."Transit Time" := FORMAT(Rec."FTA" - Rec."FTD");
                     end;
                 }
-                field("Final ETAW"; Rec."Final ETAW")
+                field("FTAW"; Rec."FTAW")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';

@@ -6,7 +6,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
 
 
-        field(70100; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
 
@@ -14,16 +14,16 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                    ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                    ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                    ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                    ShippingDateLOG."ETR" := Rec."ETR";
+                    ShippingDateLOG."ETD" := Rec."ETD";
+                    ShippingDateLOG."ETA" := Rec."ETA";
+                    ShippingDateLOG."ETAW" := Rec."ETAW";
                     ShippingDateLOG.Insert(true);
 
                 end;
@@ -31,23 +31,23 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70101; "Initial ETD"; Date)
+        field(70101; "ETD"; Date)
         {
             Caption = 'Initial ETD';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                    ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                    ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                    ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                    ShippingDateLOG."ETR" := Rec."ETR";
+                    ShippingDateLOG."ETD" := Rec."ETD";
+                    ShippingDateLOG."ETA" := Rec."ETA";
+                    ShippingDateLOG."ETAW" := Rec."ETAW";
                     ShippingDateLOG.Insert(true);
 
                 end;
@@ -55,23 +55,23 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70102; "Initial ETA"; Date)
+        field(70102; "ETA"; Date)
         {
             Caption = 'Initial ETA';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                    ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                    ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                    ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                    ShippingDateLOG."ETR" := Rec."ETR";
+                    ShippingDateLOG."ETD" := Rec."ETD";
+                    ShippingDateLOG."ETA" := Rec."ETA";
+                    ShippingDateLOG."ETAW" := Rec."ETAW";
                     ShippingDateLOG.Insert(true);
 
                 end;
@@ -79,23 +79,23 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
             end;
         }
-        field(70103; "Initial ETAW"; Date)
+        field(70103; "ETAW"; Date)
         {
             Caption = 'Initial ETAW';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec."Initial ETA" <> 0D) AND (Rec."Initial ETAW" <> 0D) AND (Rec."Initial ETR" <> 0D) AND (Rec."Initial ETD" <> 0D) then begin
+                IF (Rec."ETA" <> 0D) AND (Rec."ETAW" <> 0D) AND (Rec."ETR" <> 0D) AND (Rec."ETD" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Initial ETR" := Rec."Initial ETR";
-                    ShippingDateLOG."Initial ETD" := Rec."Initial ETD";
-                    ShippingDateLOG."Initial ETA" := Rec."Initial ETA";
-                    ShippingDateLOG."Initial ETAW" := Rec."Initial ETAW";
+                    ShippingDateLOG."ETR" := Rec."ETR";
+                    ShippingDateLOG."ETD" := Rec."ETD";
+                    ShippingDateLOG."ETA" := Rec."ETA";
+                    ShippingDateLOG."ETAW" := Rec."ETAW";
                     ShippingDateLOG.Insert(true);
 
                 end;
@@ -111,7 +111,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70106; "Final ETR"; Date)
+        field(70106; "FTR"; Date)
         {
             Caption = 'Final ETR';
 
@@ -119,60 +119,60 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                    ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                    ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                    ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                    ShippingDateLOG."FTR" := Rec."FTR";
+                    ShippingDateLOG."FTD" := Rec."FTD";
+                    ShippingDateLOG."FTA" := Rec."FTA";
+                    ShippingDateLOG."FTAW" := Rec."FTAW";
                     ShippingDateLOG.ATA := Rec.ATA;
                     ShippingDateLOG.Insert(true);
                 end;
             end;
         }
-        field(70107; "Final ETD"; Date)
+        field(70107; "FTD"; Date)
         {
             Caption = 'Final ETD';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                    ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                    ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                    ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                    ShippingDateLOG."FTR" := Rec."FTR";
+                    ShippingDateLOG."FTD" := Rec."FTD";
+                    ShippingDateLOG."FTA" := Rec."FTA";
+                    ShippingDateLOG."FTAW" := Rec."FTAW";
                     ShippingDateLOG.ATA := Rec.ATA;
                     ShippingDateLOG.Insert(true);
                 end;
             end;
         }
-        field(70108; "Final ETA"; Date)
+        field(70108; "FTA"; Date)
         {
             Caption = 'Final ETA';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                    ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                    ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                    ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                    ShippingDateLOG."FTR" := Rec."FTR";
+                    ShippingDateLOG."FTD" := Rec."FTD";
+                    ShippingDateLOG."FTA" := Rec."FTA";
+                    ShippingDateLOG."FTAW" := Rec."FTAW";
                     ShippingDateLOG.ATA := Rec.ATA;
                     ShippingDateLOG.Insert(true);
                 end;
@@ -185,22 +185,22 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
             begin
-                IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                    ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                    ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                    ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                    ShippingDateLOG."FTR" := Rec."FTR";
+                    ShippingDateLOG."FTD" := Rec."FTD";
+                    ShippingDateLOG."FTA" := Rec."FTA";
+                    ShippingDateLOG."FTAW" := Rec."FTAW";
                     ShippingDateLOG.ATA := Rec.ATA;
                     ShippingDateLOG.Insert(true);
                 end;
             end;
         }
-        field(70110; "Final ETAW"; Date)
+        field(70110; "FTAW"; Date)
         {
             Caption = 'Final ETAW';
             trigger OnValidate()
@@ -211,19 +211,19 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                 //AN 06/11/2024: Check if the Final ETAW is greater than the Shipment Date on Sales Order
                 // if SalesLine.Get(SalesLine."Document Type"::Order, Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.") then
                 //     if SalesLine."Shipment Date" <> 0D then
-                //         if Rec."Final ETAW" > SalesLine."Shipment Date" then
+                //         if Rec."FTAW" > SalesLine."Shipment Date" then
                 //             Message('Final ETAW cannot be greater than Shipment Date on Sales Order %1 Line %2', Rec."SIGMA Sales Order No.", Rec."SIGMA Sales Order Line No.");
 
-                IF (Rec.ATA <> 0D) AND (Rec."Final ETA" <> 0D) AND (Rec."Final ETAW" <> 0D) AND (Rec."Final ETD" <> 0D) AND (Rec."Final ETR" <> 0D) then begin
+                IF (Rec.ATA <> 0D) AND (Rec."FTA" <> 0D) AND (Rec."FTAW" <> 0D) AND (Rec."FTD" <> 0D) AND (Rec."FTR" <> 0D) then begin
                     ShippingDateLOG.Init();
                     ShippingDateLOG."BL/AWB ID" := Rec."BL/AWB ID";
                     ShippingDateLOG."Container Number" := Rec."Container ID";
                     ShippingDateLOG."PO Number" := Rec."Document No.";
                     ShippingDateLOG."PO Line Number" := Rec."Line No.";
-                    ShippingDateLOG."Final ETR" := Rec."Final ETR";
-                    ShippingDateLOG."Final ETD" := Rec."Final ETD";
-                    ShippingDateLOG."Final ETA" := Rec."Final ETA";
-                    ShippingDateLOG."Final ETAW" := Rec."Final ETAW";
+                    ShippingDateLOG."FTR" := Rec."FTR";
+                    ShippingDateLOG."FTD" := Rec."FTD";
+                    ShippingDateLOG."FTA" := Rec."FTA";
+                    ShippingDateLOG."FTAW" := Rec."FTAW";
                     ShippingDateLOG.ATA := Rec.ATA;
                     ShippingDateLOG.Insert(true);
                 end;
@@ -434,33 +434,33 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
                  IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
                      rec."Container Line No." := xRec."Container Line No.";
                  end;
-                 IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Initial ETA" := xRec."Initial ETA";
+                 IF rec."ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."ETA" := xRec."ETA";
                  end;
-                 IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Initial ETD" := xRec."Initial ETD";
+                 IF rec."ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."ETD" := xRec."ETD";
                  end;
-                 IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Initial ETR" := xRec."Initial ETR";
+                 IF rec."ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."ETR" := xRec."ETR";
                  end;
-                 IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Initial ETAW" := xRec."Initial ETAW";
+                 IF rec."ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."ETAW" := xRec."ETAW";
                  end;
-                 IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Initial ETA" := xRec."Initial ETA";
+                 IF rec."ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."ETA" := xRec."ETA";
                  end;
 
-                 IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Final ETA" := xRec."Final ETA";
+                 IF rec."FTA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."FTA" := xRec."FTA";
                  end;
-                 IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Final ETD" := xRec."Final ETD";
+                 IF rec."FTD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."FTD" := xRec."FTD";
                  end;
-                 IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Final ETR" := xRec."Final ETR";
+                 IF rec."FTR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."FTR" := xRec."FTR";
                  end;
-                 IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                     rec."Final ETAW" := xRec."Final ETAW";
+                 IF rec."FTAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                     rec."FTAW" := xRec."FTAW";
                  end;
                  IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
                      rec.ATA := xRec.ATA;
@@ -597,33 +597,33 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             IF rec."Container Line No." = 0 then begin//transfer fields after validating fields that has impact on other fields
                 rec."Container Line No." := xRec."Container Line No.";
             end;
-            IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Initial ETA" := xRec."Initial ETA";
+            IF rec."ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."ETA" := xRec."ETA";
             end;
-            IF rec."Initial ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Initial ETD" := xRec."Initial ETD";
+            IF rec."ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."ETD" := xRec."ETD";
             end;
-            IF rec."Initial ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Initial ETR" := xRec."Initial ETR";
+            IF rec."ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."ETR" := xRec."ETR";
             end;
-            IF rec."Initial ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Initial ETAW" := xRec."Initial ETAW";
+            IF rec."ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."ETAW" := xRec."ETAW";
             end;
-            IF rec."Initial ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Initial ETA" := xRec."Initial ETA";
+            IF rec."ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."ETA" := xRec."ETA";
             end;
 
-            IF rec."Final ETA" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Final ETA" := xRec."Final ETA";
+            IF rec."FTA" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."FTA" := xRec."FTA";
             end;
-            IF rec."Final ETD" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Final ETD" := xRec."Final ETD";
+            IF rec."FTD" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."FTD" := xRec."FTD";
             end;
-            IF rec."Final ETR" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Final ETR" := xRec."Final ETR";
+            IF rec."FTR" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."FTR" := xRec."FTR";
             end;
-            IF rec."Final ETAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
-                rec."Final ETAW" := xRec."Final ETAW";
+            IF rec."FTAW" = 0D then begin//transfer fields after validating fields that has impact on other fields
+                rec."FTAW" := xRec."FTAW";
             end;
             IF rec.ATA = 0D then begin//transfer fields after validating fields that has impact on other fields
                 rec.ATA := xRec.ATA;
@@ -731,10 +731,10 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             PurchaseLine.Validate("Direct Unit Cost");
             PurchaseLine."Quantity to Split" := 0;
             //AN 03/14/25 +
-            PurchaseLine."Initial ETA" := 0D;
-            PurchaseLine."Initial ETAW" := 0D;
-            PurchaseLine."Initial ETD" := 0D;
-            PurchaseLine."Initial ETR" := 0D;
+            PurchaseLine."ETA" := 0D;
+            PurchaseLine."ETAW" := 0D;
+            PurchaseLine."ETD" := 0D;
+            PurchaseLine."ETR" := 0D;
             //AN 03/14/25 -
             //  PurchaseLine."Remaining Quantity Shipped" := PurchaseLine."Original Quantity" - PurchaseLine2."Quantity Shipped";
             PurchaseLine."Line is Splitted" := true;

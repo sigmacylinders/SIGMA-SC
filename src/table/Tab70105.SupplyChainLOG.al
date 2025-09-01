@@ -30,31 +30,31 @@ table 70105 "Supply Chain LOG"
         {
             DataClassification = ToBeClassified;
         }
-        field(70105; "Initial ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(70105; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
             Caption = 'Initial ETR';
         }
-        field(70106; "Initial ETD"; Date)
+        field(70106; "ETD"; Date)
         {
             Caption = 'Initial ETD';
         }
-        field(70107; "Initial ETA"; Date)
+        field(70107; "ETA"; Date)
         {
             Caption = 'Initial ETA';
         }
-        field(70108; "Initial ETAW"; Date)
+        field(70108; "ETAW"; Date)
         {
             Caption = 'Initial ETAW';
         }
-        field(70109; "Final ETR"; Date)
+        field(70109; "FTR"; Date)
         {
             Caption = 'Final ETR';
         }
-        field(70110; "Final ETD"; Date)
+        field(70110; "FTD"; Date)
         {
             Caption = 'Final ETD';
         }
-        field(70111; "Final ETA"; Date)
+        field(70111; "FTA"; Date)
         {
             Caption = 'Final ETA';
         }
@@ -62,7 +62,7 @@ table 70105 "Supply Chain LOG"
         {
             Caption = 'ATA';
         }
-        field(70113; "Final ETAW"; Date)
+        field(70113; "FTAW"; Date)
         {
             Caption = 'Final ETAW';
         }

@@ -33,15 +33,15 @@ table 70115 "Truck Details"
         {
             DataClassification = ToBeClassified;
         }
-        field(70107; "Final ETR"; Date)
+        field(70107; "FTR"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70108; "Final ETD"; Date)
+        field(70108; "FTD"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70109; "Final ETA"; Date)
+        field(70109; "FTA"; Date)
         {
             DataClassification = ToBeClassified;
         }
@@ -49,7 +49,7 @@ table 70115 "Truck Details"
         {
             DataClassification = ToBeClassified;
         }
-        field(70111; "Final ETAW"; Date)
+        field(70111; "FTAW"; Date)
         {
             DataClassification = ToBeClassified;
         }
@@ -65,11 +65,11 @@ table 70115 "Truck Details"
         {
             DataClassification = ToBeClassified;
         }
-        field(70115; "Initial ETD"; Date)
+        field(70115; "ETD"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "Initial ETA"; Date)
+        field(70116; "ETA"; Date)
         {
             DataClassification = ToBeClassified;
         }

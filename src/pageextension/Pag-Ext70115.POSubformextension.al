@@ -7,47 +7,47 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
         addafter("Expected Receipt Date")
         {
 
-            field("Initial ETR"; Rec."Initial ETR")
+            field("ETR"; Rec."ETR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';
                 ShowMandatory = true;
             }
-            field("Initial ETD"; Rec."Initial ETD")
+            field("ETD"; Rec."ETD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETD field.', Comment = '%';
                 ShowMandatory = true;
             }
-            field("Initial ETA"; Rec."Initial ETA")
+            field("ETA"; Rec."ETA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETA field.', Comment = '%';
                 ShowMandatory = true;
             }
-            field("Initial ETAW"; Rec."Initial ETAW")
+            field("ETAW"; Rec."ETAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';
                 ShowMandatory = true;
             }
-            field("Final ETR"; Rec."Final ETR")
+            field("FTR"; Rec."FTR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
             }
 
-            field("Final ETD"; Rec."Final ETD")
+            field("FTD"; Rec."FTD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
             }
-            field("Final ETA"; Rec."Final ETA")
+            field("FTA"; Rec."FTA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
             }
-            field("Final ETAW"; Rec."Final ETAW")
+            field("FTAW"; Rec."FTAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
@@ -248,10 +248,10 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
 
                     //AN 6/4/2025 
                     PurchaseOrderLine.SetRange("Quantity Received", 0);
-                    PurchaseOrderLine.SetFilter("Initial ETA", '<> %1', 0D);//added on 28112024
-                    PurchaseOrderLine.SetFilter("Initial ETR", '<> %1', 0D);
-                    PurchaseOrderLine.SetFilter("Initial ETAW", '<> %1', 0D);
-                    PurchaseOrderLine.SetFilter("Initial ETD", '<> %1', 0D);
+                    PurchaseOrderLine.SetFilter("ETA", '<> %1', 0D);//added on 28112024
+                    PurchaseOrderLine.SetFilter("ETR", '<> %1', 0D);
+                    PurchaseOrderLine.SetFilter("ETAW", '<> %1', 0D);
+                    PurchaseOrderLine.SetFilter("ETD", '<> %1', 0D);
 
                     Clear(PurchaseOrderLinepage);
                     PurchaseOrderLinepage.SetTableView(PurchaseOrderLine);
@@ -304,34 +304,34 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
                                 Clear(ContainerDetails);//case BL
                                 IF ContainerDetails.Get(BLAWBNumber, ContainerLineNumber) then begin
                                     PurchaseOrderLine.Validate("Shipping By", PurchaseOrderLine."Shipping By"::Sea);//added on 27/01/2025
-                                    PurchaseOrderLine.Validate("Final ETA", ContainerDetails."Final ETA");
+                                    PurchaseOrderLine.Validate("FTA", ContainerDetails."FTA");
 
-                                    PurchaseOrderLine.Validate("Final ETD", ContainerDetails."Final ETD");
-                                    PurchaseOrderLine.Validate("Final ETAW", ContainerDetails."Final ETAW");
+                                    PurchaseOrderLine.Validate("FTD", ContainerDetails."FTD");
+                                    PurchaseOrderLine.Validate("FTAW", ContainerDetails."FTAW");
                                     PurchaseOrderLine.Validate("ATA", ContainerDetails."ATA");
-                                    PurchaseOrderLine.Validate("Final ETR", ContainerDetails."Final ETR");
+                                    PurchaseOrderLine.Validate("FTR", ContainerDetails."FTR");
                                 end;
 
                                 Clear(AWBDetails);//case AWB
                                 IF AWBDetails.Get(BLAWBNumber) then begin
                                     PurchaseOrderLine.Validate("Shipping By", PurchaseOrderLine."Shipping By"::Air);//added on 27/01/2025
-                                    PurchaseOrderLine.Validate("Final ETA", AWBDetails."Final ETA");
+                                    PurchaseOrderLine.Validate("FTA", AWBDetails."FTA");
 
-                                    PurchaseOrderLine.Validate("Final ETD", AWBDetails."Final ETD");
-                                    PurchaseOrderLine.Validate("Final ETAW", AWBDetails."Final ETAW");
+                                    PurchaseOrderLine.Validate("FTD", AWBDetails."FTD");
+                                    PurchaseOrderLine.Validate("FTAW", AWBDetails."FTAW");
                                     PurchaseOrderLine.Validate("ATA", AWBDetails."ATA");
-                                    PurchaseOrderLine.Validate("Final ETR", AWBDetails."Final ETR");
+                                    PurchaseOrderLine.Validate("FTR", AWBDetails."FTR");
                                 end;
 
                                 Clear(TruckDetails);//Case Truck Waybill //added on 27/01/2025
                                 IF TruckDetails.Get(TruckWayBillID, TruckDetailsLineNo) then begin
                                     PurchaseOrderLine.Validate("Shipping By", PurchaseOrderLine."Shipping By"::InLand);//added on 27/01/2025
-                                    PurchaseOrderLine.Validate("Final ETA", TruckDetails."Final ETA");
+                                    PurchaseOrderLine.Validate("FTA", TruckDetails."FTA");
 
-                                    PurchaseOrderLine.Validate("Final ETD", TruckDetails."Final ETD");
-                                    PurchaseOrderLine.Validate("Final ETAW", TruckDetails."Final ETAW");
+                                    PurchaseOrderLine.Validate("FTD", TruckDetails."FTD");
+                                    PurchaseOrderLine.Validate("FTAW", TruckDetails."FTAW");
                                     PurchaseOrderLine.Validate("ATA", TruckDetails."ATA");
-                                    PurchaseOrderLine.Validate("Final ETR", TruckDetails."Final ETR");
+                                    PurchaseOrderLine.Validate("FTR", TruckDetails."FTR");
                                 end;
 
                                 PurchaseOrderLine.Modify();
@@ -397,10 +397,10 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
                                 PurchaseOrderLine."Truck WayBill ID" := '';//added on 27/01/2025
                                 PurchaseOrderLine."Truck Details Line No." := 0;//added on 27/01/2025       
                                 PurchaseOrderLine.Validate("Shipping By", PurchaseOrderLine."Shipping By"::" ");//added on 27/01/2025
-                                PurchaseOrderLine."Final ETA" := 0D;
-                                PurchaseOrderLine."Final ETR" := 0D;
-                                PurchaseOrderLine."Final ETD" := 0D;
-                                PurchaseOrderLine."Final ETAW" := 0D;
+                                PurchaseOrderLine."FTA" := 0D;
+                                PurchaseOrderLine."FTR" := 0D;
+                                PurchaseOrderLine."FTD" := 0D;
+                                PurchaseOrderLine."FTAW" := 0D;
                                 PurchaseOrderLine."ATA" := 0D;
 
 
@@ -436,7 +436,7 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
     var
         myInt: Integer;
     begin
-        if (Rec."Initial ETA" = 0D) or (Rec."Initial ETAW" = 0D) or (Rec."Initial ETD" = 0D) or (Rec."Initial ETR" = 0D) then
+        if (Rec."ETA" = 0D) or (Rec."ETAW" = 0D) or (Rec."ETD" = 0D) or (Rec."ETR" = 0D) then
             Message('Please Fill the Initials!');
     end;
 
@@ -446,11 +446,11 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
     begin
         Clear(PO);
         PO.Get(Rec."Document Type", Rec."Document No.");
-        Rec."Initial ETA" := PO."Initial ETA";
-        Rec."Initial ETD" := PO."Initial ETD";
+        Rec."ETA" := PO."ETA";
+        Rec."ETD" := PO."ETD";
 
-        Rec."Initial ETR" := PO."Initial ETR";
-        Rec."Initial ETAW" := PO."Initial ETAW";
+        Rec."ETR" := PO."ETR";
+        Rec."ETAW" := PO."ETAW";
 
     end;
 

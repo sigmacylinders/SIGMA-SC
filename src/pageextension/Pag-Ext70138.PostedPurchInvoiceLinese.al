@@ -44,42 +44,42 @@ pageextension 70138 "Posted Purch. Invoice Linese" extends "Posted Purchase Invo
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Container Line No. field.', Comment = '%';
             }
-            field("Final ETA"; Rec."Final ETA")
+            field("FTA"; Rec."FTA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
             }
-            field("Final ETAW"; Rec."Final ETAW")
+            field("FTAW"; Rec."FTAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
             }
-            field("Final ETD"; Rec."Final ETD")
+            field("FTD"; Rec."FTD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
             }
-            field("Final ETR"; Rec."Final ETR")
+            field("FTR"; Rec."FTR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
             }
-            field("Initial ETA"; Rec."Initial ETA")
+            field("ETA"; Rec."ETA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETA field.', Comment = '%';
             }
-            field("Initial ETAW"; Rec."Initial ETAW")
+            field("ETAW"; Rec."ETAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';
             }
-            field("Initial ETD"; Rec."Initial ETD")
+            field("ETD"; Rec."ETD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETD field.', Comment = '%';
             }
-            field("Initial ETR"; Rec."Initial ETR")
+            field("ETR"; Rec."ETR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';

@@ -29,35 +29,35 @@ page 70107 "Shipping Dates LOG Factbox"
                 {
                     ToolTip = 'Specifies the value of the PO Line Number field.', Comment = '%';
                 }
-                field("Initial ETR"; Rec."Initial ETR")
+                field("ETR"; Rec."ETR")
                 {
                     ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';
                 }
-                field("Initial ETD"; Rec."Initial ETD")
+                field("ETD"; Rec."ETD")
                 {
                     ToolTip = 'Specifies the value of the Initial ETD field.', Comment = '%';
                 }
-                field("Initial ETA"; Rec."Initial ETA")
+                field("ETA"; Rec."ETA")
                 {
                     ToolTip = 'Specifies the value of the Initial ETA field.', Comment = '%';
                 }
-                field("Initial ETAW"; Rec."Initial ETAW")
+                field("ETAW"; Rec."ETAW")
                 {
                     ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';
                 }
-                field("Final ETR"; Rec."Final ETR")
+                field("FTR"; Rec."FTR")
                 {
                     ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
                 }
-                field("Final ETD"; Rec."Final ETD")
+                field("FTD"; Rec."FTD")
                 {
                     ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
                 }
-                field("Final ETA"; Rec."Final ETA")
+                field("FTA"; Rec."FTA")
                 {
                     ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
                 }
-                field("Final ETAW"; Rec."Final ETAW")
+                field("FTAW"; Rec."FTAW")
                 {
                     ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
                 }

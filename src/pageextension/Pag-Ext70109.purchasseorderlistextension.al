@@ -10,22 +10,22 @@ pageextension 70109 "purchasse order list extension" extends "purchase Order Lis
                 ApplicationArea = All;
                 ToolTip = 'Specifies the document number of the original document you received from the vendor. You can require the document number for posting, or let it be optional. By default, it''s required, so that this document references the original. Making document numbers optional removes a step from the posting process. For example, if you attach the original invoice as a PDF, you might not need to enter the document number. To specify whether document numbers are required, in the Purchases & Payables Setup window, select or clear the Ext. Doc. No. Mandatory field.';
             }
-            field("Initial ETD"; Rec."Initial ETD")
+            field("ETD"; Rec."ETD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETD field.', Comment = '%';
             }
-            field("Initial ETA"; Rec."Initial ETA")
+            field("ETA"; Rec."ETA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETA field.', Comment = '%';
             }
-            field("Initial ETR"; Rec."Initial ETR")
+            field("ETR"; Rec."ETR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';
             }
-            field("Initial ETAW"; Rec."Initial ETAW")
+            field("ETAW"; Rec."ETAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';

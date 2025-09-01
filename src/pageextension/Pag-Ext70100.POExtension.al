@@ -6,22 +6,22 @@ pageextension 70100 "PO Extension" extends "Purchase Order"
         addafter(Status)
         {
 
-            field("Initial ETR"; Rec."Initial ETR")
+            field("ETR"; Rec."ETR")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETR field.', Comment = '%';
             }
-            field("Initial ETD"; Rec."Initial ETD")
+            field("ETD"; Rec."ETD")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETD field.', Comment = '%';
             }
-            field("Initial ETA"; Rec."Initial ETA")
+            field("ETA"; Rec."ETA")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETA field.', Comment = '%';
             }
-            field("Initial ETAW"; Rec."Initial ETAW")
+            field("ETAW"; Rec."ETAW")
             {
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';

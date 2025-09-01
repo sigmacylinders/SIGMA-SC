@@ -107,20 +107,20 @@ page 70104 "AWB List"
                 {
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                 }
-                field("Final ETR"; Rec."Final ETR")
+                field("FTR"; Rec."FTR")
                 {
                     ToolTip = 'Specifies the value of the Final ETR field.', Comment = '%';
                 }
-                field("Final ETD"; Rec."Final ETD")
+                field("FTD"; Rec."FTD")
                 {
                     ToolTip = 'Specifies the value of the Final ETD field.', Comment = '%';
                 }
 
-                field("Final ETA"; Rec."Final ETA")
+                field("FTA"; Rec."FTA")
                 {
                     ToolTip = 'Specifies the value of the Final ETA field.', Comment = '%';
                 }
-                field("Final ETAW"; Rec."Final ETAW")
+                field("FTAW"; Rec."FTAW")
                 {
                     ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
                 }

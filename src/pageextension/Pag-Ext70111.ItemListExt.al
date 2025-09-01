@@ -19,8 +19,41 @@ pageextension 70111 ItemListExt extends "Item List"
 
     actions
     {
-
+        addafter(Dimensions)
+        {
+            action("show Atrributes")
+            {
+                ApplicationArea = All;
+                Caption = 'My Action';
+                Image = New;
+                trigger OnAction()
+                var
+                    Item: Record Item;
+                begin
+                    ReadItemAttributes(Rec."No.");
+                end;
+            }
+        }
     }
+    procedure ReadItemAttributes(ItemNo: Code[20])
+    var
+        Attribute: Record "Item Attribute";
+        AttributeValue: Record "Item Attribute Value";
+        ItemAttributeValueMapping: Record "Item Attribute Value Mapping";
+    begin
+        Clear(ItemAttributeValueMapping);
+        ItemAttributeValueMapping.SetRange("Table ID", DATABASE::Item);
+        ItemAttributeValueMapping.SetRange("No.", ItemNo);
+        if ItemAttributeValueMapping.FindSet() then
+            repeat
+                if Attribute.Get(ItemAttributeValueMapping."Item Attribute ID") then begin
+                    if AttributeValue.Get(ItemAttributeValueMapping."Item Attribute Value ID") then begin
+
+
+                    end;
+                end;
+            until ItemAttributeValueMapping.Next() = 0;
+    end;
 
 
     trigger OnAfterGetRecord()
