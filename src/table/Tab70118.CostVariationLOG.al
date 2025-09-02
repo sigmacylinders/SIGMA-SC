@@ -4,85 +4,85 @@ table 70118 "Cost Variation LOG"
 
     fields
     {
-        field(70100; "Entry No."; Integer)
+        field(1; "Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
 
         }
-        field(70101; "PO Number"; code[20])
+        field(2; "PO Number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70102; "PO Line Number"; Integer)
+        field(3; "PO Line Number"; Integer)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70103; "SO Number"; code[20])
+        field(4; "SO Number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70104; "SO Line Number"; Integer)
+        field(5; "SO Line Number"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70105; "Item Number"; Code[20])//for batch posting
+        field(6; "Item Number"; Code[20])//for batch posting
         {
             DataClassification = ToBeClassified;
             TableRelation = Item where(Blocked = const(false));
         }
-        field(70106; "Location Code"; Code[50])//for batch posting
+        field(7; "Location Code"; Code[50])//for batch posting
         {
             DataClassification = ToBeClassified;
             TableRelation = Location.Code where("Use As In-Transit" = const(false));
         }
-        field(70107; "Batch Number"; Code[50])//for batch posting
+        field(8; "Batch Number"; Code[50])//for batch posting
         {
             DataClassification = ToBeClassified;
         }
-        field(70108; "Old Cost"; decimal)
+        field(9; "Old Cost"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70109; "New Cost"; decimal)
+        field(10; "New Cost"; decimal)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70110; "Project No."; Code[50])//added on 27/03/2025
+        field(11; "Project No."; Code[50])//added on 27/03/2025
         {
             DataClassification = ToBeClassified;
         }
-        field(70111; "Project planning Line No."; Integer)//added on 27/03/2025
+        field(12; "Project planning Line No."; Integer)//added on 27/03/2025
         {
             DataClassification = ToBeClassified;
         }
-        field(70112; "Created By"; Text[100])
+        field(13; "Created By"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(70113; "Old Price"; decimal)
+        field(14; "Old Price"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70114; "New Price"; decimal)
+        field(15; "New Price"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70115; "old Item number"; code[20])
+        field(16; "old Item number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "new Item number"; code[20])
+        field(17; "new Item number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70117; "old Quantity"; Decimal)
+        field(18; "old Quantity"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70118; "new Quantity"; Decimal)
+        field(19; "new Quantity"; Decimal)
         {
             DataClassification = ToBeClassified;
         }

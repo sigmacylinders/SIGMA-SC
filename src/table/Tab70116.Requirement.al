@@ -5,40 +5,40 @@ table 70116 "Requirement"
 
     fields
     {
-        field(70100; "Truck Type"; enum "Truck Type")
+        field(1; "Truck Type"; enum "Truck Type")
         {
             DataClassification = ToBeClassified;
         }
-        field(70101; "Truck Load CBM"; enum "Truck Load CBM")
+        field(2; "Truck Load CBM"; enum "Truck Load CBM")
         {
             DataClassification = ToBeClassified;
         }
-        field(70102; "Tonnage"; enum Tonnage)
+        field(3; "Tonnage"; enum Tonnage)
         {
             DataClassification = ToBeClassified;
         }
-        field(70103; "Qty of Truck"; Integer)
+        field(4; "Qty of Truck"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70104; "Fitting"; Text[50])
+        field(5; "Fitting"; Text[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup".Code where(Type = const(Fitting));
         }
-        field(70105; "Qty of CTR"; Integer)
+        field(6; "Qty of CTR"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70106; "Comparison ID"; Code[20])
+        field(7; "Comparison ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70107; "Line No."; Integer)
+        field(8; "Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70108; "Quotation Type"; Option)
+        field(9; "Quotation Type"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = Clearance,Sea,Air,Inlnand;//added Inland on 17/01/2025

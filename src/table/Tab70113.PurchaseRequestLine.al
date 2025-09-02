@@ -4,16 +4,16 @@ table 70113 "Purchase Request Line"
 
     fields
     {
-        field(70100; "Document No."; Code[20])
+        field(1; "Document No."; Code[20])
         {
             Caption = 'Document No.';
             Editable = false;
         }
-        field(70101; "Line No."; Integer)
+        field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
         }
-        field(70102; "Item No."; Code[20])
+        field(3; "Item No."; Code[20])
         {
             Caption = 'Item No.';
             TableRelation = IF (Type = CONST(Item)) Item ELSE
@@ -93,7 +93,7 @@ table 70113 "Purchase Request Line"
 
             end;
         }
-        field(70103; Quantity; Decimal)
+        field(4; Quantity; Decimal)
         {
             Caption = 'Quantity';
             DecimalPlaces = 0 : 5;
@@ -116,7 +116,7 @@ table 70113 "Purchase Request Line"
 
             end;
         }
-        field(70104; "Unit of Measure"; Text[50])
+        field(5; "Unit of Measure"; Text[50])
         {
             Caption = 'Unit of Measure';
 
@@ -127,11 +127,11 @@ table 70113 "Purchase Request Line"
                 END;
             end;
         }
-        field(70105; "Item Description"; Text[100])
+        field(6; "Item Description"; Text[100])
         {
             Caption = 'Item Description';
         }
-        field(70106; "Quantity (Base)"; Decimal)
+        field(7; "Quantity (Base)"; Decimal)
         {
             Caption = 'Quantity (Base)';
             DecimalPlaces = 0 : 5;
@@ -145,14 +145,14 @@ table 70113 "Purchase Request Line"
                 END;
             end;
         }
-        field(70107; "Qty. per Unit of Measure"; Decimal)
+        field(8; "Qty. per Unit of Measure"; Decimal)
         {
             Caption = 'Qty. per Unit of Measure';
             DecimalPlaces = 0 : 5;
             Editable = false;
             InitValue = 1;
         }
-        field(70108; "Unit of Measure Code"; Code[10])
+        field(9; "Unit of Measure Code"; Code[10])
         {
             Caption = 'Unit of Measure Code';
             TableRelation = IF ("item No." = FILTER('')) "Unit of Measure".Code ELSE
@@ -179,7 +179,7 @@ table 70113 "Purchase Request Line"
                 END;
             end;
         }
-        field(70109; "Variant Code"; Code[10])
+        field(10; "Variant Code"; Code[10])
         {
             Caption = 'Variant Code';
             TableRelation = "Item Variant".Code WHERE("item No." = FIELD("Item No."));
@@ -199,7 +199,7 @@ table 70113 "Purchase Request Line"
                 Description := ItemVariant."Description 2";
             end;
         }
-        field(70110; Description; Text[100])
+        field(11; Description; Text[100])
         {
             Caption = 'Description';
 
@@ -210,18 +210,18 @@ table 70113 "Purchase Request Line"
                 //ERROR('Cannot edit this field Since the request was sent');
             end;
         }
-        field(70111; Check; Boolean)
+        field(12; Check; Boolean)
         {
             Editable = false;
         }
-        field(70112; Remark; Text[250])
+        field(13; Remark; Text[250])
         {
         }
-        field(70113; Assigned; Boolean)
+        field(14; Assigned; Boolean)
         {
             Editable = false;
         }
-        field(70114; "Document Type"; Option)
+        field(15; "Document Type"; Option)
         {
             Caption = 'Document Type';
             FieldClass = Normal;
@@ -236,7 +236,7 @@ table 70113 "Purchase Request Line"
                     VALIDATE("Document Reference", '');
             end;
         }
-        field(70115; "Document Reference"; Code[20])
+        field(16; "Document Reference"; Code[20])
         {
             FieldClass = Normal;
             TableRelation = IF ("Document Type" = FILTER('Purchase Order|Purchase Quote')) Vendor;
@@ -278,7 +278,7 @@ table 70113 "Purchase Request Line"
 
             end;
         }
-        field(70116; "Unit Cost"; Decimal)
+        field(17; "Unit Cost"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
             CaptionClass = GetCaptionClass(FIELDNO("Unit Cost"));
@@ -289,7 +289,7 @@ table 70113 "Purchase Request Line"
                 VALIDATE("Total Cost", Quantity * "Unit Cost");
             end;
         }
-        field(70117; "Total Cost"; Decimal)
+        field(18; "Total Cost"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
             CaptionClass = GetCaptionClass(FIELDNO("Total Cost"));
@@ -310,22 +310,22 @@ table 70113 "Purchase Request Line"
                 SetLineAmount;
             end;
         }
-        field(70118; "Reference Name"; Text[50])
+        field(19; "Reference Name"; Text[50])
         {
             Editable = false;
         }
-        field(70119; "Item Category Code"; Code[20])
+        field(20; "Item Category Code"; Code[20])
         {
             Caption = 'Item Category Code';
             Editable = false;
             TableRelation = "Item Category".Code;
         }
-        field(70120; "Product Group Code"; Code[10])
+        field(21; "Product Group Code"; Code[10])
         {
             Caption = 'Product Group Code';
             //   TableRelation = "Product Group".Code WHERE("Item Category Code" = FIELD("Item Category Code"));
         }
-        field(70121; "Shortcut Dimension 1 Code"; Code[20])
+        field(22; "Shortcut Dimension 1 Code"; Code[20])
         {
             CaptionClass = '1,2,1';
             Caption = 'Shortcut Dimension 1 Code';
@@ -337,7 +337,7 @@ table 70113 "Purchase Request Line"
                 //VALIDATE("Job Task No.", "Shortcut Dimension 1 Code");
             end;
         }
-        field(70122; "Shortcut Dimension 2 Code"; Code[20])
+        field(23; "Shortcut Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,2,2';
             Caption = 'Shortcut Dimension 2 Code';
@@ -349,7 +349,7 @@ table 70113 "Purchase Request Line"
                 //VALIDATE("Job No.", "Shortcut Dimension 2 Code");
             end;
         }
-        field(70123; "Dimension Set ID"; Integer)
+        field(24; "Dimension Set ID"; Integer)
         {
             Caption = 'Dimension Set ID';
             Editable = false;
@@ -360,7 +360,7 @@ table 70113 "Purchase Request Line"
                 ShowDimensions;
             end;
         }
-        field(70124; "Expected Unit Cost"; Decimal)
+        field(25; "Expected Unit Cost"; Decimal)
         {
 
             trigger OnValidate()
@@ -372,7 +372,7 @@ table 70113 "Purchase Request Line"
                 VALIDATE("Expected Total Cost", Quantity * "Expected Unit Cost");
             end;
         }
-        field(70125; "Expected Total Cost"; Decimal)
+        field(26; "Expected Total Cost"; Decimal)
         {
             Editable = false;
 
@@ -387,14 +387,14 @@ table 70113 "Purchase Request Line"
                 //CheckBudget;
             end;
         }
-        field(70126; "PR Status"; Option)
+        field(27; "PR Status"; Option)
         {
             CalcFormula = Lookup("Purchase Request Header".Status WHERE("No." = FIELD("Document No.")));
             Editable = false;
             FieldClass = FlowField;
             OptionMembers = Open,Closed,"Pending Approval",Released,Declined;
         }
-        /* field(70127; "Budget Item Category"; Code[20])
+        /* field(28; "Budget Item Category"; Code[20])
          {
             // TableRelation = "Budget Item Category"."No.";
 
@@ -421,11 +421,11 @@ table 70113 "Purchase Request Line"
 
              end;
          }*/
-        field(70128; Reason; Text[50])
+        field(29; Reason; Text[50])
         {
             TableRelation = "Reason Code".Code;
         }
-        field(70129; Type; Option)
+        field(30; Type; Option)
         {
             // CalcFormula = Lookup("Budget Item Category".Type WHERE("No." = FIELD("Budget Item Category")));
             Editable = false;
@@ -433,15 +433,15 @@ table 70113 "Purchase Request Line"
             OptionCaption = 'Item,Service, Fixed Asset';
             OptionMembers = Item,Service,"Fixed Asset";
         }
-        field(70130; "Line Amount (LCY)"; Decimal)
+        field(31; "Line Amount (LCY)"; Decimal)
         {
         }
-        field(70131; Date; Date)
+        field(32; Date; Date)
         {
             CalcFormula = Lookup("Purchase Request Header".Date WHERE("No." = FIELD("Document No.")));
             FieldClass = FlowField;
         }
-        field(70132; "Currency Code"; Code[10])
+        field(33; "Currency Code"; Code[10])
         {
             CalcFormula = Lookup("Purchase Request Header"."Currency Code" WHERE("No." = FIELD("Document No.")));
             Editable = false;
@@ -453,7 +453,7 @@ table 70113 "Purchase Request Line"
                 VALIDATE("Unit Cost");
             end;
         }
-        field(70133; "Shortcut Dimension 3 Code"; Code[20])
+        field(34; "Shortcut Dimension 3 Code"; Code[20])
         {
             CaptionClass = '1,2,3';
             Caption = 'Shortcut Dimension 3 Code';
@@ -464,7 +464,7 @@ table 70113 "Purchase Request Line"
                 //     ValidateShortcutDimCode(3, "Shortcut Dimension 3 Code");
             end;
         }
-        field(70134; "Shortcut Dimension 4 Code"; Code[20])
+        field(35; "Shortcut Dimension 4 Code"; Code[20])
         {
             CaptionClass = '1,2,4';
             Caption = 'Shortcut Dimension 4 Code';
@@ -475,7 +475,7 @@ table 70113 "Purchase Request Line"
                 //    ValidateShortcutDimCode(4, "Shortcut Dimension 4 Code");
             end;
         }
-        field(70135; "Shortcut Dimension 5 Code"; Code[20])
+        field(36; "Shortcut Dimension 5 Code"; Code[20])
         {
             CaptionClass = '1,2,5';
             Caption = 'Shortcut Dimension 5 Code';
@@ -486,7 +486,7 @@ table 70113 "Purchase Request Line"
                 //    ValidateShortcutDimCode(5, "Shortcut Dimension 5 Code");
             end;
         }
-        field(70136; "Shortcut Dimension 6 Code"; Code[20])
+        field(37; "Shortcut Dimension 6 Code"; Code[20])
         {
             CaptionClass = '1,2,6';
             Caption = 'Shortcut Dimension 6 Code';
@@ -497,7 +497,7 @@ table 70113 "Purchase Request Line"
                 //     ValidateShortcutDimCode(6, "Shortcut Dimension 6 Code");
             end;
         }
-        field(70137; "Shortcut Dimension 7 Code"; Code[20])
+        field(38; "Shortcut Dimension 7 Code"; Code[20])
         {
             CaptionClass = '1,2,7';
             Caption = 'Shortcut Dimension 7 Code';
@@ -508,7 +508,7 @@ table 70113 "Purchase Request Line"
                 //    ValidateShortcutDimCode(7, "Shortcut Dimension 7 Code");
             end;
         }
-        field(70138; "Shortcut Dimension 8 Code"; Code[20])
+        field(39; "Shortcut Dimension 8 Code"; Code[20])
         {
             CaptionClass = '1,2,8';
             Caption = 'Shortcut Dimension 8 Code';
@@ -519,13 +519,13 @@ table 70113 "Purchase Request Line"
                 //    ValidateShortcutDimCode(8, "Shortcut Dimension 8 Code");
             end;
         }
-        // field(70139; "Budget Allocation"; Boolean)
+        // field(40; "Budget Allocation"; Boolean)
         // {
         //     CalcFormula = Exist("Purchase Budget Allocation" WHERE("Document No." = FIELD("Document No."), "Document Line No." = FIELD("Line No."), "Document Type" = CONST(Request)));
         //     Editable = false;
         //     FieldClass = FlowField;
         // }
-        field(70140; "Line Amount"; Decimal)
+        field(41; "Line Amount"; Decimal)
         {
             Description = '= Expected Total Cost If Total Cost = 0 / Otherwise = Total Cost';
 
@@ -534,37 +534,37 @@ table 70113 "Purchase Request Line"
                 UpdateAmounts;
             end;
         }
-        // field(70141; "Has Vendors"; Boolean)
+        // field(42; "Has Vendors"; Boolean)
         // {
         //     CalcFormula = Exist("Purch. Request Line Vendor" WHERE("Purch. Request No." = FIELD("Document No."), "Line No." = FIELD("Line No.")));
         //     FieldClass = FlowField;
         // }
-        field(70142; "Expected Delivery Date"; Date)
+        field(43; "Expected Delivery Date"; Date)
         {
         }
-        field(70143; "Delivery Location"; Code[10])
+        field(44; "Delivery Location"; Code[10])
         {
             TableRelation = Location;
         }
-        field(70144; "VAT %"; Decimal)
+        field(45; "VAT %"; Decimal)
         {
             Caption = 'VAT %';
             DecimalPlaces = 0 : 5;
             Editable = false;
         }
-        field(70145; "VAT Base Amount"; Decimal)
+        field(46; "VAT Base Amount"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
             Caption = 'VAT Base Amount';
             Editable = false;
         }
-        field(70146; "VAT Identifier"; Code[10])
+        field(47; "VAT Identifier"; Code[10])
         {
             Caption = 'VAT Identifier';
             Editable = false;
         }
-        field(70147; "Tax Group Code"; Code[10])
+        field(48; "Tax Group Code"; Code[10])
         {
             Caption = 'Tax Group Code';
             TableRelation = "Tax Group";
@@ -575,14 +575,14 @@ table 70113 "Purchase Request Line"
                 UpdateAmounts;
             end;
         }
-        field(70148; "VAT Calculation Type"; Option)
+        field(49; "VAT Calculation Type"; Option)
         {
             Caption = 'VAT Calculation Type';
             Editable = false;
             OptionCaption = 'Normal VAT,Reverse Charge VAT,Full VAT,Sales Tax';
             OptionMembers = "Normal VAT","Reverse Charge VAT","Full VAT","Sales Tax";
         }
-        field(70149; "Amount Including VAT"; Decimal)
+        field(50; "Amount Including VAT"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
@@ -636,7 +636,7 @@ table 70113 "Purchase Request Line"
 
             end;
         }
-        field(70150; Amount; Decimal)
+        field(51; Amount; Decimal)
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
@@ -690,7 +690,7 @@ table 70113 "Purchase Request Line"
 
             end;
         }
-        field(70151; "VAT Bus. Posting Group"; Code[10])
+        field(52; "VAT Bus. Posting Group"; Code[10])
         {
             Caption = 'VAT Bus. Posting Group';
             TableRelation = "VAT Business Posting Group";
@@ -700,7 +700,7 @@ table 70113 "Purchase Request Line"
                 VALIDATE("VAT Prod. Posting Group");
             end;
         }
-        field(70152; "VAT Prod. Posting Group"; Code[10])
+        field(53; "VAT Prod. Posting Group"; Code[10])
         {
             Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group";
@@ -711,7 +711,16 @@ table 70113 "Purchase Request Line"
                 VATPostingSetup.GET("VAT Bus. Posting Group", "VAT Prod. Posting Group");
                 //"VAT Difference" := 0;
                 "VAT %" := VATPostingSetup."VAT %";
-                "VAT Calculation Type" := VATPostingSetup."VAT Calculation Type";
+                case VATPostingSetup."VAT Calculation Type" of
+                    VATPostingSetup."VAT Calculation Type"::"Normal VAT":
+                        "VAT Calculation Type" := "VAT Calculation Type"::"Normal VAT";
+                    VATPostingSetup."VAT Calculation Type"::"Reverse Charge VAT":
+                        "VAT Calculation Type" := "VAT Calculation Type"::"Reverse Charge VAT";
+                    VATPostingSetup."VAT Calculation Type"::"Full VAT":
+                        "VAT Calculation Type" := "VAT Calculation Type"::"Full VAT";
+                    VATPostingSetup."VAT Calculation Type"::"Sales Tax":
+                        "VAT Calculation Type" := "VAT Calculation Type"::"Sales Tax";
+                end;
                 "VAT Identifier" := VATPostingSetup."VAT Identifier";
                 CASE "VAT Calculation Type" OF
                     "VAT Calculation Type"::"Reverse Charge VAT",
@@ -732,7 +741,7 @@ table 70113 "Purchase Request Line"
                 UpdateAmounts;
             end;
         }
-        field(70153; Status; Option)
+        field(54; Status; Option)
         {
             CalcFormula = Lookup("Purchase Request Header".Status WHERE("No." = FIELD("Document No.")));
             Caption = 'Status';
@@ -741,67 +750,67 @@ table 70113 "Purchase Request Line"
             OptionCaption = 'Open,Closed,Pending Approval,Released,Declined';
             OptionMembers = Open,Closed,"Pending Approval",Released,Declined;
         }
-        field(70154; "SIGMA Sales Order No."; Code[20])
+        field(55; "SIGMA Sales Order No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70155; "SIGMA Sales Order Line No."; Integer)
+        field(56; "SIGMA Sales Order Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70156; "Total Available Stock"; Decimal)
+        field(57; "Total Available Stock"; Decimal)
         {
             //  DataClassification = ToBeClassified;
 
             CalcFormula = sum("Item Ledger Entry".Quantity where("Item No." = field("Item No.")));
             FieldClass = FlowField;
         }
-        field(70157; "Suggested Qty"; Decimal)
+        field(58; "Suggested Qty"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70158; "Final PR"; Decimal)
+        field(59; "Final PR"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70159; "Official PO QTY";
+        field(60; "Official PO QTY";
         Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70160; "PO Status"; Option)
+        field(61; "PO Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ",Created,Ordered,"Not Ordered";
         }
-        field(70161; "PO No."; Code[20])
+        field(62; "PO No."; Code[20])
         {
             DataClassification = ToBeClassified;
             Editable = false;
             TableRelation = "Purchase Header";
         }
-        field(70162; "PO Line No"; Integer)
+        field(63; "PO Line No"; Integer)
         {
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(70163; "Cost of PR"; Decimal)
+        field(64; "Cost of PR"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70164; "Cost oof Req"; Decimal)
+        field(65; "Cost oof Req"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70165; "Qty of PR"; Decimal)
+        field(66; "Qty of PR"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70166; "Qty of Req"; Decimal)
+        field(67; "Qty of Req"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70167; "Project No."; Code[20])
+        field(68; "Project No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Job;
@@ -1065,7 +1074,7 @@ table 70113 "Purchase Request Line"
         EXIT(Field."Field Caption");
     end;
 
-    [Scope('Internal')]
+
     procedure SetPurchReqHeader(NewPurchReqHeader: Record "Purchase Request Header")
     begin
         PurchReqHeader := NewPurchReqHeader;

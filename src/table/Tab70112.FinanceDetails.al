@@ -277,7 +277,7 @@ table 70112 "Finance Details"
         NoSeriesCode: Code[20];
         IsHandled: Boolean;
         GLSetup: Record "General Ledger Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        // NoSeriesManagement: Codeunit NoSeriesManagement; // Removed as per deprecation notice
         "LC": Record "Finance Details";
         DocumentAttachment: Record "Document Attachment";
     //  NoSeries: Codeunit "No. Series";

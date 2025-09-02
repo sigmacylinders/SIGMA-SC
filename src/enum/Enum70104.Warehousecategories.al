@@ -1,4 +1,4 @@
-enum 70102 "Warehouse categories"
+enum 70104 "Warehouse categories"
 {
     Extensible = true;
 

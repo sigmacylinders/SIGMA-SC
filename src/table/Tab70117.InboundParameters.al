@@ -4,17 +4,17 @@ table 70117 "Inbound Parameters"
 
     fields
     {
-        field(70100; "Entry No."; Integer)
+        field(1; "Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
 
         }
-        field(70101; "Vendor No."; Code[50])
+        field(2; "Vendor No."; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = Vendor;
         }
-        field(70102; "Target"; Decimal)
+        field(3; "Target"; Decimal)
         {
             DataClassification = ToBeClassified;
         }

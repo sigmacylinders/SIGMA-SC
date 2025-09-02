@@ -6,19 +6,19 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
 
         field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
-            Caption = 'Initial ETR';
+            Caption = 'ETR';
         }
         field(70101; "ETD"; Date)
         {
-            Caption = 'Initial ETD';
+            Caption = 'ETD';
         }
         field(70102; "ETA"; Date)
         {
-            Caption = 'Initial ETA';
+            Caption = 'ETA';
         }
         field(70103; "ETAW"; Date)
         {
-            Caption = 'Initial ETAW';
+            Caption = 'ETAW';
         }
         field(70104; "BL/AWB ID"; Code[20])
         {
@@ -30,16 +30,16 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         }
         field(70106; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
 
         }
         field(70107; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
         }
         field(70108; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
         }
         field(70109; "ATA"; Date)
         {
@@ -47,40 +47,40 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         }
         field(70110; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
         }
         field(70111; "Container Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "Port of Loading"; Code[50])
+        field(70112; "Port of Loading"; Code[50])
         {
             FieldClass = FlowField;
             CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
         }
-        field(70117; "Quantity to Split"; Decimal)
+        field(70113; "Quantity to Split"; Decimal)
         {
             DataClassification = ToBeClassified;
             BlankZero = true;
         }
-        field(70118; "Remaining Quantity to Split"; Decimal)
+        field(70114; "Remaining Quantity to Split"; Decimal)
         {
             DataClassification = ToBeClassified;
             BlankZero = true;
         }
-        field(70119; "Line is Splitted"; Boolean)
+        field(70115; "Line is Splitted"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(70120; "Splitted Line No."; Text[50])
+        field(70116; "Splitted Line No."; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70121; "Original Quantity"; Decimal)
+        field(70117; "Original Quantity"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70122; "Original Line No."; Integer)
+        field(70118; "Original Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }

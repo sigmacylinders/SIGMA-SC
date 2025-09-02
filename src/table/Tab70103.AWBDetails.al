@@ -7,92 +7,92 @@ table 70103 "AWB Details"
 
     fields
     {
-        field(70100; "Airline"; Code[50])
+        field(1; "Airline"; Code[50])
         {
             Caption = 'Airline';
             // Set up a lookup to your airline master table here
             TableRelation = "SIGMA Lookup".Code where(Type = const(Airline));
         }
-        field(70101; "Free Demurrage Days"; Integer)
+        field(2; "Free Demurrage Days"; Integer)
         {
             Caption = 'Free Demurrage Days';
             // Set up a lookup to your vessel/airline master table here
         }
-        field(70102; "Voyage Number"; Text[50])
+        field(3; "Voyage Number"; Text[50])
         {
             Caption = 'Voyage Number';
         }
-        field(70103; "Cargo Description"; Code[50])
+        field(4; "Cargo Description"; Code[50])
         {
             Caption = 'Cargo Description';
         }
-        field(70104; "Origin"; Code[50])
+        field(5; "Origin"; Code[50])
         {
             Caption = 'Origin';
             // Set up a lookup to your origin master table here   
             TableRelation = "SIGMA Lookup".Code where(Type = const(Origin));
         }
-        field(70105; "Airport of Loading"; Code[50])
+        field(6; "Airport of Loading"; Code[50])
         {
             Caption = 'Airport of Loading';
             // Set up a lookup to your Airport master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"), ORIGINS = field(Origin));
         }
-        field(70106; "Airport of Discharge"; Code[50])
+        field(7; "Airport of Discharge"; Code[50])
         {
             Caption = 'Airport of Discharge';
             // Set up a lookup to your Airport master table here    
             TableRelation = "SIGMA Lookup".Code where(Type = const("Air Port"));
         }
-        field(70107; "AWB"; Date)
+        field(8; "AWB"; Date)
         {
             Caption = 'AWB';
         }
-        field(70108; "Clearing Agent"; Code[50])
+        field(9; "Clearing Agent"; Code[50])
         {
             Caption = 'Clearing Agent';// Drop down can be handled with lookupr
                                        //  TableRelation = "SIGMA Lookup".Code where(Type = const("Clearing Agent"));
                                        //      TableRelation = Vendor where(Category = const("SHIPPING & CLEARING"));
         }
-        field(70109; "Docs Sent to Entity Date"; Date)
+        field(10; "Docs Sent to Entity Date"; Date)
         {
             Caption = 'Docs Sent to Entity Date';
         }
-        field(70110; "Docs Received in Entity Date"; Date)
+        field(11; "Docs Received in Entity Date"; Date)
         {
             Caption = 'Docs Received in Entity Date';
         }
-        field(70111; "Docs AWB No"; Text[50])
+        field(12; "Docs AWB No"; Text[50])
         {
             Caption = 'Docs AWB No';
         }
-        field(70112; "Copy Docs Sent to Agent Date"; Date)
+        field(13; "Copy Docs Sent to Agent Date"; Date)
         {
             Caption = 'Copy Docs Sent to Agent Date';
         }
-        field(70113; "Docs Delivered to Clearing Agent"; Date)
+        field(14; "Docs Delivered to Clearing Agent"; Date)
         {
             Caption = 'Docs Delivered to Clearing Agent';
         }
-        field(70114; "Assessment Date"; Date)
+        field(15; "Assessment Date"; Date)
         {
             Caption = 'Assessment Date';
         }
-        field(70115; "Duty Paid Date"; Date)
+        field(16; "Duty Paid Date"; Date)
         {
             Caption = 'Duty Paid Date';
         }
-        field(70116; "Duty Receipt sent to agent"; Date)
+        field(17; "Duty Receipt sent to agent"; Date)
         {
             Caption = 'Duty Receipt sent to agent';
         }
-        field(70117; "Remarks"; Text[500])
+        field(18; "Remarks"; Text[500])
         {
             Caption = 'Remarks';
         }
-        field(70118; "FTR"; Date)
+        field(19; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
 
             trigger OnValidate()
             var
@@ -134,9 +134,9 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70119; "FTD"; Date)
+        field(20; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
             trigger OnValidate()
             var
                 PurchaseLine: Record "Purchase Line";
@@ -177,9 +177,9 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70120; "FTA"; Date)
+        field(21; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
 
             trigger OnValidate()
             var
@@ -221,7 +221,7 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70121; "ATA"; Date)
+        field(22; "ATA"; Date)
         {
             Caption = 'ATA';
             trigger OnValidate()
@@ -264,9 +264,9 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70122; "FTAW"; Date)
+        field(23; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
 
             trigger OnValidate()
             var
@@ -308,75 +308,75 @@ table 70103 "AWB Details"
 
             end;
         }
-        field(70123; "Net Weight in KG"; Decimal) { }//no need to add weight in BL since container is a container ma byetala3o b weights mmesh metil airwabel
-        // field(70124; "Document Type"; Enum "Purchase Document Type")
+        field(24; "Net Weight in KG"; Decimal) { }//no need to add weight in BL since container is a container ma byetala3o b weights mmesh metil airwabel
+        // field(25; "Document Type"; Enum "Purchase Document Type")
         // {
         //     Caption = 'Document Type';
         // }
-        // field(70125; "Document No."; Code[20])
+        // field(26; "Document No."; Code[20])
         // {
         //     Caption = 'Document No.';
         //     TableRelation = "Purchase Header"."No." where("Document Type" = field("Document Type"));
         // }
-        // field(70127; "Line No."; Integer)
+        // field(28; "Line No."; Integer)
         // {
         //     Caption = 'Line No.';
         // }
-        field(70126; "AWB ID"; Code[20])
+        field(27; "AWB ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70128; "No. Series"; Code[20])
+        field(29; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             Editable = false;
 
 
         }
-        field(70129; "Attachment ID"; Text[50])
+        field(30; "Attachment ID"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70130; "Document Attachment ID"; Integer)
+        field(31; "Document Attachment ID"; Integer)
         {
 
         }
-        field(70131; "Document Attachment Table ID"; Integer)
+        field(32; "Document Attachment Table ID"; Integer)
         {
 
         }
-        field(70132; "Document Attachment No."; Code[20])
+        field(33; "Document Attachment No."; Code[20])
         {
 
         }
-        field(70133; "Document Attachment Doc. Type"; Enum "Attachment Document Type")
+        field(34; "Document Attachment Doc. Type"; Enum "Attachment Document Type")
         {
 
         }
-        field(70134; "Document Attachment Line No."; Integer)
+        field(35; "Document Attachment Line No."; Integer)
         {
         }
-        field(70135; "AWB Number"; Code[50])
+        field(36; "AWB Number"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70136; "Gross Weight in KG"; Decimal) { }
-        field(70137; "Volumetric Weight in KG"; Decimal) { }
+        field(37; "Gross Weight in KG"; Decimal) { }
+        field(38; "Volumetric Weight in KG"; Decimal) { }
 
-        field(70138; "Type"; Option)
+        field(39; "Type"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "","Express","Cargo";
         }
-        field(70139; "Chargable Weight in KG"; Decimal)
+        field(40; "Chargable Weight in KG"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70140; "Transshipment"; Option)
+        field(41; "Transshipment"; Option)
         {
             OptionMembers = "Yes","No"; // Add more options if needed
         }
-        field(70141; "Transshipment Airport"; Code[50]
+        field(42; "Transshipment Airport"; Code[50]
         )
         {
 
@@ -428,7 +428,7 @@ table 70103 "AWB Details"
         NoSeriesCode: Code[20];
         IsHandled: Boolean;
         GLSetup: Record "General Ledger Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        // NoSeriesManagement: Codeunit NoSeriesManagement; // Removed as per deprecation notice
         "AWBDetails": Record "AWB Details";
         "No. Series": Codeunit "No. Series";
     begin

@@ -1,4 +1,4 @@
-enum 70100 "Document Status"
+enum 70101 "Document Status"
 {
     Extensible = true;
     AssignmentCompatibility = true;

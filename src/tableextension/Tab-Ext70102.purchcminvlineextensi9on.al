@@ -7,19 +7,19 @@ tableextension 70102 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
 
         field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
-            Caption = 'Initial ETR';
+            Caption = 'ETR';
         }
         field(70101; "ETD"; Date)
         {
-            Caption = 'Initial ETD';
+            Caption = 'ETD';
         }
         field(70102; "ETA"; Date)
         {
-            Caption = 'Initial ETA';
+            Caption = 'ETA';
         }
         field(70103; "ETAW"; Date)
         {
-            Caption = 'Initial ETAW';
+            Caption = 'ETAW';
         }
         field(70104; "BL/AWB ID"; Code[20])
         {
@@ -31,15 +31,15 @@ tableextension 70102 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         }
         field(70106; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
         }
         field(70107; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
         }
         field(70108; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
         }
         field(70109; "ATA"; Date)
         {
@@ -47,7 +47,7 @@ tableextension 70102 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         }
         field(70110; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
         }
         field(70111; "Container Line No."; Integer)
         {

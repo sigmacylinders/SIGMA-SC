@@ -6,21 +6,21 @@ table 70104 "SIGMA Lookup"
 
     fields
     {
-        field(70100; "Type"; Option)
+        field(1; "Type"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ","Airline","Port","Air Port",Origin,"Clearing Agent",Fitting,Liner,Beneficiary,"LC Applicant","Agent","Vendor Category",Incoterm,InsuranceCompany,Shape,Reflector,Model,"Lamp Source",Lamp,"Ip Code",Installation,"Hs Code",Housing,Frame,"Fitting Color",Driver,Diffuser,"Company Subtype","Color Temp",Bracket,"Beam Type";
 
         }
-        field(70101; "Code"; code[50])
+        field(2; "Code"; code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70102; "Description"; Text[100])
+        field(3; "Description"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(70103; "ORIGINS"; Code[50])
+        field(4; "ORIGINS"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup".Code where(Type = const(Origin));

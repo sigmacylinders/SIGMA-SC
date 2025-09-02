@@ -6,36 +6,36 @@ table 70102 "Container Details"
 
     fields
     {
-        field(70100; "Type of Goods"; Option)
+        field(1; "Type of Goods"; Option)
         {
             Caption = 'Type of Goods';
             OptionMembers = CKD,Other; // Define the options here
         }
-        field(70101; "Seal Number"; Text[50])
+        field(2; "Seal Number"; Text[50])
         {
             Caption = 'Seal Number';
         }
-        field(70102; "Fitting"; code[50])
+        field(3; "Fitting"; code[50])
         {
             Caption = 'Fitting';
             // Set up a lookup to your fitting master table here 
             TableRelation = "SIGMA Lookup".Code where(Type = const(Fitting));
         }
-        field(70103; "Loaded On Board"; Date)
+        field(4; "Loaded On Board"; Date)
         {
             Caption = 'Loaded On Board';
         }
-        field(70104; "Terminal Delivery Order Date"; Date)
+        field(5; "Terminal Delivery Order Date"; Date)
         {
             Caption = 'Terminal Delivery Order Date';
         }
-        field(70105; "Remarks"; Text[500])
+        field(6; "Remarks"; Text[500])
         {
             Caption = 'Remarks';
         }
-        field(70106; "FTR"; Date)
+        field(7; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
 
             trigger OnValidate()
             var
@@ -77,9 +77,9 @@ table 70102 "Container Details"
 
             end;
         }
-        field(70107; "FTD"; Date)
+        field(8; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
             trigger OnValidate()
             var
                 PurchaseLine: Record "Purchase Line";
@@ -120,9 +120,9 @@ table 70102 "Container Details"
 
             end;
         }
-        field(70108; "FTA"; Date)
+        field(9; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
 
             trigger OnValidate()
             var
@@ -164,7 +164,7 @@ table 70102 "Container Details"
 
             end;
         }
-        field(70109; "ATA"; Date)
+        field(10; "ATA"; Date)
         {
             Caption = 'ATA';
             trigger OnValidate()
@@ -207,9 +207,9 @@ table 70102 "Container Details"
 
             end;
         }
-        field(70110; "FTAW"; Date)
+        field(11; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
 
             trigger OnValidate()
             var
@@ -251,56 +251,56 @@ table 70102 "Container Details"
 
             end;
         }
-        // field(70111; "PO Type"; Enum "Purchase Document Type")
+        // field(12; "PO Type"; Enum "Purchase Document Type")
         // {
         //     Caption = 'Document Type';
         // }
-        // field(70112; "PO No."; Code[20])
+        // field(13; "PO No."; Code[20])
         // {
         //     Caption = 'Document No.';
         //     TableRelation = "Purchase Header"."No." where("Document Type" = field("PO Type"));
         // }
-        // field(70113; "Line No."; Integer)
+        // field(14; "Line No."; Integer)
         // {
         //     Caption = 'Line No.';
         // }
-        field(70114; "ROC Date"; Date) { }
-        // field(70115; "BL Reference"; Code[20])
+        field(15; "ROC Date"; Date) { }
+        // field(16; "BL Reference"; Code[20])
         // {
         //     DataClassification = ToBeClassified;
         // }
-        field(70116; "SP ID"; Code[20])
+        field(17; "SP ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70117; "Container ID"; Code[50])
+        field(18; "Container ID"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70118; "BL ID"; Code[20])
+        field(19; "BL ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70119; "No. Series"; Code[20])
+        field(20; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             Editable = false;
 
 
         }
-        field(70120; "Line No."; Integer)
+        field(21; "Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70121; "Selected"; Boolean)
+        field(22; "Selected"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(70122; "Transit Time"; Text[10])
+        field(23; "Transit Time"; Text[10])
         {
             DataClassification = ToBeClassified;
         }
-        field(70123; "Final Transit Time"; Text[10])
+        field(24; "Final Transit Time"; Text[10])
         {
             DataClassification = ToBeClassified;
         }
@@ -324,7 +324,7 @@ table 70102 "Container Details"
         NoSeriesCode: Code[20];
         IsHandled: Boolean;
         GLSetup: Record "General Ledger Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        // NoSeriesManagement: Codeunit NoSeriesManagement; // Removed obsolete codeunit
         "ContainerDetails": Record "Container Details";
     begin
         if "SP ID" = '' then begin

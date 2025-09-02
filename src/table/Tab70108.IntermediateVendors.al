@@ -4,142 +4,142 @@ table 70108 "Intermediate Vendors"
 
     fields
     {
-        field(70100; "No."; Code[20])
+        field(1; "No."; Code[20])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70101; "Name"; Text[100])
+        field(2; "Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70102; "Search Name"; Text[100])
+        field(3; "Search Name"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70103; "Name 2"; Text[100])
+        field(4; "Name 2"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70104; "Address"; Text[100])
+        field(5; "Address"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70105; "Address 2"; Text[100])
+        field(6; "Address 2"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70106; "City"; Text[50])
+        field(7; "City"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70107; "Contact"; Text[50])
+        field(8; "Contact"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70108; "Phone No."; Text[30])
+        field(9; "Phone No."; Text[30])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70109; "Telex No."; Text[30])
+        field(10; "Telex No."; Text[30])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70110; "Global Dimension 1 Code"; Code[20])
+        field(11; "Global Dimension 1 Code"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Dimension Value".Code where("Dimension Code" = const('PROJECT'));
         }
 
-        field(70111; "Global Dimension 2 Code"; Code[20])
+        field(12; "Global Dimension 2 Code"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Dimension Value".Code where("Dimension Code" = const('LOB'));
         }
 
-        field(70112; "Vendor Posting Group"; Code[10])
+        field(13; "Vendor Posting Group"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Vendor Posting Group";
         }
 
-        field(70113; "Currency Code"; Code[10])
+        field(14; "Currency Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Currency";
         }
 
-        field(70114; "Payment Terms Code"; Code[10])
+        field(15; "Payment Terms Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Payment Terms";
         }
 
-        field(70115; "Country/Region Code"; Code[10])
+        field(16; "Country/Region Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Country/Region";
         }
 
-        field(70116; "Payment Method Code"; Code[10])
+        field(17; "Payment Method Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Payment Method";
         }
 
-        field(70117; "Fax No."; Text[30])
+        field(18; "Fax No."; Text[30])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70118; "Gen. Bus. Posting Group"; Code[10])
+        field(19; "Gen. Bus. Posting Group"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Gen. Business Posting Group";
         }
 
-        field(70119; "Post Code"; Text[20])
+        field(20; "Post Code"; Text[20])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70120; "County"; Text[50])
+        field(21; "County"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70121; "Email"; Text[100])
+        field(22; "Email"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70122; "VAT Bus. Posting Group"; Code[10])
+        field(23; "VAT Bus. Posting Group"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "VAT Business Posting Group";
         }
 
-        field(70123; "Mobile Phone No."; Text[30])
+        field(24; "Mobile Phone No."; Text[30])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70124; "Responsibility Center"; Code[10])
+        field(25; "Responsibility Center"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Responsibility Center";
         }
 
-        field(70125; "Location Code"; Code[10])
+        field(26; "Location Code"; Code[10])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Location";
@@ -148,24 +148,24 @@ table 70108 "Intermediate Vendors"
 
 
 
-        field(70126; "Area"; Text[50])
+        field(27; "Area"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70127; "Comments"; Text[200])
+        field(28; "Comments"; Text[200])
         {
             DataClassification = ToBeClassified;
         }
-        field(70128; Processed; Boolean)
+        field(29; Processed; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(70129; "Dynamics Number"; Code[50])
+        field(30; "Dynamics Number"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70130; "API Status"; Text[100])
+        field(31; "API Status"; Text[100])
         {
             DataClassification = ToBeClassified;
         }

@@ -5,118 +5,118 @@ table 70114 "Truck WayBill"
 
     fields
     {
-        field(70100; "Truck WayBill"; Text[50])
+        field(1; "Truck WayBill"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70101; "Line"; Code[50])
+        field(2; "Line"; Code[50])
         {
             TableRelation = "SIGMA Lookup".Code where(Type = const(Liner));
         }
-        field(70102; "Free Demurrage Days"; Integer)
+        field(3; "Free Demurrage Days"; Integer)
         {
             DataClassification = ToBeClassified;
 
         }
-        field(70103; "Voyage Number"; Text[50])
+        field(4; "Voyage Number"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70104; "Cargo Description"; Text[100])
+        field(5; "Cargo Description"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
-        field(70105; "Origin"; code[50])
+        field(6; "Origin"; code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup".Code where(Type = const(Origin));
         }
-        field(70106; "Port of Loading"; code[50])
+        field(7; "Port of Loading"; code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
         }
-        field(70107; "Port of Discharge"; code[50])
+        field(8; "Port of Discharge"; code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
         }
-        field(70108; "Waybill Date"; Date)
+        field(9; "Waybill Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70109; "Clearing Agent"; code[50])
+        field(10; "Clearing Agent"; code[50])
         {
             DataClassification = ToBeClassified;
             // TableRelation = Vendor where(Category = const('SHIPPING&CLEARING'));
         }
-        field(70110; "Docs Sent to Entity Date"; Date)
+        field(11; "Docs Sent to Entity Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70111; "Docs Received in Entity Date"; Date)
+        field(12; "Docs Received in Entity Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70112; "Docs AWB No"; Text[50])
+        field(13; "Docs AWB No"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70113; "Copy Docs Sent to Agent Date"; Date)
+        field(14; "Copy Docs Sent to Agent Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70114; "Docs Delivered to Clearing Agent"; Date)
+        field(15; "Docs Delivered to Clearing Agent"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70115; "Assessment Date"; Date)
+        field(16; "Assessment Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "Duty Paid Date"; Date)
+        field(17; "Duty Paid Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70117; "Duty Receipt sent to agent"; Date)
+        field(18; "Duty Receipt sent to agent"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(70118; "Remarks"; Text[250])
+        field(19; "Remarks"; Text[250])
         {
             DataClassification = ToBeClassified;
         }
-        field(70119; "Truck WayBill ID"; Code[20])
+        field(20; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70120; "No. Series"; Code[20])
+        field(21; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             Editable = false;
 
         }
-        field(70121; "Attachment ID"; Text[50])
+        field(22; "Attachment ID"; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70122; "Document Attachment ID"; Integer)
+        field(23; "Document Attachment ID"; Integer)
         {
 
         }
-        field(70123; "Document Attachment Table ID"; Integer)
+        field(24; "Document Attachment Table ID"; Integer)
         {
 
         }
-        field(70124; "Document Attachment No."; Code[20])
+        field(25; "Document Attachment No."; Code[20])
         {
 
         }
-        field(70125; "Document Attachment Doc. Type"; Enum "Attachment Document Type")
+        field(26; "Document Attachment Doc. Type"; Enum "Attachment Document Type")
         {
 
         }
-        field(70126; "Document Attachment Line No."; Integer)
+        field(27; "Document Attachment Line No."; Integer)
         {
         }
 

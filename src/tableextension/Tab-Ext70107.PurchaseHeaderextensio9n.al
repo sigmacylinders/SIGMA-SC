@@ -1,4 +1,4 @@
-tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
+tableextension 70107 "Purchase Header extension" extends "Purchase Header"
 {
     fields
     {
@@ -6,7 +6,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
 
         field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
-            Caption = 'Initial ETR';
+            Caption = 'ETR';
 
             trigger OnValidate()
             var
@@ -46,7 +46,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
         "ETD";
         Date)
         {
-            Caption = 'Initial ETD';
+            Caption = 'ETD';
             trigger OnValidate()
             var
                 PurchaseLine: Record "Purchase Line";
@@ -92,7 +92,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
         }
         field(70102; "ETA"; Date)
         {
-            Caption = 'Initial ETA';
+            Caption = 'ETA';
             trigger OnValidate()
             var
                 PurchaseLine: Record "Purchase Line";
@@ -138,7 +138,7 @@ tableextension 70107 "Purchase Header extensio9n" extends "Purchase Header"
         }
         field(70103; "ETAW"; Date)
         {
-            Caption = 'Initial ETAW';
+            Caption = 'ETAW';
             trigger OnValidate()
             var
                 PurchaseLine: Record "Purchase Line";

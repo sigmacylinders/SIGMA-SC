@@ -8,7 +8,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 
         field(70100; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
-            Caption = 'Initial ETR';
+            Caption = 'ETR';
 
             trigger OnValidate()
             var
@@ -33,7 +33,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70101; "ETD"; Date)
         {
-            Caption = 'Initial ETD';
+            Caption = 'ETD';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -57,7 +57,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70102; "ETA"; Date)
         {
-            Caption = 'Initial ETA';
+            Caption = 'ETA';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -81,7 +81,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70103; "ETAW"; Date)
         {
-            Caption = 'Initial ETAW';
+            Caption = 'ETAW';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -113,7 +113,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70106; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
 
             trigger OnValidate()
             var
@@ -136,7 +136,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70107; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -158,7 +158,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70108; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -202,7 +202,7 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         }
         field(70110; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
             trigger OnValidate()
             var
                 ShippingDateLOG: Record "Supply Chain LOG";
@@ -282,6 +282,68 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(70123; "Packed Net Weight"; Decimal)
+        {
+            Caption = 'Packed Net Weight';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Net Weight" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70124; "Packed Gross Weight"; Decimal)
+        {
+            Caption = 'Packed Gross Weight';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Gross Weight" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70125; "Packed Volumetric Weight"; Decimal)
+        {
+            Caption = 'Packed Volumetric Weight';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Volumetric Weight" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70126; "Packed Length"; Decimal)
+        {
+            Caption = 'Packed Length';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Length" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70127; "Packed Height"; Decimal)
+        {
+            Caption = 'Packed Height';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Height" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70128; "Packed Width"; Decimal)
+        {
+            Caption = 'Packed Width';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Packed Width" WHERE("No." = FIELD("No.")));
+        }
+
+        field(70129; "CBM"; Decimal)
+        {
+            Caption = 'CBM';
+            Description = 'Cubic Meters';
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item.CBM WHERE("No." = FIELD("No.")));
+        }
+        field(70130; "POL"; Code[50])
+        {
+
+            FieldClass = FlowField;
+            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
+
+        }
+        field(70131; "POD"; Code[50])
+        {
+            FieldClass = FlowField;
+            CalcFormula = lookup("BL Details"."Port of Discharge" where("BL ID" = field("BL/AWB ID")));
+        }
+
 
 
         /* modify("No.")

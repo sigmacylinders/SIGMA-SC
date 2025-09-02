@@ -1,4 +1,4 @@
-enum 70101 "Incoterm"
+enum 70102 "Incoterm"
 {
     Extensible = true;
     Caption = 'Incoterm';

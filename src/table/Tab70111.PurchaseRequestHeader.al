@@ -6,28 +6,28 @@ table 70111 "Purchase Request Header"
 
     fields
     {
-        field(70100; "No."; Code[20])
+        field(1; "No."; Code[20])
         {
             Caption = 'No.';
             Editable = false;
         }
-        field(70101; Date; Date)
+        field(2; Date; Date)
         {
             Editable = false;
         }
-        field(70102; Status; Option)
+        field(3; Status; Option)
         {
             Caption = 'Status';
             Editable = false;
             OptionCaption = 'Open,Closed,Pending Approval,Released,Declined';
             OptionMembers = Open,Closed,"Pending Approval",Released,Declined;
         }
-        field(70103; "Vendor No."; Code[20])
+        field(4; "Vendor No."; Code[20])
         {
             Editable = false;
             TableRelation = Vendor;
         }
-        field(70104; Requester; Code[50])
+        field(5; Requester; Code[50])
         {
             Editable = false;
             TableRelation = User."User Name";
@@ -43,18 +43,18 @@ table 70111 "Purchase Request Header"
             //     END;
             // end;
         }
-        field(70105; "Lines Need Approve Exist"; Boolean)
+        field(6; "Lines Need Approve Exist"; Boolean)
         {
             CalcFormula = Exist("Purchase Request Line" WHERE("Document No." = FIELD("No."), Assigned = FILTER(false)));
             Editable = false;
             FieldClass = FlowField;
         }
-        field(70106; "Location Code"; Code[10])
+        field(7; "Location Code"; Code[10])
         {
             Caption = 'Location Code';
             TableRelation = Location;
         }
-        field(70107; "Global Dimension 1 Code"; Code[20])
+        field(8; "Global Dimension 1 Code"; Code[20])
         {
             CaptionClass = '1,1,1';
             Caption = 'Global Dimension 1 Code';
@@ -65,7 +65,7 @@ table 70111 "Purchase Request Header"
                 ValidateShortcutDimCode(1, "Global Dimension 1 Code");
             end;
         }
-        field(70108; "Global Dimension 2 Code"; Code[20])
+        field(9; "Global Dimension 2 Code"; Code[20])
         {
             CaptionClass = '1,1,2';
             Caption = 'Global Dimension 2 Code';
@@ -76,7 +76,7 @@ table 70111 "Purchase Request Header"
                 ValidateShortcutDimCode(2, "Global Dimension 2 Code");
             end;
         }
-        field(70109; "Currency Code"; Code[10])
+        field(10; "Currency Code"; Code[10])
         {
             Caption = 'Currency Code';
             TableRelation = Currency;
@@ -87,7 +87,7 @@ table 70111 "Purchase Request Header"
                     UpdateAllLineCurr;
             end;
         }
-        field(70110; "Shortcut Dimension 4 Code"; Code[20])
+        field(11; "Shortcut Dimension 4 Code"; Code[20])
         {
             CaptionClass = '1,2,4';
             Caption = 'Shortcut Dimension 4 Code';
@@ -98,114 +98,114 @@ table 70111 "Purchase Request Header"
                 ValidateShortcutDimCode(4, "Shortcut Dimension 4 Code");
             end;
         }
-        field(70111; "Approved By"; Code[50])
+        field(12; "Approved By"; Code[50])
         {
             TableRelation = User."User Name";
         }
-        field(70112; "Approved By Admin"; Boolean)
+        field(13; "Approved By Admin"; Boolean)
         {
         }
-        field(70113; "Rejected By"; Code[50])
+        field(14; "Rejected By"; Code[50])
         {
             TableRelation = User."User Name";
         }
-        field(70114; Editable; Boolean)
+        field(15; Editable; Boolean)
         {
             Editable = false;
         }
-        field(70115; "Approver ID"; Code[50])
+        field(16; "Approver ID"; Code[50])
         {
             Editable = false;
         }
-        field(70116; NoApproved; Integer)
+        field(17; NoApproved; Integer)
         {
         }
-        field(70117; Reason; Text[50])
+        field(18; Reason; Text[50])
         {
         }
-        field(70118; "Total Amount Assigned"; Decimal)
+        field(19; "Total Amount Assigned"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Total Cost" WHERE("Document No." = FIELD("No."), Assigned = CONST(true)));
             FieldClass = FlowField;
         }
-        field(70119; "Total Line Amount (LCY)"; Decimal)
+        field(20; "Total Line Amount (LCY)"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Line Amount (LCY)" WHERE("Document No." = FIELD("No.")));
             FieldClass = FlowField;
         }
-        field(70120; "Total Amount Assigned (LCY)"; Decimal)
+        field(21; "Total Amount Assigned (LCY)"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Line Amount (LCY)" WHERE("Document No." = FIELD("No."), Assigned = CONST(true)));
             FieldClass = FlowField;
         }
-        field(70121; "Total Line Amount"; Decimal)
+        field(22; "Total Line Amount"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Total Cost" WHERE("Document No." = FIELD("No.")));
             FieldClass = FlowField;
         }
-        field(70122; "Dimension Set ID"; Integer)
+        field(23; "Dimension Set ID"; Integer)
         {
 
 
         }
-        field(70123; "Progress Status"; Option)
+        field(24; "Progress Status"; Option)
         {
             OptionCaption = 'Waiting release,Waiting invoice,waiting quotation';
             OptionMembers = "Waiting release","Waiting invoice","waiting quotation";
         }
-        field(70124; "Total Line Expected Amount"; Decimal)
+        field(25; "Total Line Expected Amount"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Expected Total Cost" WHERE("Document No." = FIELD("No.")));
             FieldClass = FlowField;
         }
-        field(70125; "Status Details"; Boolean)
+        field(26; "Status Details"; Boolean)
         {
             CalcFormula = Exist("Approval Entry" WHERE("Document No." = FIELD("No.")));
             Editable = false;
             FieldClass = FlowField;
         }
-        field(70126; "Marked for Approval"; Boolean)
+        field(27; "Marked for Approval"; Boolean)
         {
             Editable = false;
         }
-        field(70127; "Incoming Document Entry No."; Integer)
+        field(28; "Incoming Document Entry No."; Integer)
         {
             Caption = 'Incoming Document Entry No.';
             TableRelation = "Incoming Document";
 
         }
-        field(70128; "Prices Including VAT"; Boolean)
+        field(29; "Prices Including VAT"; Boolean)
         {
             Caption = 'Prices Including VAT';
 
         }
-        field(70129; "VAT Bus. Posting Group"; Code[10])
+        field(30; "VAT Bus. Posting Group"; Code[10])
         {
             Caption = 'VAT Bus. Posting Group';
             TableRelation = "VAT Business Posting Group";
         }
-        field(70130; "First Item Description"; Text[100])
+        field(31; "First Item Description"; Text[100])
         {
             CalcFormula = Lookup("Purchase Request Line"."Item Description" WHERE("Document No." = FIELD("No.")));
             FieldClass = FlowField;
         }
-        field(70131; "Total Line Amount Inc. VAT"; Decimal)
+        field(32; "Total Line Amount Inc. VAT"; Decimal)
         {
             CalcFormula = Sum("Purchase Request Line"."Amount Including VAT" WHERE("Document No." = FIELD("No.")));
             FieldClass = FlowField;
         }
-        field(70132; "Sender Id"; Code[50])
+        field(33; "Sender Id"; Code[50])
         {
         }
-        field(70133; "Sales Order No."; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70134; "Assigned"; Boolean)
+        field(34; "Sales Order No."; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70135; "Project No."; Code[20])
+        field(35; "Assigned"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(36; "Project No."; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = Job;
@@ -244,7 +244,7 @@ table 70111 "Purchase Request Header"
         PurchaseSetup.GET();
         IF "No." = '' THEN BEGIN
             PurchaseSetup.TESTFIELD(PurchaseSetup."Purchase Request Nos.");
-            "No." := NoSeriesMgt.GetNextNo(PurchaseSetup."Purchase Request Nos.", WORKDATE, TRUE);
+            "No." := NoSeries.GetNextNo(PurchaseSetup."Purchase Request Nos.", WORKDATE, TRUE);
         END;
 
         VALIDATE(Date, WORKDATE);
@@ -269,7 +269,7 @@ table 70111 "Purchase Request Header"
 
     var
         PurchaseSetup: Record "Purchases & Payables Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
         UserSetup: Record "User Setup";
         PurchReqLine: Record "Purchase Request Line";
         DimMgt: Codeunit DimensionManagement;

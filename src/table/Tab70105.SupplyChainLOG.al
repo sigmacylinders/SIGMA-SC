@@ -7,145 +7,145 @@ table 70105 "Supply Chain LOG"
 
     fields
     {
-        field(70100; "Entry No."; Integer)
+        field(1; "Entry No."; Integer)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
 
         }
-        field(70101; "BL/AWB ID"; Code[20])
+        field(2; "BL/AWB ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70102; "Container Number"; Code[50])
+        field(3; "Container Number"; Code[50])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Container Details";
         }
-        field(70103; "PO Number"; code[20])
+        field(4; "PO Number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70104; "PO Line Number"; Integer)
+        field(5; "PO Line Number"; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(70105; "ETR"; Date)//Created on 28/10/2024 with Nathalie
+        field(6; "ETR"; Date)//Created on 28/10/2024 with Nathalie
         {
-            Caption = 'Initial ETR';
+            Caption = 'ETR';
         }
-        field(70106; "ETD"; Date)
+        field(7; "ETD"; Date)
         {
-            Caption = 'Initial ETD';
+            Caption = 'ETD';
         }
-        field(70107; "ETA"; Date)
+        field(8; "ETA"; Date)
         {
-            Caption = 'Initial ETA';
+            Caption = 'ETA';
         }
-        field(70108; "ETAW"; Date)
+        field(9; "ETAW"; Date)
         {
-            Caption = 'Initial ETAW';
+            Caption = 'ETAW';
         }
-        field(70109; "FTR"; Date)
+        field(10; "FTR"; Date)
         {
-            Caption = 'Final ETR';
+            Caption = 'FTR';
         }
-        field(70110; "FTD"; Date)
+        field(11; "FTD"; Date)
         {
-            Caption = 'Final ETD';
+            Caption = 'FTD';
         }
-        field(70111; "FTA"; Date)
+        field(12; "FTA"; Date)
         {
-            Caption = 'Final ETA';
+            Caption = 'FTA';
         }
-        field(70112; "ATA"; Date)
+        field(13; "ATA"; Date)
         {
             Caption = 'ATA';
         }
-        field(70113; "FTAW"; Date)
+        field(14; "FTAW"; Date)
         {
-            Caption = 'Final ETAW';
+            Caption = 'FTAW';
         }
-        field(70114; "Old Item"; Code[50])
-        {
-            DataClassification = ToBeClassified;
-        }
-        field(70115; "New Item"; Code[50])
+        field(15; "Old Item"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "Old UOM"; Code[50])
+        field(16; "New Item"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70117; "New UOM"; Code[50])
+        field(17; "Old UOM"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70118; "Old Price"; decimal)
+        field(18; "New UOM"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70119; "New Price"; decimal)
+        field(19; "Old Price"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70120; "Old Qty"; decimal)
+        field(20; "New Price"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70121; "New Qty"; decimal)
+        field(21; "Old Qty"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70122; "SO Number"; code[20])
+        field(22; "New Qty"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70123; "SO Line Number"; Integer)
+        field(23; "SO Number"; code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70124; "Item Number"; Code[20])//for batch posting
+        field(24; "SO Line Number"; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(25; "Item Number"; Code[20])//for batch posting
         {
             DataClassification = ToBeClassified;
             TableRelation = Item where(Blocked = const(false));
         }
-        field(70125; "Location Code"; Code[50])//for batch posting
+        field(26; "Location Code"; Code[50])//for batch posting
         {
             DataClassification = ToBeClassified;
             TableRelation = Location.Code where("Use As In-Transit" = const(false));
         }
-        field(70126; "Batch Number"; Code[50])//for batch posting
+        field(27; "Batch Number"; Code[50])//for batch posting
         {
             DataClassification = ToBeClassified;
         }
-        field(70127; "VO Number"; Code[50])
+        field(28; "VO Number"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70128; "Old Cost"; decimal)
+        field(29; "Old Cost"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70129; "New Cost"; decimal)
+        field(30; "New Cost"; decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70130; "Truck WayBill ID"; Code[20])
+        field(31; "Truck WayBill ID"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
-        field(70131; "Truck Details ID"; Code[50])
+        field(32; "Truck Details ID"; Code[50])
         {
             DataClassification = ToBeClassified;
             //     TableRelation = "Container Details";
         }
-        field(70132; "Project No."; Code[50])//added on 27/03/2025
+        field(33; "Project No."; Code[50])//added on 27/03/2025
         {
             DataClassification = ToBeClassified;
         }
-        field(70133; "Project planning Line No."; Integer)//added on 27/03/2025
+        field(34; "Project planning Line No."; Integer)//added on 27/03/2025
         {
             DataClassification = ToBeClassified;
         }

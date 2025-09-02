@@ -5,12 +5,12 @@ table 70110 "Transitory Reference"
     fields
     {
         // Transitory Reference Field (Primary Key)
-        field(70100; "Transitory Reference"; Code[20])
+        field(1; "Transitory Reference"; Code[20])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70101; "PO #"; Code[20])
+        field(2; "PO #"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Purchase Header"."No." WHERE("Document Type" = const(Order));
@@ -34,7 +34,7 @@ table 70110 "Transitory Reference"
             end;
         }
 
-        field(70102; "Item #"; Code[20])
+        field(3; "Item #"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = IF ("PO #" = filter('<>''''')) "Purchase Line"."No." where("Document Type" = const(Order), type = const(item), "Document No." = field("PO #")) ELSE
@@ -42,39 +42,39 @@ table 70110 "Transitory Reference"
             ValidateTableRelation = false;
         }
 
-        field(70103; "QTY"; Decimal)
+        field(4; "QTY"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70104; "Unit Price"; Decimal)
+        field(5; "Unit Price"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70105; "Total Value"; Decimal)
+        field(6; "Total Value"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70106; "Supplier Claim Reference"; Code[50])
+        field(7; "Supplier Claim Reference"; Code[50])
         {
             DataClassification = ToBeClassified;
         }
 
-        field(70107; "Supplier"; Code[50])
+        field(8; "Supplier"; Code[50])
         {
             DataClassification = ToBeClassified;
             tablerelation = Vendor;
         }
 
-        field(70108; "Status"; Option)
+        field(9; "Status"; Option)
         {
             OptionCaption = 'Open,Accepted,Rejected';
             OptionMembers = Open,Accepted,Rejected;
             DataClassification = ToBeClassified;
         }
-        field(70109; "No. Series"; Code[20])
+        field(10; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             Editable = false;
