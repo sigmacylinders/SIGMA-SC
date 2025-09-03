@@ -17,7 +17,7 @@ page 70135 "Cargo Booking Card"
             }
             group("Cargo Summary")
             {
-
+                Visible = Rec.Booking;
                 group("1. Cargo Summary")
                 {
 

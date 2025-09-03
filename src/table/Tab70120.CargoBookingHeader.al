@@ -50,6 +50,10 @@ table 70120 "Cargo Booking Header"
 
 
         }
+        field(25; "Booking"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys
@@ -65,22 +69,22 @@ table 70120 "Cargo Booking Header"
         NoSeries: Codeunit "No. Series";
         NoSeriesCode: Code[20];
         IsHandled: Boolean;
-        GLSetup: Record "General Ledger Setup";
+
         // NoSeriesManagement: Codeunit NoSeriesManagement; // Removed as per deprecation notice
         "BL": Record "BL Details";
+        purchasesetup: Record "Purchases & Payables Setup";
     begin
         if "Booking No." = '' then begin
-            GLSetup.Get();
-            GLSetup.TestField("BL No. Series");
+            purchasesetup.Get();
+            purchasesetup.TestField("Booing No.");
 
-            if NoSeries.AreRelated(GLSetup."BL No. Series", xRec."No. Series") then
+            if NoSeries.AreRelated(purchasesetup."Booing No.", xRec."No. Series") then
                 Rec."No. Series" := xRec."No. Series"
             else
-                Rec."No. Series" := GLSetup."BL No. Series";
+                Rec."No. Series" := purchasesetup."Booing No.";
 
             Rec."Booking No." := NoSeries.GetNextNo(Rec."No. Series");
 
-            //   end;
         end;
         Rec."Prepared By" := USERID;
         Rec."Booking Date" := TODAY;

@@ -166,13 +166,14 @@ page 70134 "Logistics Platform"
                 trigger RequestQuotationClicked()
                 begin
                     Message('Quotation requested.');
+                    CreateCargoBooking(false);
                     // Add logic to process selected POs
                 end;
 
                 trigger PlaceBookingClicked()
                 begin
                     Message('Booking placed.');
-                    CreateCargoBooking();
+                    CreateCargoBooking(true);
                     // Add logic to book selected POs
                 end;
             }
@@ -248,7 +249,7 @@ page 70134 "Logistics Platform"
         CurrPage.UPDATE(false); // false = no positioning loss
     end;
 
-    procedure CreateCargoBooking()
+    procedure CreateCargoBooking(Booking: Boolean)
     var
         BookingHeader: Record "Cargo Booking Header";
         CargoBookingCard: Page "Cargo Booking Card";
@@ -271,6 +272,7 @@ page 70134 "Logistics Platform"
         CurrPage.SetSelectionFilter(TempSelected);
         if TempSelected.FindSet() then
             repeat
+                TempSelected.CalcFields("Packed Gross Weight", CBM, "Packed Volumetric Weight");
                 IF TempSelected."Shipping By" = TempSelected."Shipping By"::Sea THEN
                     BookingHeader."Mode" := BookingHeader."Mode"::Sea;
                 IF TempSelected."Shipping By" = TempSelected."Shipping By"::InLand THEN
@@ -291,6 +293,8 @@ page 70134 "Logistics Platform"
         BookingHeader."Volumetric Weight" := TVweight;
         // BookingHeader."Chargeable Weight" := TCweight;
         BookingHeader."Total CBM" := TCBM;
+        if Booking then
+            BookingHeader.Booking := true;
         BookingHeader.Modify();
         // Open Cargo Booking Card
 
@@ -303,7 +307,7 @@ page 70134 "Logistics Platform"
         BookingLine: Record "Cargo Booking Line";
 
     begin
-
+        TempSelected.CalcFields("Packed Gross Weight", CBM, "Packed Height", "Packed Length", "Packed Width");
         BookingLine.Init();
         BookingLine."Booking No." := "Booking No."; // Set the Booking
         BookingLine."PO No." := TempSelected."Document No.";
