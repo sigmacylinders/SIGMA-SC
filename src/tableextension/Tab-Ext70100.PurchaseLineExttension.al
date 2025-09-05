@@ -343,7 +343,11 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             FieldClass = FlowField;
             CalcFormula = lookup("BL Details"."Port of Discharge" where("BL ID" = field("BL/AWB ID")));
         }
-
+        field(70132; "Shipment Delivery Status"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Early","On Time","Delayed";
+        }
 
 
         /* modify("No.")

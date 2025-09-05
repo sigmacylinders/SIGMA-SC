@@ -103,6 +103,11 @@ tableextension 70102 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
         {
             DataClassification = ToBeClassified;
         }
+        field(70132; "Shipment Delivery Status"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Early","On Time","Delayed";
+        }
     }
 
     keys

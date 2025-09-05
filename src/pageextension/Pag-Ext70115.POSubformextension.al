@@ -52,6 +52,13 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Final ETAW field.', Comment = '%';
             }
+            field("Shipment Delivery Status"; Rec."Shipment Delivery Status")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Shipment Delivery Status field.', Comment = '%';
+            }
+
+
             field(ATA; Rec.ATA)
             {
                 ApplicationArea = All;
@@ -310,6 +317,9 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
                                     PurchaseOrderLine.Validate("FTAW", ContainerDetails."FTAW");
                                     PurchaseOrderLine.Validate("ATA", ContainerDetails."ATA");
                                     PurchaseOrderLine.Validate("FTR", ContainerDetails."FTR");
+
+
+
                                 end;
 
                                 Clear(AWBDetails);//case AWB
@@ -333,6 +343,13 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
                                     PurchaseOrderLine.Validate("ATA", TruckDetails."ATA");
                                     PurchaseOrderLine.Validate("FTR", TruckDetails."FTR");
                                 end;
+                                //SC.AI 04/09/2025
+                                IF GetDifferenceInDays(PurchaseOrderLine.ETR, PurchaseOrderLine.FTR) > 7 then
+                                    PurchaseOrderLine."Shipment Delivery Status" := PurchaseOrderLine."Shipment Delivery Status"::Delayed;
+                                if (GetDifferenceInDays(PurchaseOrderLine.ETR, PurchaseOrderLine.FTR) <= 7) AND (GetDifferenceInDays(PurchaseOrderLine.ETR, PurchaseOrderLine.FTR) >= 0) then
+                                    PurchaseOrderLine."Shipment Delivery Status" := PurchaseOrderLine."Shipment Delivery Status"::"On Time";
+                                if (GetDifferenceInDays(PurchaseOrderLine.ETR, PurchaseOrderLine.FTR) < 0) then
+                                    PurchaseOrderLine."Shipment Delivery Status" := PurchaseOrderLine."Shipment Delivery Status"::Early;
 
                                 PurchaseOrderLine.Modify();
                             until PurchaseOrderLine.Next() = 0;
@@ -454,7 +471,12 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
 
     end;
 
-
+    local procedure GetDifferenceInDays(Date1: Date; Date2: Date): Integer
+    begin
+        if (Date1 = 0D) or (Date2 = 0D) then
+            exit(0);
+        exit(Date2 - Date1);
+    end;
 
     var
         myInt: Integer;

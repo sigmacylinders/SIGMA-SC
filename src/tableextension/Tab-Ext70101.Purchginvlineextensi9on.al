@@ -100,6 +100,11 @@ tableextension 70101 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(70132; "Shipment Delivery Status"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Early","On Time","Delayed";
+        }
     }
 
     keys

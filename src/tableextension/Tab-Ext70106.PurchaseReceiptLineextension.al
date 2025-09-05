@@ -31,7 +31,6 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         field(70106; "FTR"; Date)
         {
             Caption = 'FTR';
-
         }
         field(70107; "FTD"; Date)
         {
@@ -53,36 +52,60 @@ tableextension 70106 "PurchaseReceiptLine extension" extends "Purch. Rcpt. Line"
         {
             DataClassification = ToBeClassified;
         }
-        field(70112; "Port of Loading"; Code[50])
+
+        field(70112; "Truck WayBill ID"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70113; "Truck Details ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(70114; "Truck Details Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+
+        field(70115; "Shipping By"; Option)//added on 27/01/2025
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ",Sea,Air,InLand;
+        }
+        field(70116; "Port of Loading"; Code[50])
         {
             FieldClass = FlowField;
             CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
         }
-        field(70113; "Quantity to Split"; Decimal)
+        field(70117; "Quantity to Split"; Decimal)
         {
             DataClassification = ToBeClassified;
             BlankZero = true;
         }
-        field(70114; "Remaining Quantity to Split"; Decimal)
+        field(70118; "Remaining Quantity to Split"; Decimal)
         {
             DataClassification = ToBeClassified;
             BlankZero = true;
         }
-        field(70115; "Line is Splitted"; Boolean)
+        field(70119; "Line is Splitted"; Boolean)
         {
             DataClassification = ToBeClassified;
         }
-        field(70116; "Splitted Line No."; Text[50])
+        field(70120; "Splitted Line No."; Text[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(70117; "Original Quantity"; Decimal)
+        field(70121; "Original Quantity"; Decimal)
         {
             DataClassification = ToBeClassified;
         }
-        field(70118; "Original Line No."; Integer)
+        field(70122; "Original Line No."; Integer)
         {
             DataClassification = ToBeClassified;
+        }
+        field(70132; "Shipment Delivery Status"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Early","On Time","Delayed";
         }
     }
 
