@@ -41,8 +41,8 @@ page 70135 "Cargo Booking Card"
                 group("2. Shipping Instructions")
                 {
                     Caption = '2. Shipping Instructions';
-                    field("Shipper"; Rec."Shipper") { }
-                    field("Consignee"; Rec."Consignee") { }
+                    field("Shipper"; Rec."Shipper") { ShowMandatory = true; }
+                    field("Consignee"; Rec."Consignee") { ShowMandatory = true; }
                     field("Notify Party"; Rec."Notify Party") { }
                     field("Incoterms"; Rec."Incoterms") { }
                     field("Freight Terms"; Rec."Freight Terms") { }
@@ -71,10 +71,50 @@ page 70135 "Cargo Booking Card"
 
                 group("4. Confirmation")
                 {
-                    field("Selected Vendor"; Rec."Selected Vendor") { }
-                    field("Booking Reference No."; Rec."Booking Reference No.") { }
+                    group("Quote Vendors")
+                    {
+                        Caption = 'Quote Vendors (Select up to 5)';
+                        InstructionalText = 'Select up to 5 vendors to send the quotation request to. Once you submit the booking, you will choose one vendor from the quotes received.';
+                        Visible = NOT Rec.Booking;
+                        field("Select Vendor 1"; Rec."Select Vendor 1")
+                        {
+                            ToolTip = 'Specifies the value of the Select Vendor 1 field.', Comment = '%';
+
+                            ShowMandatory = true;
+                        }
+                        field("Select Vendor 2"; Rec."Select Vendor 2")
+                        {
+                            ToolTip = 'Specifies the value of the Select Vendor 2 field.', Comment = '%';
+
+                        }
+                        field("Select Vendor 3"; Rec."Select Vendor 3")
+                        {
+                            ToolTip = 'Specifies the value of the Select Vendor 3 field.', Comment = '%';
+
+                        }
+                        field("Select Vendor 4"; Rec."Select Vendor 4")
+                        {
+                            ToolTip = 'Specifies the value of the Select Vendor 4 field.', Comment = '%';
+
+                        }
+                        field("Select Vendor 5"; Rec."Select Vendor 5")
+                        {
+                            ToolTip = 'Specifies the value of the Select Vendor 5 field.', Comment = '%';
+
+                        }
+                    }
+                    group(BookignDetails)
+                    {
+                        Caption = 'Booking Details';
+                        Visible = Rec.Booking;
+                        field("Selected Vendor"; Rec."Selected Vendor") { showMandatory = true; }
+                        field("Booking Reference No."; Rec."Booking Reference No.") { }
+                        field("Booking Date"; Rec."Booking Date") { }
+
+                    }
+
                     field("Prepared By"; Rec."Prepared By") { }
-                    field("Booking Date"; Rec."Booking Date") { }
+
                 }
             }
         }
@@ -100,12 +140,23 @@ page 70135 "Cargo Booking Card"
                 ApplicationArea = All;
                 Caption = 'Submit Booking';
                 Image = SendTo;
+                Visible = Rec.Booking;
                 trigger OnAction()
                 begin
                     Message('Booking submitted.');
                 end;
             }
+            action("Forward Quotation")
+            {
+                ApplicationArea = All;
+                Caption = 'Forward Quotation';
+                Image = Email;
+                Visible = not Rec.Booking;
+                trigger OnAction()
+                begin
 
+                end;
+            }
             action(CancelBooking)
             {
                 ApplicationArea = All;

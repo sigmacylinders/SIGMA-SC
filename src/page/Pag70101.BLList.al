@@ -20,6 +20,7 @@ page 70101 "BL List"
                 field("BL Number"; Rec."BL Number")
                 {
                     ToolTip = 'Specifies the value of the BL Number field.', Comment = '%';
+                    ShowMandatory = true;
                 }
                 field(Liner; Rec.Liner)
                 {

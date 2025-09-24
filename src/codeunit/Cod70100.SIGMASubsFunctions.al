@@ -218,13 +218,13 @@ codeunit 70100 "SIGMA Subs & Functions"
 
             DATABASE::"BL Details":
                 begin
-                    FieldRef := RecRef.Field(25);
+                    FieldRef := RecRef.Field(22);
                     RecNo := FieldRef.Value;
                     DocumentAttachment.Validate("No.", RecNo);
                 end;
             DATABASE::"AWB Details":
                 begin
-                    FieldRef := RecRef.Field(25);
+                    FieldRef := RecRef.Field(27);
                     RecNo := FieldRef.Value;
                     DocumentAttachment.Validate("No.", RecNo);
                 end;
@@ -290,7 +290,7 @@ codeunit 70100 "SIGMA Subs & Functions"
                    end;*/
             DATABASE::"BL Details":
                 begin
-                    FieldRef := RecRef.Field(25);
+                    FieldRef := RecRef.Field(22);
                     RecNo := FieldRef.Value;
                     DocumentAttachment.SetRange("No.", RecNo);
 
@@ -302,7 +302,7 @@ codeunit 70100 "SIGMA Subs & Functions"
                 end;
             DATABASE::"AWB Details":
                 begin
-                    FieldRef := RecRef.Field(25);
+                    FieldRef := RecRef.Field(27);
                     RecNo := FieldRef.Value;
                     DocumentAttachment.SetRange("No.", RecNo);
 
@@ -457,18 +457,17 @@ codeunit 70100 "SIGMA Subs & Functions"
         I: Integer;
     begin
         // IF Rec."Document Type" = Rec."Document Type"::Order then begin
-        AttachmentID[1] := 'Agent Invoice';
+        AttachmentID[1] := 'Commercial Invoice';
         AttachmentID[2] := 'Duty Receipts';
         AttachmentID[3] := 'Bill of Lading';
         // AttachmentID[4] := 'AWB "in Case of Air Shipment"';
-        AttachmentID[4] := 'Shipping Line invoice';
-        AttachmentID[5] := 'Sasso';
-        AttachmentID[6] := 'Saber Fees';
-        AttachmentID[7] := 'Supplier Invoice';
-        AttachmentID[8] := 'Packing List';
+        AttachmentID[4] := 'Freight Invoice';
+        AttachmentID[5] := 'Packing List';
+        AttachmentID[6] := 'Certificate ';
+        AttachmentID[7] := 'Insurance';
         LastDocumentAttchamentID := GETLastDocumentAttchamentIDBL(Rec);
 
-        for I := 1 to 8 do begin
+        for I := 1 to 7 do begin
             DocumentAttchament.Init();
             DocumentAttchament.Validate("Table ID", Database::"BL Details");
             DocumentAttchament.Validate("No.", Rec."BL ID");

@@ -20,6 +20,7 @@ page 70104 "AWB List"
                 field("AWB Number"; Rec."AWB Number")
                 {
                     ToolTip = 'Specifies the value of the AWB Number field.', Comment = '%';
+                    ShowMandatory = true;
                 }
                 field(Airline; Rec.Airline)
                 {

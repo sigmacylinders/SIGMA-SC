@@ -54,6 +54,31 @@ table 70120 "Cargo Booking Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(26; "Select Vendor 1"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor;
+        }
+        field(27; "Select Vendor 2"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor;
+        }
+        field(28; "Select Vendor 3"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor;
+        }
+        field(29; "Select Vendor 4"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor;
+        }
+        field(30; "Select Vendor 5"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = Vendor;
+        }
     }
 
     keys

@@ -16,6 +16,7 @@ page 70124 "Truck WayBill Card"
                 }
                 field("Truck WayBill"; Rec."Truck WayBill")
                 {
+                    ShowMandatory = true;
                 }
                 field("Line"; Rec."Line")
                 {
