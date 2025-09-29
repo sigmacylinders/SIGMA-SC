@@ -796,12 +796,12 @@ tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
             PurchaseLine.Validate(Quantity, PurchaseLine.Quantity - Rec."Quantity to Split");
             PurchaseLine.Validate("Direct Unit Cost");
             PurchaseLine."Quantity to Split" := 0;
-            //AN 03/14/25 +
-            PurchaseLine."ETA" := 0D;
-            PurchaseLine."ETAW" := 0D;
-            PurchaseLine."ETD" := 0D;
-            PurchaseLine."ETR" := 0D;
-            //AN 03/14/25 -
+            // //AI 03/14/25 +
+            // PurchaseLine."ETA" := 0D;
+            // PurchaseLine."ETAW" := 0D;
+            // PurchaseLine."ETD" := 0D;
+            // PurchaseLine."ETR" := 0D;
+            // //AI 03/14/25 -
             //  PurchaseLine."Remaining Quantity Shipped" := PurchaseLine."Original Quantity" - PurchaseLine2."Quantity Shipped";
             PurchaseLine."Line is Splitted" := true;
             PurchaseLine."Splitted Line No." := IncStr(PurchaseLine."Splitted Line No.");
