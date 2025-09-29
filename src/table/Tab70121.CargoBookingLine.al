@@ -23,7 +23,7 @@ table 70121 "Cargo Booking Line"
         field(8; "Weight (kg)"; Decimal) { }
         field(9; "CBM"; Decimal) { }
         field(10; "Dimensions"; Text[50]) { }
-        field(11; "HS Code / Description"; Text[100]) { }
+        field(11; "Description"; Text[100]) { }
     }
 
     keys

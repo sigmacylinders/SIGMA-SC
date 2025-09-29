@@ -64,6 +64,7 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
                             PurchaseSetup.Get();
                             Rec.SyncPackedWidthToAttribute(PurchaseSetup."Item Attr Packed Length", Rec."Packed Length", Rec);
                         end;
+                        Rec.CBM := GetCBM();//SC.AI 02/09/2025
                         CurrPage.Update(false);
                     end;
                 }
@@ -79,6 +80,7 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
                             PurchaseSetup.Get();
                             Rec.SyncPackedWidthToAttribute(PurchaseSetup."Item Attr Packed Height", Rec."Packed Height", Rec);
                         end;
+                        Rec.CBM := GetCBM();//SC.AI 02/09/2025
                         CurrPage.Update(false);
                     end;
                 }
@@ -94,6 +96,7 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
                             PurchaseSetup.Get();
                             Rec.SyncPackedWidthToAttribute(PurchaseSetup."Item Attr Packed Width", Rec."Packed Width", Rec);
                         end;
+                        Rec.CBM := GetCBM();//SC.AI 02/09/2025
                         CurrPage.Update(false);
                     end;
                 }
@@ -111,7 +114,7 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
     }
     trigger OnAfterGetRecord()
     begin
-        Rec.CBM := GetCBM();//SC.AI 02/09/2025
+        // Rec.CBM := GetCBM();//SC.AI 02/09/2025
         FillPackedFieldinItemCard(Rec);//SC.AI 02/09/2025
 
 
@@ -151,7 +154,7 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
         if GetAttributeValue(PurchaseSetup."Item Attr Packed Height", PackedHeight) and
            GetAttributeValue(PurchaseSetup."Item Attr Packed Width", PackedWidth) and
            GetAttributeValue(PurchaseSetup."Item Attr Packed Length", PackedLength) then begin
-            exit(PackedHeight * PackedWidth * PackedLength); // Optional rounding
+            exit((PackedHeight / 100 * PackedWidth / 100 * PackedLength / 100)); // Optional rounding
         end;
 
         exit(0);

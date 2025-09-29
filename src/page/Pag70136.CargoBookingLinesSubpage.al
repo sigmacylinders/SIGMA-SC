@@ -19,7 +19,7 @@ page 70136 "Cargo Booking Lines Subpage"
                 field("Weight (kg)"; Rec."Weight (kg)") { }
                 field("CBM"; Rec.CBM) { }
                 field("Dimensions"; Rec.Dimensions) { }
-                field("HS Code / Description"; Rec."HS Code / Description") { }
+                field(Description; Rec.Description) { }
             }
 
         }

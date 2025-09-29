@@ -100,17 +100,32 @@ table 70120 "Cargo Booking Header"
         purchasesetup: Record "Purchases & Payables Setup";
     begin
         if "Booking No." = '' then begin
-            purchasesetup.Get();
-            purchasesetup.TestField("Booing No.");
+            IF Rec.Booking then begin
+                purchasesetup.Get();
+                purchasesetup.TestField("Booing No.");
 
-            if NoSeries.AreRelated(purchasesetup."Booing No.", xRec."No. Series") then
-                Rec."No. Series" := xRec."No. Series"
-            else
-                Rec."No. Series" := purchasesetup."Booing No.";
+                if NoSeries.AreRelated(purchasesetup."Booing No.", xRec."No. Series") then
+                    Rec."No. Series" := xRec."No. Series"
+                else
+                    Rec."No. Series" := purchasesetup."Booing No.";
 
-            Rec."Booking No." := NoSeries.GetNextNo(Rec."No. Series");
+                Rec."Booking No." := NoSeries.GetNextNo(Rec."No. Series");
+
+            end else begin
+                purchasesetup.Get();
+                purchasesetup.TestField("Quote No.");
+
+                if NoSeries.AreRelated(purchasesetup."Quote No.", xRec."No. Series") then
+                    Rec."No. Series" := xRec."No. Series"
+                else
+                    Rec."No. Series" := purchasesetup."Quote No.";
+
+                Rec."Booking No." := NoSeries.GetNextNo(Rec."No. Series");
+            end;
 
         end;
+
+
         Rec."Prepared By" := USERID;
         Rec."Booking Date" := TODAY;
         Rec."Booking Reference No." := Rec."Booking No.";

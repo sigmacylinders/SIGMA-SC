@@ -1,10 +1,11 @@
-page 70135 "Cargo Booking Card"
+page 70140 "Cargo Quotation Card"
 {
     PageType = Card;
     SourceTable = "Cargo Booking Header";
     ApplicationArea = All;
 
     UsageCategory = Administration;
+    Caption = 'Cargo Quotation';
     //SC.AI 02/09/2025
     layout
     {

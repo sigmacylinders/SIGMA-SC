@@ -155,6 +155,19 @@ page 70134 "Logistics Platform"
                             Style = Strong;
                         }
                     }
+                    group("Total Quantities")
+                    {
+                        Caption = 'Total Quantities';
+                        field("Total Quantities2"; TotalQuantities)
+                        {
+                            ApplicationArea = All;
+                            AutoFormatType = 1;
+                            ShowCaption = false;
+                            Editable = false;
+                            ToolTip = 'Specifies the number of lines in the current journal batch.';
+                            Style = Strong;
+                        }
+                    }
 
                 }
             }
@@ -189,27 +202,27 @@ page 70134 "Logistics Platform"
     {
         area(Processing)
         {
-            action(Sea)
-            {
-                Caption = 'Sea';
-                Image = Shipment;
-                trigger OnAction()
-                begin
-                    Rec.SetRange("Shipping By", Rec."Shipping By"::Sea);
-                    CurrPage.UPDATE(false);
-                end;
-            }
+            // action(Sea)
+            // {
+            //     Caption = 'Sea';
+            //     Image = Shipment;
+            //     trigger OnAction()
+            //     begin
+            //         Rec.SetRange("Shipping By", Rec."Shipping By"::Sea);
+            //         CurrPage.UPDATE(false);
+            //     end;
+            // }
 
-            action(Truck)
-            {
-                Caption = 'Truck';
-                Image = Shipment;
-                trigger OnAction()
-                begin
-                    Rec.SetRange("Shipping By", Rec."Shipping By"::InLand);
-                    CurrPage.UPDATE(false);
-                end;
-            }
+            // action(Truck)
+            // {
+            //     Caption = 'Truck';
+            //     Image = Shipment;
+            //     trigger OnAction()
+            //     begin
+            //         Rec.SetRange("Shipping By", Rec."Shipping By"::InLand);
+            //         CurrPage.UPDATE(false);
+            //     end;
+            // }
         }
 
     }
@@ -225,6 +238,7 @@ page 70134 "Logistics Platform"
         SelectedItems := 0;
         totalWeight := 0;
         TotalCBM := 0;
+        TotalQuantities := 0;
 
         CurrPage.SetSelectionFilter(TempSelected);
 
@@ -234,6 +248,7 @@ page 70134 "Logistics Platform"
                 SelectedItems += 1;
                 totalWeight += TempSelected."Packed Gross Weight";
                 TotalCBM += TempSelected.CBM;
+                TotalQuantities += TempSelected.Quantity;
             until TempSelected.Next() = 0;
 
 
@@ -268,6 +283,9 @@ page 70134 "Logistics Platform"
         TCBM := 0;
         // Create Booking Header
         BookingHeader.Init();
+        BookingHeader.Booking := false;
+        if Booking then
+            BookingHeader.Booking := true;
         BookingHeader.Insert(true);
         CurrPage.SetSelectionFilter(TempSelected);
         if TempSelected.FindSet() then
@@ -293,12 +311,12 @@ page 70134 "Logistics Platform"
         BookingHeader."Volumetric Weight" := TVweight;
         // BookingHeader."Chargeable Weight" := TCweight;
         BookingHeader."Total CBM" := TCBM;
-        if Booking then
-            BookingHeader.Booking := true;
+
         BookingHeader.Modify();
         // Open Cargo Booking Card
-
-        page.Run(page::"Cargo Booking Card", BookingHeader);
+        IF BookingHeader.Booking THEN
+            page.Run(page::"Cargo Booking Card", BookingHeader) else
+            page.Run(page::"Cargo Quotation Card", BookingHeader);
 
     end;
 
@@ -318,7 +336,7 @@ page 70134 "Logistics Platform"
         BookingLine."Weight (kg)" := TempSelected."Packed Gross Weight";
         BookingLine.CBM := TempSelected.CBM;
         BookingLine.Dimensions := Format(TempSelected."Packed Length") + 'L x ' + Format(TempSelected."Packed Width") + 'W x ' + Format(TempSelected."Packed Height") + 'H';
-        BookingLine."HS Code / Description" := TempSelected.Description;
+        BookingLine."Description" := TempSelected.Description;
         BookingLine.Insert(true);
 
     end;
@@ -328,4 +346,5 @@ page 70134 "Logistics Platform"
         totalWeight: Decimal;
         TotalCBM: Decimal;
         TotalPackages: Decimal;
+        TotalQuantities: Decimal;
 }

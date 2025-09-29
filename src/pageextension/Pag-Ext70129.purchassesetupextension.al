@@ -57,6 +57,11 @@ pageextension 70129 "purchasse setup extension" extends "Purchases & Payables Se
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Booing No. field.', Comment = '%';
                 }
+                field("Quote No."; Rec."Quote No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Quote No. field.', Comment = '%';
+                }
             }
         }
     }

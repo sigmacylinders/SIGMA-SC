@@ -492,18 +492,17 @@ codeunit 70100 "SIGMA Subs & Functions"
         I: Integer;
     begin
         // IF Rec."Document Type" = Rec."Document Type"::Order then begin
-        AttachmentID[1] := 'Agent Invoice';
+        AttachmentID[1] := 'Commercial Invoice';
         AttachmentID[2] := 'Duty Receipts';
         AttachmentID[3] := 'AWB';
         // AttachmentID[4] := 'AWB "in Case of Air Shipment"';
-        AttachmentID[4] := 'Shipping Line invoice';
-        AttachmentID[5] := 'Sasso';
-        AttachmentID[6] := 'Saber Fees';
-        AttachmentID[7] := 'Supplier Invoice';
-        AttachmentID[8] := 'Packing List';
+        AttachmentID[4] := 'Freight Invoice';
+        AttachmentID[5] := 'Packing List';
+        AttachmentID[6] := 'Certificate ';
+        AttachmentID[7] := 'Insurance';
         LastDocumentAttchamentID := GETLastDocumentAttchamentIDAWB(Rec);
 
-        for I := 1 to 8 do begin
+        for I := 1 to 7 do begin
             DocumentAttchament.Init();
             DocumentAttchament.Validate("Table ID", Database::"AWB Details");
             DocumentAttchament.Validate("No.", Rec."AWB ID");
@@ -541,10 +540,18 @@ codeunit 70100 "SIGMA Subs & Functions"
         I: Integer;
     begin
 
-        AttachmentID[1] := 'Truck WayBill';
+
+        AttachmentID[1] := 'Commercial Invoice';
+        AttachmentID[2] := 'Duty Receipts';
+        AttachmentID[3] := 'Truck WayBill';
+        // AttachmentID[4] := 'AWB "in Case of Air Shipment"';
+        AttachmentID[4] := 'Freight Invoice';
+        AttachmentID[5] := 'Packing List';
+        AttachmentID[6] := 'Certificate ';
+        AttachmentID[7] := 'Insurance';
         LastDocumentAttchamentID := GETLastDocumentAttchamentIDTRuck(Rec);
 
-        for I := 1 to 1 do begin
+        for I := 1 to 7 do begin
             DocumentAttchament.Init();
             DocumentAttchament.Validate("Table ID", Database::"Truck WayBill");
             DocumentAttchament.Validate("No.", Rec."Truck WayBill ID");

@@ -57,6 +57,11 @@ tableextension 70114 "Purchase setup extension" extends "Purchases & Payables Se
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
+        field(70109; "Quote No."; Code[10])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "No. Series";
+        }
 
     }
 
