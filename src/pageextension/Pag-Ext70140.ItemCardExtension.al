@@ -128,13 +128,24 @@ pageextension 70140 "Item Card Extension" extends "Item Card"
         PurchaseSetup: Record "Purchases & Payables Setup";
     begin
         PurchaseSetup.Get();
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Length", Item."Packed Length") then;
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Width", Item."Packed Width") then;
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Height", Item."Packed Height")
-        then;
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Net W", Item."Packed Net Weight") then;
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Gross W", Item."Packed Gross Weight") then;
-        IF GetAttributeValue(PurchaseSetup."Item Attr Packed Volumetric W", Item."Packed Volumetric Weight") then;
+        IF PurchaseSetup."Item Attr Packed Length" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Length", Item."Packed Length") then;
+
+        IF PurchaseSetup."Item Attr Packed Width" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Width", Item."Packed Width") then;
+
+        IF PurchaseSetup."Item Attr Packed Height" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Height", Item."Packed Height")
+            then;
+
+        IF PurchaseSetup."Item Attr Packed Net W" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Net W", Item."Packed Net Weight") then;
+
+        IF PurchaseSetup."Item Attr Packed Gross W" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Gross W", Item."Packed Gross Weight") then;
+
+        IF PurchaseSetup."Item Attr Packed Volumetric W" <> '' then
+            IF GetAttributeValue(PurchaseSetup."Item Attr Packed Volumetric W", Item."Packed Volumetric Weight") then;
 
     end;
 
