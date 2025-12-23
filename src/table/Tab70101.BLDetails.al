@@ -185,6 +185,17 @@ table 70101 "BL Details"
             Caption = 'Incoterm';
             DataClassification = ToBeClassified;
         }
+        field(34; "Trade"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ",Import,Export,Cross;
+        }
+        field(35; "Freight timelines"; Integer)
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = count(FreightsTimeline where("BL Number" = field("BL Number"), Type = const('event')));
+        }
 
 
 
@@ -213,12 +224,12 @@ table 70101 "BL Details"
     begin
         if "BL ID" = '' then begin
             GLSetup.Get();
-            GLSetup.TestField("BL No. Series");
+            GLSetup.TestField("BL ID Series");
 
-            if NoSeries.AreRelated(GLSetup."BL No. Series", xRec."No. Series") then
+            if NoSeries.AreRelated(GLSetup."BL ID Series", xRec."No. Series") then
                 Rec."No. Series" := xRec."No. Series"
             else
-                Rec."No. Series" := GLSetup."BL No. Series";
+                Rec."No. Series" := GLSetup."BL ID Series";
 
             Rec."BL ID" := NoSeries.GetNextNo(Rec."No. Series");
 

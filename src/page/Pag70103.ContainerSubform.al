@@ -125,6 +125,15 @@ page 70103 "Container Subform"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Final Transit Time field.', Comment = '%';
                 }
+                field("Current Status"; Rec."Current Status")
+                {
+                    ToolTip = 'Specifies the value of the Current Status field.', Comment = '%';
+                    StyleExpr = StyleExp;
+                }
+                field(Transhipment; Rec.Transhipment)
+                {
+                    ToolTip = 'Specifies the value of the Transhipment field.', Comment = '%';
+                }
             }
         }
     }
@@ -154,4 +163,17 @@ page 70103 "Container Subform"
          BLDetails.Modify(true);
 
      end;*/
+
+    trigger OnOpenPage()
+    var
+    begin
+        if Rec."Current Status" = 'DELAY' then
+            StyleExp := 'Attention'; // red+
+
+        StyleExp := '';
+    end;
+
+    var
+        StyleExp: Text;
+
 }

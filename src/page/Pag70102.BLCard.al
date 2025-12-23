@@ -16,6 +16,10 @@ page 70102 "BL Card"
                     ToolTip = 'Specifies the value of the BL Number field.', Comment = '%';
                     Enabled = false;
                 }
+                field(Trade; Rec.Trade)
+                {
+                    ToolTip = 'Specifies the value of the Trade field.', Comment = '%';
+                }
                 field("BL Number"; Rec."BL Number")
                 {
                     ToolTip = 'Specifies the value of the BL Number field.', Comment = '%';
@@ -25,12 +29,18 @@ page 70102 "BL Card"
                     trigger OnValidate()
                     var
                         BLDetails: Record "BL Details";
+                        APIIntegrationModduleBC: Codeunit "API Integration Moddule-BC";
                     begin
                         Clear(BLDetails);
                         BLDetails.SetRange("BL Number", REc."BL Number");
                         BLDetails.SetFilter("BL ID", '<> %1', Rec."BL ID");
                         IF BLDetails.FindFirst() then
                             Error('BL Number must be unique for each BL');
+
+
+                        APIIntegrationModduleBC.CheckifBLExists(Rec."BL Number");
+                        APIIntegrationModduleBC.sendmodduleshipmenttoBLCard(Rec."BL Number", Rec);
+
                     end;
                 }
                 field(Liner; Rec.Liner)
@@ -69,15 +79,15 @@ page 70102 "BL Card"
                 {
                     ToolTip = 'Specifies the value of the Port of Loading field.', Comment = '%';
                 }
-                field(Transshipment; Rec.Transshipment)
-                {
-                    ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
-                }
-                field("Transshipment Port"; Rec."Transshipment Port")
-                {
-                    Enabled = Rec.Transshipment = Rec.Transshipment::Yes;
-                    ToolTip = 'Specifies the value of the Transshipment Port field.', Comment = '%';
-                }
+                // field(Transshipment; Rec.Transshipment)
+                // {
+                //     ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
+                // }
+                // field("Transshipment Port"; Rec."Transshipment Port")
+                // {
+                //     Enabled = Rec.Transshipment = Rec.Transshipment::Yes;
+                //     ToolTip = 'Specifies the value of the Transshipment Port field.', Comment = '%';
+                // }
                 field("Port of Discharge"; Rec."Port of Discharge")
                 {
                     ToolTip = 'Specifies the value of the Port of Discharge field.', Comment = '%';
@@ -123,6 +133,10 @@ page 70102 "BL Card"
                 field("Duty Receipt sent to agent"; Rec."Duty Receipt sent to agent")
                 {
                     ToolTip = 'Specifies the value of the Duty Receipt sent to agent field.', Comment = '%';
+                }
+                field("Freight timelines"; Rec."Freight timelines")
+                {
+                    ToolTip = 'Specifies the value of the Freight timelines field.', Comment = '%';
                 }
                 // field("Container ID"; Rec."Container ID")
                 // {
@@ -199,6 +213,14 @@ page 70102 "BL Card"
                 SubPageLink = "PO Number" = field("Document No."), "PO Line Number" = field("Line No."), "BL/AWB ID" = field("BL/AWB ID"), "Container Number" = field("Container ID");
                 // "Document Type" = field("Document Type");
             }
+            part("Shipment Status"; "Shipment Status FactBox")
+            {
+                ApplicationArea = All;
+                Caption = 'Shipment Status';
+                //Provider = PurchLines;
+                //  SubPageLink = "BL ID" = field("BL Number");
+                // "Document Type" = field("Document Type");
+            }
         }
     }
 
@@ -223,6 +245,42 @@ page 70102 "BL Card"
     //     CurrPage.Container.Page.Update(true);
     // end;
 
+    trigger OnOpenPage()
     var
-        myInt: Integer;
+
+    BEGIN
+        InsertShipmentStatusNotifications(Rec."BL ID");
+        CurrPage."Shipment Status".Page.SetTempData(Shipmentstatusnotifications);
+    END;
+
+    procedure InsertShipmentStatusNotifications(BLID: code[20])
+    var
+        Container: Record "Container Details";
+        BLDetails: Record "BL Details";
+        NextID: Integer;
+    begin
+        NextID := 0;
+        Clear(BLDetails);
+        BLDetails.Get(BLID);
+
+        Clear(Container);
+        Container.SetRange("BL ID", BLID);
+        if Container.FindSet() then
+            repeat
+                NextID += 1;
+                Clear(Shipmentstatusnotifications);
+                Shipmentstatusnotifications.Init();
+                Shipmentstatusnotifications.ID := NextID;
+                Shipmentstatusnotifications."BL ID" := BLDetails."BL Number";
+                Shipmentstatusnotifications."Container ID" := Container."Container ID";
+                Shipmentstatusnotifications."Current Status" := Container."Current Status";
+                Shipmentstatusnotifications.Description := StrSubstNo('Shipment %1 is %2ED', Container."Container ID", Container."Current Status");
+                Shipmentstatusnotifications.Insert();
+            until Container.Next() = 0;
+
+    end;
+
+    var
+        Shipmentstatusnotifications: Record "Shipment Status Notifications";
+
 }

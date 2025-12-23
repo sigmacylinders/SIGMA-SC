@@ -1,5 +1,6 @@
 tableextension 70100 "Purchase Line Exttension" extends "Purchase Line"
 {
+
     fields
     {
         // Add changes to table fields here       

@@ -6,15 +6,11 @@ pageextension 70104 "General Ledger setup extens" extends "General Ledger Setup"
         addafter("Bank Account Nos.")
         {
 
-            field("LC No. Series"; Rec."LC No. Series")
+
+            field("BL ID Series"; Rec."BL ID Series")
             {
                 ApplicationArea = All;
-                ToolTip = 'Specifies the value of the LC No. Series field.', Comment = '%';
-            }
-            field("BL No. Series"; Rec."BL No. Series")
-            {
-                ApplicationArea = All;
-                ToolTip = 'Specifies the value of the BL No. Series field.', Comment = '%';
+                ToolTip = 'Specifies the value of the BL ID Series field.', Comment = '%';
             }
             field("SP ID No. Series"; Rec."SP ID No. Series")
             {

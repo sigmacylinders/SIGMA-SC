@@ -47,10 +47,10 @@ pageextension 70116 "Vendor List extension" extends "Vendor List"
         //AN 03/07/25
         addafter(Contact)
         {
-            field(Address; Rec.Address)
-            {
-                ApplicationArea = All;
-            }
+            // field(Address; Rec.Address)
+            // {
+            //     ApplicationArea = All;
+            // }
             field(Address2; Rec."Address 2")
             {
                 ApplicationArea = All;

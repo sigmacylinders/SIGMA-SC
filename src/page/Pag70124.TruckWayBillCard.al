@@ -156,7 +156,7 @@ page 70124 "Truck WayBill Card"
         NoSeriesCode: Code[20];
         IsHandled: Boolean;
         GLSetup: Record "General Ledger Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        // NoSeriesManagement: Codeunit NoSeriesManagement;
         "BL": Record "BL Details";
     begin
         if Rec."Truck WayBill ID" = '' then begin

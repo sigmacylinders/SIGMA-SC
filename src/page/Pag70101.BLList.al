@@ -15,7 +15,7 @@ page 70101 "BL List"
                 field("BL ID"; Rec."BL ID")
                 {
                     ToolTip = 'Specifies the value of the BL Number field.', Comment = '%';
-                    Enabled = false;
+                    //      Enabled = false;
                 }
                 field("BL Number"; Rec."BL Number")
                 {
@@ -54,10 +54,10 @@ page 70101 "BL List"
                 {
                     ToolTip = 'Specifies the value of the Port of Loading field.', Comment = '%';
                 }
-                field(Transshipment; Rec.Transshipment)
-                {
-                    ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
-                }
+                // field(Transshipment; Rec.Transshipment)
+                // {
+                //     ToolTip = 'Specifies the value of the Transshipment field.', Comment = '%';
+                // }
                 field("Port of Discharge"; Rec."Port of Discharge")
                 {
                     ToolTip = 'Specifies the value of the Port of Discharge field.', Comment = '%';
@@ -127,9 +127,39 @@ page 70101 "BL List"
 
     actions
     {
-        area(Processing)
+        area(Creation)
         {
+            action("API Integration Moddule-BC")
+            {
+                Promoted = true;
+                ApplicationArea = All;
+                trigger OnAction()
+                var
+                    APIIntegrationmodduleBC: Codeunit "API Integration Moddule-BC";
+                begin
+                    APIIntegrationmodduleBC.Run();
+                end;
+            }
+            action("API Integration Moddule-BC Freight timelines")
+            {
+                Promoted = true;
+                ApplicationArea = All;
+                trigger OnAction()
+                var
 
+                    APIIntegrationmodduleBC: Codeunit "API Integration Moddule-BC";
+                    Containers: Record "Container Details";
+                begin
+                    Clear(Containers);
+                    Containers.SetRange("BL ID", Rec."BL ID");
+                    IF Containers.FindSet() then
+                        repeat
+                            APIIntegrationmodduleBC.CreateRequestFreightstimeline(Containers);
+                        until Containers.Next() = 0;
+
+                end;
+            }
         }
+
     }
 }

@@ -1,5 +1,6 @@
 pageextension 70141 "Purchase lines page extension" extends "Purchase Lines"
 {
+    Editable = true;
     layout
     {
         // Add changes to page layout here

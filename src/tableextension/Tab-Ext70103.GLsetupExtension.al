@@ -4,12 +4,8 @@ tableextension 70103 "GL setup Extension" extends "General Ledger Setup"
     {
         // Add changes to table fields here
 
-        field(70100; "LC No. Series"; Code[20])
-        {
-            DataClassification = ToBeClassified;
-            TableRelation = "No. Series";
-        }
-        field(70101; "BL No. Series"; Code[20])
+
+        field(70101; "BL ID Series"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";

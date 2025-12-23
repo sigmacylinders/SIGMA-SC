@@ -267,36 +267,36 @@ pageextension 70115 "PO Subform e xtension" extends "Purchase Order Subform"
 
                         //AN 04/03/2025
                         //AWB
-                        Clear(AWBDetails);
-                        If AWBDetails.Get(BLAWBNumber) then begin
-                            DocumentAttachment.SetRange("No.", AWBDetails."AWB ID");
-                            DocumentAttachment.SetRange("Attachment ID", 'AWB');
-                            DocumentAttachment.SetRange("File Name", '');
-                            if DocumentAttachment.FindFirst() then begin
-                                Error('Please add AWB attachment first!');
-                            end;
-                        end;
-                        //BL List
-                        Clear(BLList);
-                        If BLList.Get(BLAWBNumber) then begin
-                            DocumentAttachment.SetRange("No.", BLList."BL ID");
-                            DocumentAttachment.SetRange("Attachment ID", 'Bill of Lading');
-                            DocumentAttachment.SetRange("File Name", '');
-                            if DocumentAttachment.FindFirst() then begin
-                                Error('Please add Bill of Lading attachment first!');
-                            end;
-                        end;
+                        /*  Clear(AWBDetails);
+                          If AWBDetails.Get(BLAWBNumber) then begin
+                              DocumentAttachment.SetRange("No.", AWBDetails."AWB ID");
+                              DocumentAttachment.SetRange("Attachment ID", 'AWB');
+                              DocumentAttachment.SetRange("File Name", '');
+                              if DocumentAttachment.FindFirst() then begin
+                                  Error('Please add AWB attachment first!');
+                              end;
+                          end;
+                          //BL List
+                          Clear(BLList);
+                          If BLList.Get(BLAWBNumber) then begin
+                              DocumentAttachment.SetRange("No.", BLList."BL ID");
+                              DocumentAttachment.SetRange("Attachment ID", 'Bill of Lading');
+                              DocumentAttachment.SetRange("File Name", '');
+                              if DocumentAttachment.FindFirst() then begin
+                                  Error('Please add Bill of Lading attachment first!');
+                              end;
+                          end;
 
-                        //TruckWayBill
-                        Clear(TruckList);
-                        If TruckList.Get(TruckWayBillID) then begin
-                            DocumentAttachment.SetRange("No.", TruckList."Truck WayBill ID");
-                            DocumentAttachment.SetRange("Attachment ID", 'Truck WayBill');
-                            DocumentAttachment.SetRange("File Name", '');
-                            if DocumentAttachment.FindFirst() then begin
-                                Error('Please add TruckWayBill attachment first!');
-                            end;
-                        end;
+                          //TruckWayBill
+                          Clear(TruckList);
+                          If TruckList.Get(TruckWayBillID) then begin
+                              DocumentAttachment.SetRange("No.", TruckList."Truck WayBill ID");
+                              DocumentAttachment.SetRange("Attachment ID", 'Truck WayBill');
+                              DocumentAttachment.SetRange("File Name", '');
+                              if DocumentAttachment.FindFirst() then begin
+                                  Error('Please add TruckWayBill attachment first!');
+                              end;
+                          end;*/
                         PurchaseOrderLinepage.SetSelectionFilter(PurchaseOrderLine);
                         if PurchaseOrderLine.FindSet() then
                             repeat

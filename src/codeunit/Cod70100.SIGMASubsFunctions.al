@@ -408,7 +408,7 @@ codeunit 70100 "SIGMA Subs & Functions"
                 DocumentAttchament.Validate("Document Type", DocumentAttchament."Document Type"::Order);
                 DocumentAttchament.Validate("Line No.", LastDocumentAttchamentID + I);
                 DocumentAttchament.Validate(ID, LastDocumentAttchamentID + I);
-                DocumentAttchament."Attachment ID" := AttachmentID[I];
+                DocumentAttchament."Attachment ID" := 'Proforma Invoice';
                 DocumentAttchament."to be removed" := true;
                 // DocumentAttchament.Validate("File Name", AttachmentID[I]);
                 DocumentAttchament.Insert();

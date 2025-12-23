@@ -304,6 +304,17 @@ table 70102 "Container Details"
         {
             DataClassification = ToBeClassified;
         }
+        field(25; "Current Status"; code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(26; "Transhipment"; Boolean)
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = exist(FreightsTimeline where("Container ID" = field("Container ID"), Transhipment = const(true)));
+        }
+
     }
 
     keys
