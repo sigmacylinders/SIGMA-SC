@@ -1,4 +1,4 @@
-// page 70113 "LC Card"
+// page 70213 "LC Card"
 // {
 //     PageType = Card;
 //     ApplicationArea = All;

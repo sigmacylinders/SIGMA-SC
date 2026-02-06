@@ -2,7 +2,7 @@
     "id": "d6509362-8039-47d1-9023-a627a460f969",
     "name": "SIGMA SC",
     "publisher": "RJ Group Publisher",
-    "version": "25.0.1.46",
+    "version": "25.0.1.52",
     "brief": "",
     "privacyStatement": "",
     "description": "",
@@ -17,8 +17,8 @@
    "application": "26.0.0.0",
     "idRanges": [
         {
-            "from": 70100,
-            "to": 70199
+            "from": 70200,
+            "to": 70299
         }
     ],
     "resourceExposurePolicy": {

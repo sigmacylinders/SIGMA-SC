@@ -1,4 +1,4 @@
-// table 70112 "Finance Details"
+// table 70212 "Finance Details"
 // //Created on 28/10/2024 with Nathalie
 
 
