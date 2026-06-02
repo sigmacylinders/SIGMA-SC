@@ -190,6 +190,27 @@ table 70201 "BL Details"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Import,Export,Cross;
         }
+        field(35; "Destination Company"; Text[30])
+        {
+            Caption = 'Destination Company';
+            DataClassification = ToBeClassified;
+            TableRelation = Company.Name;
+
+            trigger OnValidate()
+            var
+                CompanyRec: Record Company;
+                SourceCompanyTok: Label 'LOGISTICS', Locked = true;
+            begin
+                if Rec."Destination Company" = '' then
+                    exit;
+
+                if UpperCase(Rec."Destination Company") = UpperCase(SourceCompanyTok) then
+                    Error('Destination Company cannot be the source company %1.', SourceCompanyTok);
+
+                if not CompanyRec.Get(Rec."Destination Company") then
+                    Error('Company %1 does not exist.', Rec."Destination Company");
+            end;
+        }
 
 
 

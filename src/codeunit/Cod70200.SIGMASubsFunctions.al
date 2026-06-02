@@ -2107,6 +2107,26 @@ codeunit 70200 "SIGMA Subs & Functions"
 
                   end;*///Abdallah 19/08/2025
 
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purchases Warehouse Mgt.", 'OnAfterCreateRcptLineFromPurchLine', '', false, false)]
+    local procedure TransferFieldsFromPurchaseLine(var WarehouseReceiptLine: Record "Warehouse Receipt Line"; WarehouseReceiptHeader: Record "Warehouse Receipt Header"; PurchaseLine: Record "Purchase Line")
+    begin
+        WarehouseReceiptLine."Container ID" := PurchaseLine."Container ID";
+        WarehouseReceiptLine."BL ID" := PurchaseLine."BL/AWB ID";
+        WarehouseReceiptLine."BL Number" := PurchaseLine."BL Number";
+        WarehouseReceiptLine.Modify();
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Receipt", 'OnAfterInitPostedRcptLine', '', false, false)]
+    local procedure OnAfterInitPostedRcptLine(var WarehouseReceiptLine: Record "Warehouse Receipt Line"; var PostedWhseReceiptLine: Record "Posted Whse. Receipt Line")
+    begin
+        PostedWhseReceiptLine."Container ID" := WarehouseReceiptLine."Container ID";
+        PostedWhseReceiptLine."BL ID" := WarehouseReceiptLine."BL ID";
+        PostedWhseReceiptLine."BL Number" := WarehouseReceiptLine."BL Number";
+    end;
+
+
     var
         FilterText: Text;
         UOMMgt: Codeunit "Unit of Measure Management";

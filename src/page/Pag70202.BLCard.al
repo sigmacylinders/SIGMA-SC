@@ -149,6 +149,10 @@ page 70202 "BL Card"
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                     MultiLine = true;
                 }
+                field("Destination Company"; Rec."Destination Company")
+                {
+                    ToolTip = 'Specifies the destination company the BL should be transferred to.', Comment = '%';
+                }
 
 
             }
@@ -216,7 +220,24 @@ page 70202 "BL Card"
     {
         area(Processing)
         {
+            action(TransferToCompany)
+            {
+                ApplicationArea = All;
+                Caption = 'Transfer BL to Destination Company';
+                ToolTip = 'Transfers the current BL Details record from LOGISTICS to the selected Destination Company.';
+                Image = Company;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
 
+                trigger OnAction()
+                var
+                    BLTransferMgt: Codeunit "BL Transfer To Company";
+                begin
+                    BLTransferMgt.TransferBL(Rec);
+                end;
+            }
         }
     }
 

@@ -33,16 +33,15 @@ page 70232 "Logistics Platform"
                 {
                     ToolTip = 'Specifies the quantity of the purchase order line.';
                 }
+                field("Port of Loading"; Rec."Port of Loading")
+                {
+                    ToolTip = 'Specifies the value of the Port of Loading field.', Comment = '%';
+                }
+                field("Port of Discharge"; Rec."Port of Discharge")
+                {
+                    ToolTip = 'Specifies the value of the Port of Discharge field.', Comment = '%';
+                }
 
-                field("POL"; Rec."Port of Loading")
-                {
-                    ApplicationArea = All;
-                    Caption = 'POL';
-                }
-                field(POD; Rec.POD)
-                {
-                    ToolTip = 'Specifies the value of the POD field.', Comment = '%';
-                }
                 field("Packed Net Weight"; Rec."Packed Net Weight")
                 {
                     ToolTip = 'Specifies the value of the Packed Net Weight field.', Comment = '%';

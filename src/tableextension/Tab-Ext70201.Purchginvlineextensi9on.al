@@ -105,6 +105,10 @@ tableextension 70201 "Purchg inv line extensi9on" extends "Purch. Inv. Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ","Early","On Time","Delayed";
         }
+        field(70233; "BL Number"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

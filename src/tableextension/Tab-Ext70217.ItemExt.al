@@ -41,6 +41,10 @@ tableextension 70217 "ItemExt" extends Item
             Caption = 'CBM';
             Description = 'Cubic Meters';
         }
+        field(70207; "Arabic Description"; text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
 

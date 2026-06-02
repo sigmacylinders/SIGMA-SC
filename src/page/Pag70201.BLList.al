@@ -108,6 +108,10 @@ page 70201 "BL List"
                 {
                     ToolTip = 'Specifies the value of the Remarks field.', Comment = '%';
                 }
+                field("Destination Company"; Rec."Destination Company")
+                {
+                    ToolTip = 'Specifies the destination company the BL should be transferred to.', Comment = '%';
+                }
 
             }
         }

@@ -252,11 +252,11 @@ tableextension 70200 "Purchase Line Exttension" extends "Purchase Line"
             DataClassification = ToBeClassified;
             OptionMembers = " ",Sea,Air,InLand;
         }
-        field(70216; "Port of Loading"; Code[50])
-        {
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
-        }
+        // field(70216; "Port of Loading"; Code[50])
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
+        // }
         field(70217; "Quantity to Split"; Decimal)
         {
             DataClassification = ToBeClassified;
@@ -332,24 +332,27 @@ tableextension 70200 "Purchase Line Exttension" extends "Purchase Line"
             FieldClass = FlowField;
             CalcFormula = Lookup(Item.CBM WHERE("No." = FIELD("No.")));
         }
-        field(70230; "POL"; Code[50])
+        field(70230; "Port of Loading"; Code[50])
         {
-
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details"."Port of Loading" where("BL ID" = field("BL/AWB ID")));
-
+            Caption = 'Port of Loading';
+            // Set up a lookup to your port master table here
+            TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
         }
-        field(70231; "POD"; Code[50])
+        field(70231; "Port of Discharge"; Code[50])
         {
-            FieldClass = FlowField;
-            CalcFormula = lookup("BL Details"."Port of Discharge" where("BL ID" = field("BL/AWB ID")));
+            Caption = 'Port of Discharge';
+            // Set up a lookup to your port master table here
+            TableRelation = "SIGMA Lookup".Code where(Type = const(Port));
         }
         field(70232; "Shipment Delivery Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ","Early","On Time","Delayed";
         }
-
+        field(70233; "BL Number"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
 
         /* modify("No.")
          {

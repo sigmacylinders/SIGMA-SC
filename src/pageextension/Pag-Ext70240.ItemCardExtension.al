@@ -111,6 +111,15 @@ pageextension 70240 "Item Card Extension" extends "Item Card"
             }
 
         }
+        addafter(Description)
+        {
+
+            field("Arabic Description"; Rec."Arabic Description")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Arabic Description field.', Comment = '%';
+            }
+        }
     }
     trigger OnAfterGetRecord()
     begin

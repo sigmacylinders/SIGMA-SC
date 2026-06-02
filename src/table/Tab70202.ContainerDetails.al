@@ -334,15 +334,16 @@ table 70202 "Container Details"
         "ContainerDetails": Record "Container Details";
     begin
         if "SP ID" = '' then begin
-            GLSetup.Get();
-            GLSetup.TestField("SP ID No. Series");
+            "SP ID" := Format(Rec."Line No.");
+            /* GLSetup.Get();//stopped 20/04/2026
+             GLSetup.TestField("SP ID No. Series");
 
-            if NoSeries.AreRelated(GLSetup."SP ID No. Series", xRec."No. Series") then
-                Rec."No. Series" := xRec."No. Series"
-            else
-                Rec."No. Series" := GLSetup."SP ID No. Series";
+             if NoSeries.AreRelated(GLSetup."SP ID No. Series", xRec."No. Series") then
+                 Rec."No. Series" := xRec."No. Series"
+             else
+                 Rec."No. Series" := GLSetup."SP ID No. Series";
 
-            Rec."SP ID" := NoSeries.GetNextNo(Rec."No. Series");
+             Rec."SP ID" := NoSeries.GetNextNo(Rec."No. Series");*/
         end;
     end;
 }

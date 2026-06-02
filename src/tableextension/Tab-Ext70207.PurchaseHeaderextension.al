@@ -205,6 +205,12 @@ tableextension 70207 "Purchase Header extension" extends "Purchase Header"
         field(70209; "Document Attachment Line No."; Integer)
         {
         }
+        field(70210; "PI Reference"; Code[35])
+        {
+            Caption = 'PI Reference';
+            DataClassification = CustomerContent;
+            ToolTip = 'Specifies the Proforma Invoice (PI) reference. Flows to the Posted Purchase Invoice, Vendor Ledger Entry and G/L Entry on posting.';
+        }
 
     }
 

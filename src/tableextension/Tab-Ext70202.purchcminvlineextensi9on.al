@@ -108,6 +108,10 @@ tableextension 70202 "purch cm inv line extensi9on" extends "Purch. Cr. Memo Lin
             DataClassification = ToBeClassified;
             OptionMembers = " ","Early","On Time","Delayed";
         }
+        field(70233; "BL Number"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

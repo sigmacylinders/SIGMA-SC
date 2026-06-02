@@ -100,6 +100,17 @@ pageextension 70215 "PO Subform e xtension" extends "Purchase Order Subform"
                 ToolTip = 'Specifies the value of the Container Line No. field.', Comment = '%';
                 Editable = false;
             }
+            field("Port of Loading"; Rec."Port of Loading")
+            {
+                ToolTip = 'Specifies the value of the Port of Loading field.', Comment = '%';
+                ApplicationArea = All;
+            }
+
+            field("Port of Discharge"; Rec."Port of Discharge")
+            {
+                ToolTip = 'Specifies the value of the Port of Discharge field.', Comment = '%';
+                ApplicationArea = All;
+            }
 
         }
 
@@ -150,7 +161,7 @@ pageextension 70215 "PO Subform e xtension" extends "Purchase Order Subform"
                 // Editable = false;
                 // Enabled = false;     
                 DecimalPlaces = 0 : 5;
-                Editable = (Rec."Quantity to Split" = 0);
+                //   Editable = (Rec."Quantity to Split" = 0);
 
                 trigger OnValidate()
                 begin
@@ -317,7 +328,12 @@ pageextension 70215 "PO Subform e xtension" extends "Purchase Order Subform"
                                     PurchaseOrderLine.Validate("FTAW", ContainerDetails."FTAW");
                                     PurchaseOrderLine.Validate("ATA", ContainerDetails."ATA");
                                     PurchaseOrderLine.Validate("FTR", ContainerDetails."FTR");
-
+                                    Clear(BLList);//added on 12/03/2026
+                                    If BLList.Get(BLAWBNumber) then begin
+                                        PurchaseOrderLine.Validate("BL Number", BLList."BL Number");
+                                        PurchaseOrderLine."Port of Loading" := BLList."Port of Loading";
+                                        PurchaseOrderLine."Port of Discharge" := BLList."Port of Discharge";
+                                    end;
 
 
                                 end;
@@ -419,6 +435,7 @@ pageextension 70215 "PO Subform e xtension" extends "Purchase Order Subform"
                                 PurchaseOrderLine."FTD" := 0D;
                                 PurchaseOrderLine."FTAW" := 0D;
                                 PurchaseOrderLine."ATA" := 0D;
+                                PurchaseOrderLine."BL Number" := '';//added on 12/03/2026
 
 
                                 PurchaseOrderLine.Modify();

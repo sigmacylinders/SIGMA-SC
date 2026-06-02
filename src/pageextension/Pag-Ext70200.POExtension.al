@@ -26,6 +26,11 @@ pageextension 70200 "PO Extension" extends "Purchase Order"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Initial ETAW field.', Comment = '%';
             }
+            field("PI Reference"; Rec."PI Reference")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the Proforma Invoice (PI) reference. It will be copied to the Posted Purchase Invoice, Vendor Ledger Entry and G/L Entry when the order is posted.';
+            }
 
         }
         addafter("Attached Documents")
